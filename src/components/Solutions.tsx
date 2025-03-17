@@ -59,7 +59,7 @@ const Solutions = () => {
       icon: <Globe className="h-6 w-6 text-primary" />,
       title: "Boost Site Web",
       description: "Optimisez votre présence en ligne pour une audience internationale",
-      videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ", // Remplacer par une vraie URL de vidéo
+      videoUrl: "https://www.youtube.com/embed/HpsFXML7vVY", // Mise à jour avec le nouveau lien vidéo
       features: [
         "Agent IA multilingue (anglais, allemand, arabe, mandarin)",
         "Analyse en temps réel du comportement des visiteurs",
@@ -178,3 +178,4 @@ const Solutions = () => {
 };
 
 export default Solutions;
+
