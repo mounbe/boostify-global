@@ -50,18 +50,20 @@ export const Header = () => {
             </div>
           </a>
           
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-8">
-            {navLinks.map((link) => (
-              <a
-                key={link.name}
-                href={link.href}
-                className="text-foreground/90 hover:text-primary transition-colors duration-200 text-sm font-medium"
-              >
-                {link.name}
-              </a>
-            ))}
-          </nav>
+          {/* Desktop Navigation - Now displayed horizontally */}
+          <div className="hidden md:flex flex-1 justify-center">
+            <nav className="flex items-center space-x-8">
+              {navLinks.map((link) => (
+                <a
+                  key={link.name}
+                  href={link.href}
+                  className="text-foreground/90 hover:text-primary transition-colors duration-200 text-sm font-medium"
+                >
+                  {link.name}
+                </a>
+              ))}
+            </nav>
+          </div>
           
           {/* Language Toggle & CTA Button */}
           <div className="hidden md:flex items-center gap-4">
