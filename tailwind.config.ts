@@ -163,6 +163,7 @@ export default {
 			fontFamily: {
 				sans: ['Inter', 'sans-serif'],
 				display: ['Poppins', 'sans-serif'],
+				montserrat: ['Montserrat', 'sans-serif'],
 			}
 		}
 	},
