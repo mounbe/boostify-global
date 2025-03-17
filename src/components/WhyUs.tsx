@@ -76,8 +76,8 @@ const WhyUs = () => {
           <h3 className="text-xl md:text-2xl font-semibold text-center mb-4 text-white">
             {t('whyUs.simplify.title')}
           </h3>
-          <p className="text-center max-w-3xl mx-auto text-blue-600/80 mb-8">
-            {t('whyUs.simplify.description')}
+          <p className="text-center max-w-3xl mx-auto text-blue-600/80 mb-8" 
+             dangerouslySetInnerHTML={{ __html: t('whyUs.simplify.description') }}>
           </p>
           
           <div className="grid md:grid-cols-3 gap-8 mt-8">
