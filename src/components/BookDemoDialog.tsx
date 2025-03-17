@@ -67,13 +67,19 @@ export function BookDemoDialog({ open, onOpenChange }: BookDemoDialogProps) {
     // Here you would typically send the data to your backend/API
     console.log("Form submitted with data:", data);
     
-    // Show success toast
+    // Show success toast - Fix: removed the icon property and include the Check icon in the description
     toast({
       title: language === 'fr' ? 'Demande envoyée' : 'Request sent',
-      description: language === 'fr' 
-        ? 'Nous vous contacterons bientôt pour planifier votre démo.' 
-        : 'We will contact you soon to schedule your demo.',
-      icon: <Check className="h-4 w-4" />,
+      description: (
+        <div className="flex items-center gap-2">
+          <Check className="h-4 w-4" />
+          <span>
+            {language === 'fr' 
+              ? 'Nous vous contacterons bientôt pour planifier votre démo.' 
+              : 'We will contact you soon to schedule your demo.'}
+          </span>
+        </div>
+      ),
     });
     
     // Close the dialog
