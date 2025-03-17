@@ -1,10 +1,15 @@
 
-import React, { useEffect } from 'react';
-import { ChevronRight, Globe, ExternalLink } from 'lucide-react';
+import React, { useEffect, useState } from 'react';
+import { ChevronRight, Globe, ExternalLink, Calendar } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
+import BookDemoDialog from './BookDemoDialog';
+import { useLanguage } from '@/context/LanguageContext';
 
 const Hero = () => {
+  const [bookDemoOpen, setBookDemoOpen] = useState(false);
+  const { language } = useLanguage();
+  
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
@@ -47,8 +52,12 @@ const Hero = () => {
             </p>
             
             <div className="flex flex-wrap gap-4 pt-4">
-              <Button className="bg-primary hover:bg-primary/90 text-white text-base px-8 py-6 rounded-full transition-all duration-300 hover:shadow-lg hover:shadow-primary/20">
-                Réserver une démo
+              <Button 
+                className="bg-primary hover:bg-primary/90 text-white text-base px-8 py-6 rounded-full transition-all duration-300 hover:shadow-lg hover:shadow-primary/20"
+                onClick={() => setBookDemoOpen(true)}
+              >
+                <Calendar className="mr-2 h-5 w-5" />
+                {language === 'fr' ? 'Réserver une démo' : 'Book a demo'}
                 <ChevronRight className="ml-2 h-5 w-5" />
               </Button>
               
@@ -112,6 +121,9 @@ const Hero = () => {
           </div>
         </div>
       </div>
+      
+      {/* Book Demo Dialog */}
+      <BookDemoDialog open={bookDemoOpen} onOpenChange={setBookDemoOpen} />
     </section>
   );
 };

@@ -2,13 +2,15 @@
 import React, { useEffect, useState } from 'react';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
-import { Menu, X, ChevronRight } from 'lucide-react';
+import { Menu, X, ChevronRight, Calendar } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
 import LanguageToggle from './LanguageToggle';
+import BookDemoDialog from './BookDemoDialog';
 
 export const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [bookDemoOpen, setBookDemoOpen] = useState(false);
   const { t } = useLanguage();
 
   useEffect(() => {
@@ -61,7 +63,11 @@ export const Header = () => {
           {/* Language Toggle & CTA Button */}
           <div className="hidden md:flex items-center gap-4">
             <LanguageToggle />
-            <Button className="bg-primary hover:bg-primary/90 text-white font-medium rounded-full px-6">
+            <Button 
+              className="bg-primary hover:bg-primary/90 text-white font-medium rounded-full px-6"
+              onClick={() => setBookDemoOpen(true)}
+            >
+              <Calendar className="mr-2 h-4 w-4" />
               {t('cta.bookDemo')}
               <ChevronRight className="ml-2 h-4 w-4" />
             </Button>
@@ -99,12 +105,22 @@ export const Header = () => {
               {link.name}
             </a>
           ))}
-          <Button className="w-full bg-primary hover:bg-primary/90 text-white font-medium rounded-full mt-4">
+          <Button 
+            className="w-full bg-primary hover:bg-primary/90 text-white font-medium rounded-full mt-4"
+            onClick={() => {
+              setMobileMenuOpen(false);
+              setBookDemoOpen(true);
+            }}
+          >
+            <Calendar className="mr-2 h-4 w-4" />
             {t('cta.bookDemo')}
             <ChevronRight className="ml-2 h-4 w-4" />
           </Button>
         </div>
       </div>
+
+      {/* Book Demo Dialog */}
+      <BookDemoDialog open={bookDemoOpen} onOpenChange={setBookDemoOpen} />
     </header>
   );
 };

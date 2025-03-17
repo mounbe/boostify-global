@@ -1,12 +1,14 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import { ArrowRight, Globe, Gift } from 'lucide-react';
+import { ArrowRight, Globe, Gift, Calendar } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
+import BookDemoDialog from './BookDemoDialog';
 
 const ExporterCTA = () => {
   const { language } = useLanguage();
+  const [bookDemoOpen, setBookDemoOpen] = useState(false);
   
   return (
     <section className="py-16 px-4 bg-gradient-to-br from-purple-900 to-purple-800 section-padding">
@@ -71,7 +73,11 @@ const ExporterCTA = () => {
                     </div>
                   </div>
                 </div>
-                <Button className="mt-8 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white font-medium px-6 py-6 rounded-full w-full md:w-auto">
+                <Button 
+                  className="mt-8 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white font-medium px-6 py-6 rounded-full w-full md:w-auto"
+                  onClick={() => setBookDemoOpen(true)}
+                >
+                  <Calendar className="mr-2 h-5 w-5" />
                   <span>{language === 'fr' ? 'Commandez maintenant' : 'Order now'}</span>
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
@@ -107,6 +113,9 @@ const ExporterCTA = () => {
           </div>
         </Card>
       </div>
+      
+      {/* Book Demo Dialog */}
+      <BookDemoDialog open={bookDemoOpen} onOpenChange={setBookDemoOpen} />
     </section>
   );
 };
