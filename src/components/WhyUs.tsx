@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Badge } from '@/components/ui/badge';
-import { Gift, Award, Lightbulb, TrendingUp } from 'lucide-react';
+import { Gift, Award, Lightbulb, TrendingUp, Search, Map, Activity } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
 
 interface FeatureProps {
@@ -81,28 +81,40 @@ const WhyUs = () => {
           </p>
           
           <div className="grid md:grid-cols-3 gap-8 mt-8">
-            <div className="bg-[#3b82f6]/5 p-6 rounded-lg border border-[#3b82f6]/10 hover:bg-[#3b82f6]/10 transition-colors">
+            <div className="bg-[#3b82f6]/5 p-6 rounded-lg border border-[#3b82f6]/10 hover:bg-[#3b82f6]/10 transition-colors hover:shadow-lg duration-300 group">
               <div className="flex items-center mb-4">
-                <div className="h-8 w-8 rounded-full bg-[#3b82f6]/20 flex items-center justify-center text-[#3b82f6] font-bold mr-3">1</div>
-                <h4 className="text-[#3b82f6] font-semibold">{t('whyUs.simplify.step1.title')}</h4>
+                <div className="h-12 w-12 rounded-full bg-[#3b82f6]/20 flex items-center justify-center text-[#3b82f6] group-hover:bg-[#3b82f6]/40 transition-colors duration-300 mr-3">
+                  <Search className="h-6 w-6 text-[#3b82f6]" />
+                </div>
+                <h4 className="text-[#3b82f6] font-semibold text-lg">{t('whyUs.simplify.step1.title')}</h4>
               </div>
-              <p className="text-blue-600/80">{t('whyUs.simplify.step1.description')}</p>
+              <div className="pl-2 border-l-2 border-[#3b82f6]/20">
+                <p className="text-blue-600/80">{t('whyUs.simplify.step1.description')}</p>
+              </div>
             </div>
             
-            <div className="bg-[#3b82f6]/5 p-6 rounded-lg border border-[#3b82f6]/10 hover:bg-[#3b82f6]/10 transition-colors">
+            <div className="bg-[#3b82f6]/5 p-6 rounded-lg border border-[#3b82f6]/10 hover:bg-[#3b82f6]/10 transition-colors hover:shadow-lg duration-300 group">
               <div className="flex items-center mb-4">
-                <div className="h-8 w-8 rounded-full bg-[#3b82f6]/20 flex items-center justify-center text-[#3b82f6] font-bold mr-3">2</div>
-                <h4 className="text-[#3b82f6] font-semibold">{t('whyUs.simplify.step2.title')}</h4>
+                <div className="h-12 w-12 rounded-full bg-[#3b82f6]/20 flex items-center justify-center text-[#3b82f6] group-hover:bg-[#3b82f6]/40 transition-colors duration-300 mr-3">
+                  <Map className="h-6 w-6 text-[#3b82f6]" />
+                </div>
+                <h4 className="text-[#3b82f6] font-semibold text-lg">{t('whyUs.simplify.step2.title')}</h4>
               </div>
-              <p className="text-blue-600/80">{t('whyUs.simplify.step2.description')}</p>
+              <div className="pl-2 border-l-2 border-[#3b82f6]/20">
+                <p className="text-blue-600/80">{t('whyUs.simplify.step2.description')}</p>
+              </div>
             </div>
             
-            <div className="bg-[#3b82f6]/5 p-6 rounded-lg border border-[#3b82f6]/10 hover:bg-[#3b82f6]/10 transition-colors">
+            <div className="bg-[#3b82f6]/5 p-6 rounded-lg border border-[#3b82f6]/10 hover:bg-[#3b82f6]/10 transition-colors hover:shadow-lg duration-300 group">
               <div className="flex items-center mb-4">
-                <div className="h-8 w-8 rounded-full bg-[#3b82f6]/20 flex items-center justify-center text-[#3b82f6] font-bold mr-3">3</div>
-                <h4 className="text-[#3b82f6] font-semibold">{t('whyUs.simplify.step3.title')}</h4>
+                <div className="h-12 w-12 rounded-full bg-[#3b82f6]/20 flex items-center justify-center text-[#3b82f6] group-hover:bg-[#3b82f6]/40 transition-colors duration-300 mr-3">
+                  <Activity className="h-6 w-6 text-[#3b82f6]" />
+                </div>
+                <h4 className="text-[#3b82f6] font-semibold text-lg">{t('whyUs.simplify.step3.title')}</h4>
               </div>
-              <p className="text-blue-600/80">{t('whyUs.simplify.step3.description')}</p>
+              <div className="pl-2 border-l-2 border-[#3b82f6]/20">
+                <p className="text-blue-600/80">{t('whyUs.simplify.step3.description')}</p>
+              </div>
             </div>
           </div>
         </div>
