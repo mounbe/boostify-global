@@ -76,9 +76,35 @@ const WhyUs = () => {
           <h3 className="text-xl md:text-2xl font-semibold text-center mb-4 text-white">
             {t('whyUs.simplify.title')}
           </h3>
-          <p className="text-center max-w-3xl mx-auto text-blue-600/80">
+          <p className="text-center max-w-3xl mx-auto text-blue-600/80 mb-8">
             {t('whyUs.simplify.description')}
           </p>
+          
+          <div className="grid md:grid-cols-3 gap-8 mt-8">
+            <div className="bg-[#3b82f6]/5 p-6 rounded-lg border border-[#3b82f6]/10 hover:bg-[#3b82f6]/10 transition-colors">
+              <div className="flex items-center mb-4">
+                <div className="h-8 w-8 rounded-full bg-[#3b82f6]/20 flex items-center justify-center text-[#3b82f6] font-bold mr-3">1</div>
+                <h4 className="text-[#3b82f6] font-semibold">{t('whyUs.simplify.step1.title')}</h4>
+              </div>
+              <p className="text-blue-600/80">{t('whyUs.simplify.step1.description')}</p>
+            </div>
+            
+            <div className="bg-[#3b82f6]/5 p-6 rounded-lg border border-[#3b82f6]/10 hover:bg-[#3b82f6]/10 transition-colors">
+              <div className="flex items-center mb-4">
+                <div className="h-8 w-8 rounded-full bg-[#3b82f6]/20 flex items-center justify-center text-[#3b82f6] font-bold mr-3">2</div>
+                <h4 className="text-[#3b82f6] font-semibold">{t('whyUs.simplify.step2.title')}</h4>
+              </div>
+              <p className="text-blue-600/80">{t('whyUs.simplify.step2.description')}</p>
+            </div>
+            
+            <div className="bg-[#3b82f6]/5 p-6 rounded-lg border border-[#3b82f6]/10 hover:bg-[#3b82f6]/10 transition-colors">
+              <div className="flex items-center mb-4">
+                <div className="h-8 w-8 rounded-full bg-[#3b82f6]/20 flex items-center justify-center text-[#3b82f6] font-bold mr-3">3</div>
+                <h4 className="text-[#3b82f6] font-semibold">{t('whyUs.simplify.step3.title')}</h4>
+              </div>
+              <p className="text-blue-600/80">{t('whyUs.simplify.step3.description')}</p>
+            </div>
+          </div>
         </div>
       </div>
     </section>

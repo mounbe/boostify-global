@@ -1,4 +1,3 @@
-
 import React, { createContext, useContext, useState, ReactNode } from 'react';
 
 export type Language = 'en' | 'fr';
@@ -48,6 +47,12 @@ const translations = {
     'whyUs.feature4.description': 'Modernization of your logo for better brand recognition.',
     'whyUs.simplify.title': 'Simplify Your Business',
     'whyUs.simplify.description': 'We take care of everything: diagnosis, strategy, communication tools, lead generation, nurturing, and deal preparation. You only need to focus on negotiation and closing sales while we manage your digital marketing.',
+    'whyUs.simplify.step1.title': 'Business Analysis',
+    'whyUs.simplify.step1.description': 'Our AI analyzes your business, products, and current market to identify international opportunities.',
+    'whyUs.simplify.step2.title': 'Customized Strategy',
+    'whyUs.simplify.step2.description': 'We develop a tailored export strategy adapted to your industry and identified target markets.',
+    'whyUs.simplify.step3.title': 'Implementation and Monitoring',
+    'whyUs.simplify.step3.description': 'Our team assists you in implementing the strategy and ensures regular monitoring of results.',
     
     // Pricing
     'pricing.badge': 'Offers with 30% discount',
@@ -145,6 +150,12 @@ const translations = {
     'whyUs.feature4.description': 'Modernisation de votre logo pour une meilleure reconnaissance de marque.',
     'whyUs.simplify.title': 'Simplifiez Votre Business',
     'whyUs.simplify.description': 'Nous nous occupons de tout : diagnostic, stratégie, outils de communication, génération de leads, nurturing, et préparation des affaires. Vous n\'avez qu\'à vous concentrer sur la négociation et la clôture des ventes pendant que nous gérons votre marketing digital.',
+    'whyUs.simplify.step1.title': 'Analyse de votre entreprise',
+    'whyUs.simplify.step1.description': 'Notre IA analyse votre entreprise, vos produits et votre marché actuel pour identifier les opportunités à l\'international.',
+    'whyUs.simplify.step2.title': 'Stratégie personnalisée',
+    'whyUs.simplify.step2.description': 'Nous élaborons une stratégie d\'exportation sur mesure adaptée à votre secteur et aux marchés cibles identifiés.',
+    'whyUs.simplify.step3.title': 'Mise en œuvre et suivi',
+    'whyUs.simplify.step3.description': 'Notre équipe vous accompagne dans la mise en œuvre de la stratégie et assure un suivi régulier des résultats.',
     
     // Pricing
     'pricing.badge': 'Offres avec 30% de réduction',
