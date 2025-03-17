@@ -59,7 +59,7 @@ const Solutions = () => {
       icon: <Globe className="h-6 w-6 text-primary" />,
       title: "Boost Site Web",
       description: "Optimisez votre présence en ligne pour une audience internationale",
-      videoUrl: "https://www.youtube.com/embed/HpsFXML7vVY", // Mise à jour avec le nouveau lien vidéo
+      videoUrl: "https://www.youtube.com/embed/HpsFXML7vVY", 
       features: [
         "Agent IA multilingue (anglais, allemand, arabe, mandarin)",
         "Analyse en temps réel du comportement des visiteurs",
@@ -71,7 +71,7 @@ const Solutions = () => {
       icon: <TrendingUp className="h-6 w-6 text-primary" />,
       title: "Boost Marketing Digital",
       description: "Contenu stratégique adapté à chaque marché",
-      videoUrl: "https://www.youtube.com/embed/zQTCdl87xRs", // Mise à jour avec le nouveau lien vidéo
+      videoUrl: "https://www.youtube.com/embed/zQTCdl87xRs",
       features: [
         "Génération de contenu pour tous réseaux sociaux",
         "Éditorial stratégique avec calendrier de publication",
@@ -84,7 +84,7 @@ const Solutions = () => {
       icon: <BarChartHorizontal className="h-6 w-6 text-primary" />,
       title: "Boost Ventes",
       description: "Automatisez votre processus d'acquisition de clients",
-      videoUrl: "https://www.youtube.com/embed/r9wXl_Zsu50", // Mise à jour avec le nouveau lien vidéo 
+      videoUrl: "https://www.youtube.com/embed/r9wXl_Zsu50",
       features: [
         "Génération de leads automatisée avec stratégies avancées",
         "Nurturing des leads avec séquences personnalisées",
@@ -108,12 +108,12 @@ const Solutions = () => {
         </div>
 
         <Tabs defaultValue="view-cards" className="mb-8 flex flex-col items-center">
-          <TabsList className="mb-6">
+          <TabsList>
             <TabsTrigger value="view-cards">Vue Cartes</TabsTrigger>
             <TabsTrigger value="view-videos">Vue Vidéos</TabsTrigger>
           </TabsList>
           
-          <TabsContent value="view-cards" className="w-full">
+          <TabsContent value="view-cards" className="w-full mt-8">
             <div className="grid md:grid-cols-3 gap-8">
               {solutions.map((solution, index) => (
                 <div key={index} className="animate-on-scroll" style={{ animationDelay: `${index * 0.2}s` }}>
@@ -129,7 +129,7 @@ const Solutions = () => {
             </div>
           </TabsContent>
           
-          <TabsContent value="view-videos" className="w-full">
+          <TabsContent value="view-videos" className="w-full mt-8">
             <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
               {solutions.map((solution, index) => (
                 <div key={index} className="animate-on-scroll bg-card/60 p-6 rounded-lg shadow-md" style={{ animationDelay: `${index * 0.2}s` }}>
