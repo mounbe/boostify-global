@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -71,7 +70,7 @@ const Solutions = () => {
       icon: <TrendingUp className="h-6 w-6 text-primary" />,
       title: "Boost Marketing Digital",
       description: "Contenu stratégique adapté à chaque marché",
-      videoUrl: "https://www.youtube.com/embed/9bZkp7q19f0", // Remplacer par une vraie URL de vidéo
+      videoUrl: "https://www.youtube.com/embed/zQTCdl87xRs", // Mise à jour avec le nouveau lien vidéo
       features: [
         "Génération de contenu pour tous réseaux sociaux",
         "Éditorial stratégique avec calendrier de publication",
@@ -178,4 +177,3 @@ const Solutions = () => {
 };
 
 export default Solutions;
-
