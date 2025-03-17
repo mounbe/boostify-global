@@ -40,11 +40,12 @@ export const Header = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16 md:h-20">
           {/* Logo */}
-          <a href="#" className="flex items-center space-x-2">
-            <div className="flex items-center">
-              <span className="text-primary text-2xl font-display font-bold">Boost</span>
-              <span className="text-foreground text-2xl font-display font-bold">ExportsAI</span>
-            </div>
+          <a href="#" className="flex items-center">
+            <img 
+              src="/lovable-uploads/f7442bf9-6154-4b4c-890b-a55ef794a477.png" 
+              alt="BoostExportsAI Logo" 
+              className="h-10 md:h-12 w-auto"
+            />
           </a>
           
           {/* Desktop Navigation */}
