@@ -31,10 +31,6 @@ const Hero = () => {
 
   const handlePlayVideo = () => {
     setIsVideoPlaying(true);
-    const videoElement = document.getElementById('promo-video') as HTMLVideoElement;
-    if (videoElement) {
-      videoElement.play();
-    }
   };
 
   return (
@@ -80,14 +76,14 @@ const Hero = () => {
                   </p>
                 </div>
                 
-                {/* Video Section */}
+                {/* YouTube Video Section */}
                 <div className="mt-6 relative rounded-xl overflow-hidden border border-primary/20 shadow-lg shadow-primary/5">
                   <AspectRatio ratio={16/9} className="bg-black">
                     {!isVideoPlaying ? (
                       <div className="absolute inset-0 flex items-center justify-center">
                         <div className="relative w-full h-full">
                           <img 
-                            src="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d" 
+                            src="https://img.youtube.com/vi/r9wXl_Zsu50/maxresdefault.jpg" 
                             alt="Video thumbnail" 
                             className="w-full h-full object-cover"
                           />
@@ -103,17 +99,15 @@ const Hero = () => {
                           </div>
                         </div>
                       </div>
-                    ) : null}
-                    <video
-                      id="promo-video"
-                      className="w-full h-full object-cover"
-                      controls={isVideoPlaying}
-                      poster="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d"
-                      playsInline
-                    >
-                      <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4" />
-                      Votre navigateur ne supporte pas la lecture de vidéos.
-                    </video>
+                    ) : (
+                      <iframe 
+                        src="https://www.youtube.com/embed/r9wXl_Zsu50?autoplay=1" 
+                        title="YouTube video" 
+                        className="w-full h-full absolute inset-0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowFullScreen
+                      ></iframe>
+                    )}
                   </AspectRatio>
                 </div>
               </div>
