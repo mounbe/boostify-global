@@ -93,7 +93,7 @@ export const Header = () => {
       {/* Mobile Navigation */}
       <div
         className={cn(
-          "md:hidden fixed inset-x-0 top-16 bg-card shadow-lg transition-transform duration-300 ease-in-out z-40",
+          "md:hidden fixed inset-x-0 top-16 bg-blue-900/95 backdrop-blur-lg shadow-lg transition-transform duration-300 ease-in-out z-40",
           mobileMenuOpen ? "translate-y-0" : "-translate-y-full"
         )}
       >

@@ -12,8 +12,8 @@ interface FeatureProps {
 
 const Feature = ({ icon, title, description }: FeatureProps) => {
   return (
-    <div className="flex flex-col md:flex-row gap-4 items-start md:items-center p-6 rounded-lg bg-card/80 hover:bg-card transition-colors duration-300 shadow-sm hover:shadow-md animate-on-scroll">
-      <div className="bg-primary/10 p-3 rounded-full flex-shrink-0">
+    <div className="flex flex-col md:flex-row gap-4 items-start md:items-center p-6 rounded-lg bg-blue-900/20 hover:bg-blue-900/30 transition-colors duration-300 shadow-sm hover:shadow-md animate-on-scroll">
+      <div className="bg-primary/20 p-3 rounded-full flex-shrink-0">
         {icon}
       </div>
       <div>
@@ -51,12 +51,12 @@ const WhyUs = () => {
   ];
 
   return (
-    <section id="why-us" className="py-24 px-4 bg-gradient-to-b from-background to-card/50 section-padding">
+    <section id="why-us" className="py-24 px-4 bg-gradient-to-b from-background to-blue-950/30 section-padding">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
-          <Badge variant="secondary" className="mb-4">{t('whyUs.badge')}</Badge>
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">{t('whyUs.title')}</h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <Badge variant="secondary" className="mb-4 bg-blue-800/30 text-blue-300 hover:bg-blue-800/40">{t('whyUs.badge')}</Badge>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-blue-100">{t('whyUs.title')}</h2>
+          <p className="text-lg text-blue-200/80 max-w-2xl mx-auto">
             {t('whyUs.description')}
           </p>
         </div>
@@ -72,11 +72,11 @@ const WhyUs = () => {
           ))}
         </div>
         
-        <div className="mt-16 p-8 bg-primary/5 rounded-xl border border-primary/10 animate-on-scroll">
-          <h3 className="text-xl md:text-2xl font-semibold text-center mb-4">
+        <div className="mt-16 p-8 bg-blue-900/20 rounded-xl border border-primary/20 animate-on-scroll">
+          <h3 className="text-xl md:text-2xl font-semibold text-center mb-4 text-blue-100">
             {t('whyUs.simplify.title')}
           </h3>
-          <p className="text-center max-w-3xl mx-auto text-muted-foreground">
+          <p className="text-center max-w-3xl mx-auto text-blue-200/80">
             {t('whyUs.simplify.description')}
           </p>
         </div>
