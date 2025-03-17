@@ -1,3 +1,4 @@
+
 import React, { createContext, useContext, useState, ReactNode } from 'react';
 
 export type Language = 'en' | 'fr';
@@ -61,7 +62,7 @@ const translations = {
     'pricing.getStarted': 'Get Started',
     'pricing.popular': 'Popular',
     'pricing.plan1.title': 'Website Boost',
-    'pricing.plan1.price': '1,600 DH',
+    'pricing.plan1.price': '190$',
     'pricing.plan1.feature1': 'Multilingual AI agent',
     'pricing.plan1.feature2': 'Real-time analysis',
     'pricing.plan1.feature3': 'Localized SEO',
@@ -164,7 +165,7 @@ const translations = {
     'pricing.getStarted': 'Commencer',
     'pricing.popular': 'Populaire',
     'pricing.plan1.title': 'Boost Site Web',
-    'pricing.plan1.price': '1 600 DH',
+    'pricing.plan1.price': '190$',
     'pricing.plan1.feature1': 'Agent IA multilingue',
     'pricing.plan1.feature2': 'Analyse en temps réel',
     'pricing.plan1.feature3': 'SEO localisé',
