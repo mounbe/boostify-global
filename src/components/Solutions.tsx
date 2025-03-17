@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -83,7 +84,7 @@ const Solutions = () => {
       icon: <BarChartHorizontal className="h-6 w-6 text-primary" />,
       title: "Boost Ventes",
       description: "Automatisez votre processus d'acquisition de clients",
-      videoUrl: "https://www.youtube.com/embed/jNQXAC9IVRw", // Remplacer par une vraie URL de vidéo 
+      videoUrl: "https://www.youtube.com/embed/r9wXl_Zsu50", // Mise à jour avec le nouveau lien vidéo 
       features: [
         "Génération de leads automatisée avec stratégies avancées",
         "Nurturing des leads avec séquences personnalisées",
