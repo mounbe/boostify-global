@@ -173,7 +173,7 @@ const Hero = () => {
                       </h4>
                     </div>
                     <p className="text-4xl font-bold text-primary mb-2">
-                      <span className="text-2xl inline-block">
+                      <span className="text-3xl inline-block">
                         {language === 'fr' ? '20$/mois' : '20$/month'}
                       </span>
                     </p>
