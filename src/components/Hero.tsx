@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from 'react';
 import { ChevronRight, Globe, ExternalLink, Calendar, TrendingUp, Users, MapPin, Languages, Lightbulb, CreditCard, Rocket, Play } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -171,7 +172,7 @@ const Hero = () => {
                         {language === 'fr' ? 'Crédits offerts' : 'Free credits'}
                       </h4>
                     </div>
-                    <p className="text-4xl font-bold text-primary mb-2">200 DH</p>
+                    <p className="text-4xl font-bold text-primary mb-2">200 DH <span className="text-lg">20$/mois</span></p>
                     <p className="text-sm text-muted-foreground">
                       {language === 'fr' ? 'Pour Google Ads' : 'For Google Ads'}
                     </p>
