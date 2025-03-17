@@ -41,13 +41,11 @@ export const Header = () => {
         <div className="flex justify-between items-center h-16 md:h-20">
           {/* Logo */}
           <a href="#" className="flex items-center">
-            <div className="bg-[#1A1F2C] p-2 rounded-lg">
-              <img 
-                src="/lovable-uploads/f7442bf9-6154-4b4c-890b-a55ef794a477.png" 
-                alt="BoostExportsAI Logo" 
-                className="h-10 md:h-12 w-auto"
-              />
-            </div>
+            <img 
+              src="/lovable-uploads/f7442bf9-6154-4b4c-890b-a55ef794a477.png" 
+              alt="BoostExportsAI Logo" 
+              className="h-10 md:h-12 w-auto"
+            />
           </a>
           
           {/* Desktop Navigation */}
