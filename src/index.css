@@ -1,3 +1,4 @@
+
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap');
 
 @tailwind base;
@@ -15,7 +16,7 @@
     --popover: 225 40% 15%;
     --popover-foreground: 210 40% 98%;
 
-    --primary: 210 100% 56%;
+    --primary: 221 83% 53%;
     --primary-foreground: 210 40% 98%;
 
     --secondary: 225 35% 20%;
@@ -24,7 +25,7 @@
     --muted: 225 35% 20%;
     --muted-foreground: 215 16% 75%;
 
-    --accent: 210 83% 46%;
+    --accent: 221 83% 20%;
     --accent-foreground: 210 40% 98%;
 
     --destructive: 0 84% 60%;
@@ -32,7 +33,7 @@
 
     --border: 225 25% 25%;
     --input: 225 25% 25%;
-    --ring: 210 100% 56%;
+    --ring: 221 83% 53%;
 
     --radius: 0.8rem;
   }
@@ -61,11 +62,11 @@
   }
   
   .highlight-text {
-    @apply font-semibold text-[#1E90FF];
+    @apply font-semibold text-primary;
   }
   
   .hero-text-gradient {
-    @apply bg-gradient-to-r from-[#1E90FF] to-blue-400 bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-primary to-blue-400 bg-clip-text text-transparent;
   }
   
   .with-border-fade {
@@ -100,11 +101,11 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-[#1E90FF]/20 rounded-full transition-colors;
+  @apply bg-primary/20 rounded-full transition-colors;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  @apply bg-[#1E90FF]/40;
+  @apply bg-primary/40;
 }
 
 /* Custom animations */
