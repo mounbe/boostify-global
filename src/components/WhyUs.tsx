@@ -11,7 +11,7 @@ interface FeatureProps {
 
 const Feature = ({ icon, title, description }: FeatureProps) => {
   return (
-    <div className="flex flex-col md:flex-row gap-4 items-start md:items-center p-6 rounded-lg bg-white/50 hover:bg-white/80 transition-colors duration-300 shadow-sm hover:shadow-md animate-on-scroll">
+    <div className="flex flex-col md:flex-row gap-4 items-start md:items-center p-6 rounded-lg bg-card/80 hover:bg-card transition-colors duration-300 shadow-sm hover:shadow-md animate-on-scroll">
       <div className="bg-primary/10 p-3 rounded-full flex-shrink-0">
         {icon}
       </div>
@@ -48,7 +48,7 @@ const WhyUs = () => {
   ];
 
   return (
-    <section id="why-us" className="py-24 px-4 bg-gradient-to-b from-white to-gray-50 section-padding">
+    <section id="why-us" className="py-24 px-4 bg-gradient-to-b from-background to-card/50 section-padding">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <Badge variant="secondary" className="mb-4">Pourquoi Nous Choisir</Badge>

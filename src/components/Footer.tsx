@@ -5,7 +5,7 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
   
   return (
-    <footer className="bg-white border-t border-gray-100">
+    <footer className="bg-card border-t border-border">
       <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 md:flex md:items-center md:justify-between">
         <div className="flex justify-center md:justify-start">
           <div className="flex items-center">

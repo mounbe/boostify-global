@@ -7,32 +7,32 @@
 
 @layer base {
   :root {
-    --background: 210 40% 98%;
-    --foreground: 222 47% 11%;
+    --background: 222 47% 11%;
+    --foreground: 210 40% 98%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222 47% 11%;
+    --card: 225 40% 15%;
+    --card-foreground: 210 40% 98%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222 47% 11%;
+    --popover: 225 40% 15%;
+    --popover-foreground: 210 40% 98%;
 
     --primary: 221 83% 53%;
     --primary-foreground: 210 40% 98%;
 
-    --secondary: 210 40% 96%;
-    --secondary-foreground: 222 47% 11%;
+    --secondary: 225 35% 20%;
+    --secondary-foreground: 210 40% 98%;
 
-    --muted: 210 40% 96%;
-    --muted-foreground: 215 16% 47%;
+    --muted: 225 35% 20%;
+    --muted-foreground: 215 16% 75%;
 
-    --accent: 221 83% 95%;
-    --accent-foreground: 222 47% 11%;
+    --accent: 221 83% 20%;
+    --accent-foreground: 210 40% 98%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 214 32% 91%;
-    --input: 214 32% 91%;
+    --border: 225 25% 25%;
+    --input: 225 25% 25%;
     --ring: 221 83% 53%;
 
     --radius: 0.8rem;
@@ -58,7 +58,7 @@
   }
   
   .glass-card {
-    @apply bg-white/70 backdrop-blur-lg border border-white/20 shadow-lg;
+    @apply bg-card/70 backdrop-blur-lg border border-white/10 shadow-lg;
   }
   
   .highlight-text {

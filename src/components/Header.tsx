@@ -30,7 +30,7 @@ export const Header = () => {
   return (
     <header className={cn(
       'fixed top-0 left-0 w-full z-50 transition-all duration-300 backdrop-blur-lg',
-      isScrolled ? 'bg-white/80 shadow-sm' : 'bg-transparent'
+      isScrolled ? 'bg-background/80 shadow-sm' : 'bg-transparent'
     )}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16 md:h-20">
@@ -77,7 +77,7 @@ export const Header = () => {
       {/* Mobile Navigation */}
       <div
         className={cn(
-          "md:hidden fixed inset-x-0 top-16 bg-white shadow-lg transition-transform duration-300 ease-in-out z-40",
+          "md:hidden fixed inset-x-0 top-16 bg-card shadow-lg transition-transform duration-300 ease-in-out z-40",
           mobileMenuOpen ? "translate-y-0" : "-translate-y-full"
         )}
       >

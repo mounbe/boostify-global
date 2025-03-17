@@ -56,7 +56,7 @@ const Contact = () => {
                   id="message" 
                   placeholder="Comment pouvons-nous vous aider?" 
                   rows={5} 
-                  className="resize-none" 
+                  className="resize-none bg-card/80" 
                   required 
                 />
               </div>
@@ -67,7 +67,7 @@ const Contact = () => {
             </form>
           </div>
 
-          <div className="bg-white/70 p-8 rounded-xl shadow-md with-border-fade animate-on-scroll">
+          <div className="bg-card/60 p-8 rounded-xl shadow-md with-border-fade animate-on-scroll">
             <h3 className="text-xl font-semibold mb-6">Informations de Contact</h3>
             
             <div className="space-y-6">
