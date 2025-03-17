@@ -65,13 +65,21 @@ const Hero = () => {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 mt-8">
               <div className="space-y-10">
                 <div className="space-y-4">
-                  <div className="flex items-center gap-2">
-                    <Rocket className="h-5 w-5 text-primary" />
-                    <h3 className="text-2xl font-semibold text-foreground">Développez votre présence internationale</h3>
+                  {/* Enhanced modern section */}
+                  <div className="relative group p-6 bg-gradient-to-br from-background via-secondary/30 to-background rounded-2xl border border-primary/20 shadow-lg shadow-primary/10 hover:shadow-primary/20 transition-all duration-500">
+                    <div className="absolute -inset-0.5 bg-gradient-to-r from-primary/50 to-blue-400/50 rounded-2xl blur opacity-20 group-hover:opacity-40 transition duration-500"></div>
+                    <div className="relative flex items-center gap-3 mb-4">
+                      <div className="p-2 rounded-full bg-primary/10 text-primary">
+                        <Rocket className="h-6 w-6" />
+                      </div>
+                      <h3 className="text-2xl font-semibold font-display bg-gradient-to-r from-primary to-blue-400 bg-clip-text text-transparent">
+                        Développez votre présence internationale
+                      </h3>
+                    </div>
+                    <p className="text-lg text-foreground/70 pl-12 mb-6">
+                      Automatisez vos processus d'exportation avec nos solutions d'IA
+                    </p>
                   </div>
-                  <p className="text-lg text-foreground/70">
-                    Automatisez vos processus d'exportation avec nos solutions d'IA
-                  </p>
                   
                   {/* Video Section */}
                   <div className="mt-6 relative rounded-xl overflow-hidden border border-primary/20 shadow-lg shadow-primary/5">
@@ -84,14 +92,14 @@ const Hero = () => {
                               alt="Video thumbnail" 
                               className="w-full h-full object-cover"
                             />
-                            <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
+                            <div className="absolute inset-0 bg-gradient-to-br from-black/70 to-primary/30 flex items-center justify-center backdrop-blur-sm">
                               <Button 
                                 onClick={handlePlayVideo}
                                 variant="ghost" 
                                 size="icon" 
-                                className="w-16 h-16 rounded-full bg-primary/90 hover:bg-primary hover:scale-105 transition-all duration-300 text-white"
+                                className="w-20 h-20 rounded-full bg-primary/80 hover:bg-primary hover:scale-105 transition-all duration-300 text-white shadow-lg shadow-primary/40"
                               >
-                                <Play className="h-8 w-8" />
+                                <Play className="h-10 w-10 ml-1" />
                               </Button>
                             </div>
                           </div>
