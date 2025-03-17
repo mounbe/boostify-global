@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import { ChevronRight, Globe, ExternalLink, Calendar, TrendingUp, Users, MapPin, Languages, Lightbulb, CreditCard, Rocket, Play } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -173,7 +172,7 @@ const Hero = () => {
                       </h4>
                     </div>
                     <p className="text-4xl font-bold text-primary mb-2">
-                      <span className="text-sm inline-block">
+                      <span className="text-base inline-block">
                         {language === 'fr' ? '20$/mois' : '20$/month'}
                       </span>
                     </p>
