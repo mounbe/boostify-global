@@ -8,11 +8,13 @@ const Footer = () => {
     <footer className="bg-card border-t border-border">
       <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 md:flex md:items-center md:justify-between">
         <div className="flex justify-center md:justify-start">
-          <img 
-            src="/lovable-uploads/f7442bf9-6154-4b4c-890b-a55ef794a477.png" 
-            alt="BoostExportsAI Logo" 
-            className="h-10 w-auto"
-          />
+          <div className="bg-[#1A1F2C] p-2 rounded-lg">
+            <img 
+              src="/lovable-uploads/f7442bf9-6154-4b4c-890b-a55ef794a477.png" 
+              alt="BoostExportsAI Logo" 
+              className="h-10 w-auto"
+            />
+          </div>
         </div>
         
         <div className="mt-8 md:mt-0">
