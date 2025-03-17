@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import { ChevronRight, Globe, ExternalLink, Calendar, TrendingUp, Users, MapPin, Languages, Lightbulb, CreditCard, Rocket, Play } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -35,7 +34,6 @@ const Hero = () => {
 
   return (
     <section id="hero" className="relative min-h-screen flex items-center pt-16 overflow-hidden section-padding">
-      {/* Background shapes */}
       <div className="absolute inset-0 -z-10 overflow-hidden">
         <div className="absolute top-1/4 left-0 w-96 h-96 bg-primary/5 rounded-full filter blur-3xl animate-float"></div>
         <div className="absolute bottom-0 right-1/4 w-64 h-64 bg-blue-300/10 rounded-full filter blur-3xl animate-float" style={{ animationDelay: '1s' }}></div>
@@ -43,7 +41,6 @@ const Hero = () => {
       
       <div className="max-w-7xl mx-auto w-full">
         <div className="grid grid-cols-1 gap-12 items-center">
-          {/* Text content */}
           <div className="space-y-10 animate-on-scroll">
             <Badge variant="secondary" className="mb-2 flex items-center gap-1">
               <Globe className="mr-1 h-3 w-3" /> 
@@ -68,14 +65,13 @@ const Hero = () => {
             
             <div className="space-y-10 mt-8">
               <div className="space-y-4">
-                {/* Enhanced modern section */}
                 <div className="relative group p-6 bg-gradient-to-br from-background via-secondary/30 to-background rounded-2xl border border-primary/20 shadow-lg shadow-primary/10 hover:shadow-primary/20 transition-all duration-500">
                   <div className="absolute -inset-0.5 bg-gradient-to-r from-primary/50 to-blue-400/50 rounded-2xl blur opacity-20 group-hover:opacity-40 transition duration-500"></div>
                   <div className="relative flex items-center gap-3 mb-4">
                     <div className="p-2 rounded-full bg-primary/10 text-primary">
                       <Rocket className="h-6 w-6" />
                     </div>
-                    <h3 className="text-2xl font-semibold font-display bg-gradient-to-r from-primary to-blue-400 bg-clip-text text-transparent">
+                    <h3 className="text-2xl font-semibold font-display text-white">
                       {language === 'fr' ? 'Accélérez votre croissance internationale' : 'Accelerate your international growth'}
                     </h3>
                   </div>
@@ -88,39 +84,36 @@ const Hero = () => {
                   </p>
                 </div>
                 
-                {/* YouTube Video Section */}
                 <div className="mt-6 relative rounded-xl overflow-hidden border border-primary/20 shadow-lg shadow-primary/5">
-                  <AspectRatio ratio={16/9} className="bg-black">
-                    {!isVideoPlaying ? (
-                      <div className="absolute inset-0 flex items-center justify-center">
-                        <div className="relative w-full h-full">
-                          <img 
-                            src="https://img.youtube.com/vi/r9wXl_Zsu50/maxresdefault.jpg" 
-                            alt={language === 'fr' ? "Vignette de la vidéo" : "Video thumbnail"} 
-                            className="w-full h-full object-cover"
-                          />
-                          <div className="absolute inset-0 bg-gradient-to-br from-black/70 to-primary/30 flex items-center justify-center backdrop-blur-sm">
-                            <Button 
-                              onClick={handlePlayVideo}
-                              variant="ghost" 
-                              size="icon" 
-                              className="w-20 h-20 rounded-full bg-primary/80 hover:bg-primary hover:scale-105 transition-all duration-300 text-white shadow-lg shadow-primary/40"
-                            >
-                              <Play className="h-10 w-10 ml-1" />
-                            </Button>
-                          </div>
+                  {!isVideoPlaying ? (
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <div className="relative w-full h-full">
+                        <img 
+                          src="https://img.youtube.com/vi/r9wXl_Zsu50/maxresdefault.jpg" 
+                          alt={language === 'fr' ? "Vignette de la vidéo" : "Video thumbnail"} 
+                          className="w-full h-full object-cover"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-br from-black/70 to-primary/30 flex items-center justify-center backdrop-blur-sm">
+                          <Button 
+                            onClick={handlePlayVideo}
+                            variant="ghost" 
+                            size="icon" 
+                            className="w-20 h-20 rounded-full bg-primary/80 hover:bg-primary hover:scale-105 transition-all duration-300 text-white shadow-lg shadow-primary/40"
+                          >
+                            <Play className="h-10 w-10 ml-1" />
+                          </Button>
                         </div>
                       </div>
-                    ) : (
-                      <iframe 
-                        src="https://www.youtube.com/embed/r9wXl_Zsu50?autoplay=1" 
-                        title="YouTube video" 
-                        className="w-full h-full absolute inset-0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                        allowFullScreen
-                      ></iframe>
-                    )}
-                  </AspectRatio>
+                    </div>
+                  ) : (
+                    <iframe 
+                      src="https://www.youtube.com/embed/r9wXl_Zsu50?autoplay=1" 
+                      title="YouTube video" 
+                      className="w-full h-full absolute inset-0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                      allowFullScreen
+                    ></iframe>
+                  )}
                 </div>
               </div>
               
@@ -216,7 +209,6 @@ const Hero = () => {
         </div>
       </div>
       
-      {/* Book Demo Dialog */}
       <BookDemoDialog open={bookDemoOpen} onOpenChange={setBookDemoOpen} />
     </section>
   );
