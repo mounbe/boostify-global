@@ -87,7 +87,7 @@ const Hero = () => {
                       <div className="absolute inset-0 flex items-center justify-center">
                         <div className="relative w-full h-full">
                           <img 
-                            src="/placeholder.svg" 
+                            src="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d" 
                             alt="Video thumbnail" 
                             className="w-full h-full object-cover"
                           />
@@ -108,7 +108,7 @@ const Hero = () => {
                       id="promo-video"
                       className="w-full h-full object-cover"
                       controls={isVideoPlaying}
-                      poster="/placeholder.svg"
+                      poster="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d"
                       playsInline
                     >
                       <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4" />
