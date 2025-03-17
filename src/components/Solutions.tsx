@@ -107,71 +107,75 @@ const Solutions = () => {
           </p>
         </div>
 
-        <Tabs defaultValue="view-cards" className="mb-8 flex flex-col items-center">
-          <TabsList>
-            <TabsTrigger value="view-cards">Vue Cartes</TabsTrigger>
-            <TabsTrigger value="view-videos">Vue Vidéos</TabsTrigger>
-          </TabsList>
-          
-          <TabsContent value="view-cards" className="w-full mt-8">
-            <div className="grid md:grid-cols-3 gap-8">
-              {solutions.map((solution, index) => (
-                <div key={index} className="animate-on-scroll" style={{ animationDelay: `${index * 0.2}s` }}>
-                  <SolutionCard
-                    icon={solution.icon}
-                    title={solution.title}
-                    description={solution.description}
-                    features={solution.features}
-                    videoUrl={solution.videoUrl}
-                  />
-                </div>
-              ))}
+        <div className="w-full">
+          <Tabs defaultValue="view-cards">
+            <div className="flex justify-center mb-8">
+              <TabsList>
+                <TabsTrigger value="view-cards">Vue Cartes</TabsTrigger>
+                <TabsTrigger value="view-videos">Vue Vidéos</TabsTrigger>
+              </TabsList>
             </div>
-          </TabsContent>
-          
-          <TabsContent value="view-videos" className="w-full mt-8">
-            <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-              {solutions.map((solution, index) => (
-                <div key={index} className="animate-on-scroll bg-card/60 p-6 rounded-lg shadow-md" style={{ animationDelay: `${index * 0.2}s` }}>
-                  <h3 className="text-xl font-bold mb-3 flex items-center gap-2">
-                    {solution.icon}
-                    {solution.title}
-                  </h3>
-                  
-                  <AspectRatio ratio={16/9} className="mb-4 rounded-md overflow-hidden border border-primary/20">
-                    <iframe
-                      src={solution.videoUrl}
-                      className="w-full h-full"
-                      title={`Vidéo explicative - ${solution.title}`}
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                      allowFullScreen
+            
+            <TabsContent value="view-cards" className="w-full">
+              <div className="grid md:grid-cols-3 gap-8">
+                {solutions.map((solution, index) => (
+                  <div key={index}>
+                    <SolutionCard
+                      icon={solution.icon}
+                      title={solution.title}
+                      description={solution.description}
+                      features={solution.features}
+                      videoUrl={solution.videoUrl}
                     />
-                  </AspectRatio>
-                  
-                  <HoverCard>
-                    <HoverCardTrigger asChild>
-                      <button className="inline-flex items-center text-primary gap-1 hover:underline">
-                        <Play className="h-4 w-4" />
-                        Voir les fonctionnalités
-                      </button>
-                    </HoverCardTrigger>
-                    <HoverCardContent className="w-80">
-                      <h4 className="font-semibold mb-2">{solution.title}</h4>
-                      <ul className="space-y-2 text-sm">
-                        {solution.features.map((feature, i) => (
-                          <li key={i} className="relative pl-5">
-                            <span className="absolute left-0 top-2 w-1.5 h-1.5 bg-primary rounded-full"></span>
-                            <span>{feature}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </HoverCardContent>
-                  </HoverCard>
-                </div>
-              ))}
-            </div>
-          </TabsContent>
-        </Tabs>
+                  </div>
+                ))}
+              </div>
+            </TabsContent>
+            
+            <TabsContent value="view-videos" className="w-full">
+              <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                {solutions.map((solution, index) => (
+                  <div key={index} className="bg-card/60 p-6 rounded-lg shadow-md">
+                    <h3 className="text-xl font-bold mb-3 flex items-center gap-2">
+                      {solution.icon}
+                      {solution.title}
+                    </h3>
+                    
+                    <AspectRatio ratio={16/9} className="mb-4 rounded-md overflow-hidden border border-primary/20">
+                      <iframe
+                        src={solution.videoUrl}
+                        className="w-full h-full"
+                        title={`Vidéo explicative - ${solution.title}`}
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                      />
+                    </AspectRatio>
+                    
+                    <HoverCard>
+                      <HoverCardTrigger asChild>
+                        <button className="inline-flex items-center text-primary gap-1 hover:underline">
+                          <Play className="h-4 w-4" />
+                          Voir les fonctionnalités
+                        </button>
+                      </HoverCardTrigger>
+                      <HoverCardContent className="w-80">
+                        <h4 className="font-semibold mb-2">{solution.title}</h4>
+                        <ul className="space-y-2 text-sm">
+                          {solution.features.map((feature, i) => (
+                            <li key={i} className="relative pl-5">
+                              <span className="absolute left-0 top-2 w-1.5 h-1.5 bg-primary rounded-full"></span>
+                              <span>{feature}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </HoverCardContent>
+                    </HoverCard>
+                  </div>
+                ))}
+              </div>
+            </TabsContent>
+          </Tabs>
+        </div>
       </div>
     </section>
   );
