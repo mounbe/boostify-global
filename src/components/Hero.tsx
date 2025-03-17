@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import { ChevronRight, Globe, ExternalLink, Calendar, TrendingUp, Users, MapPin, Languages, Lightbulb, CreditCard, Rocket, Play } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -142,7 +141,7 @@ const Hero = () => {
                         {language === 'fr' ? 'Langues' : 'Languages'}
                       </h4>
                     </div>
-                    <p className="text-4xl font-bold text-primary mb-2">5+</p>
+                    <p className="text-4xl font-bold text-primary mb-2">7+</p>
                     <p className="text-sm text-muted-foreground">
                       {language === 'fr' ? 'Support multilingue' : 'Multilingual support'}
                     </p>
