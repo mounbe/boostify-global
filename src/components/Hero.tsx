@@ -1,11 +1,11 @@
 
 import React, { useEffect, useState } from 'react';
-import { ChevronRight, Globe, ExternalLink, Calendar } from 'lucide-react';
+import { ChevronRight, Globe, ExternalLink, Calendar, TrendingUp, Users, MapPin, Languages, Lightbulb, CreditCard, Rocket } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import BookDemoDialog from './BookDemoDialog';
 import { useLanguage } from '@/context/LanguageContext';
-import { Card } from './ui/card';
+import { Card, CardContent } from './ui/card';
 
 const Hero = () => {
   const [bookDemoOpen, setBookDemoOpen] = useState(false);
@@ -36,10 +36,10 @@ const Hero = () => {
       </div>
       
       <div className="max-w-7xl mx-auto w-full">
-        <div className="grid grid-cols-1 gap-10 items-center">
+        <div className="grid grid-cols-1 gap-12 items-center">
           {/* Text content */}
-          <div className="space-y-8 animate-on-scroll">
-            <Badge variant="secondary" className="mb-4 flex items-center gap-1">
+          <div className="space-y-10 animate-on-scroll">
+            <Badge variant="secondary" className="mb-2 flex items-center gap-1">
               <Globe className="mr-1 h-3 w-3" /> Intelligence Artificielle pour Exportateurs
             </Badge>
             
@@ -47,47 +47,70 @@ const Hero = () => {
               Augmentez vos exportations et <span className="hero-text-gradient">pénétrez de nouveaux marchés</span> avec l'IA
             </h1>
             
-            <p className="text-xl text-foreground/80 max-w-none">
+            <p className="text-xl md:text-2xl text-foreground/80 max-w-5xl">
               Nous accompagnons les exportateurs africains à conquérir les marchés africains, asiatiques, 
               américains et européens grâce à une technologie éprouvée dans plus de 50 pays.
             </p>
             
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-              <div className="space-y-8">
-                <div className="space-y-2">
-                  <h3 className="text-xl font-semibold text-foreground">Développez votre présence internationale</h3>
-                  <p className="text-base text-foreground/70">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 mt-8">
+              <div className="space-y-10">
+                <div className="space-y-4">
+                  <div className="flex items-center gap-2">
+                    <Rocket className="h-5 w-5 text-primary" />
+                    <h3 className="text-2xl font-semibold text-foreground">Développez votre présence internationale</h3>
+                  </div>
+                  <p className="text-lg text-foreground/70">
                     Automatisez vos processus d'exportation avec nos solutions d'IA
                   </p>
                 </div>
                 
                 <div className="grid grid-cols-2 gap-6">
-                  <div className="bg-white/10 p-5 rounded-lg shadow-sm">
-                    <h4 className="text-sm font-medium text-foreground">Marchés ciblés</h4>
-                    <p className="text-3xl font-bold text-primary mt-2">4</p>
-                    <p className="text-xs text-muted-foreground mt-1">Afrique, Asie, Amérique, Europe</p>
-                  </div>
+                  <Card className="bg-white/10 hover:bg-white/15 transition-all duration-300 border-primary/10 hover:border-primary/30">
+                    <CardContent className="p-6">
+                      <div className="flex items-center gap-3 mb-2">
+                        <MapPin className="h-5 w-5 text-primary" />
+                        <h4 className="text-base font-medium text-foreground">Marchés ciblés</h4>
+                      </div>
+                      <p className="text-4xl font-bold text-primary mb-2">4</p>
+                      <p className="text-sm text-muted-foreground">Afrique, Asie, Amérique, Europe</p>
+                    </CardContent>
+                  </Card>
                   
-                  <div className="bg-white/10 p-5 rounded-lg shadow-sm">
-                    <h4 className="text-sm font-medium text-foreground">Langues</h4>
-                    <p className="text-3xl font-bold text-primary mt-2">5+</p>
-                    <p className="text-xs text-muted-foreground mt-1">Support multilingue</p>
-                  </div>
+                  <Card className="bg-white/10 hover:bg-white/15 transition-all duration-300 border-primary/10 hover:border-primary/30">
+                    <CardContent className="p-6">
+                      <div className="flex items-center gap-3 mb-2">
+                        <Languages className="h-5 w-5 text-primary" />
+                        <h4 className="text-base font-medium text-foreground">Langues</h4>
+                      </div>
+                      <p className="text-4xl font-bold text-primary mb-2">5+</p>
+                      <p className="text-sm text-muted-foreground">Support multilingue</p>
+                    </CardContent>
+                  </Card>
                   
-                  <div className="bg-white/10 p-5 rounded-lg shadow-sm">
-                    <h4 className="text-sm font-medium text-foreground">Solutions IA</h4>
-                    <p className="text-3xl font-bold text-primary mt-2">3</p>
-                    <p className="text-xs text-muted-foreground mt-1">Site web, Marketing, Ventes</p>
-                  </div>
+                  <Card className="bg-white/10 hover:bg-white/15 transition-all duration-300 border-primary/10 hover:border-primary/30">
+                    <CardContent className="p-6">
+                      <div className="flex items-center gap-3 mb-2">
+                        <Lightbulb className="h-5 w-5 text-primary" />
+                        <h4 className="text-base font-medium text-foreground">Solutions IA</h4>
+                      </div>
+                      <p className="text-4xl font-bold text-primary mb-2">3</p>
+                      <p className="text-sm text-muted-foreground">Site web, Marketing, Ventes</p>
+                    </CardContent>
+                  </Card>
                   
-                  <div className="bg-white/10 p-5 rounded-lg shadow-sm">
-                    <h4 className="text-sm font-medium text-foreground">Crédits offerts</h4>
-                    <p className="text-3xl font-bold text-primary mt-2">200 DH</p>
-                    <p className="text-xs text-muted-foreground mt-1">Pour Google Ads</p>
-                  </div>
+                  <Card className="bg-white/10 hover:bg-white/15 transition-all duration-300 border-primary/10 hover:border-primary/30">
+                    <CardContent className="p-6">
+                      <div className="flex items-center gap-3 mb-2">
+                        <CreditCard className="h-5 w-5 text-primary" />
+                        <h4 className="text-base font-medium text-foreground">Crédits offerts</h4>
+                      </div>
+                      <p className="text-4xl font-bold text-primary mb-2">200 DH</p>
+                      <p className="text-sm text-muted-foreground">Pour Google Ads</p>
+                    </CardContent>
+                  </Card>
                 </div>
                 
-                <div className="flex flex-wrap gap-4 pt-2">
+                <div className="flex flex-wrap gap-4 pt-4">
                   <Button 
                     className="bg-primary hover:bg-primary/90 text-white text-base px-8 py-6 rounded-full transition-all duration-300 hover:shadow-lg hover:shadow-primary/20"
                     onClick={() => setBookDemoOpen(true)}
@@ -103,8 +126,9 @@ const Hero = () => {
                   </Button>
                 </div>
                 
-                <div>
-                  <p className="text-sm text-muted-foreground">
+                <div className="flex items-center gap-2">
+                  <Users className="h-5 w-5 text-primary" />
+                  <p className="text-base text-muted-foreground">
                     Déjà utilisé par des exportateurs dans 
                     <span className="text-foreground font-semibold"> 50+ pays</span>
                   </p>
@@ -113,19 +137,20 @@ const Hero = () => {
               
               <div className="relative flex items-center justify-center animate-on-scroll">
                 <div className="w-full max-w-lg">
-                  <div className="relative glass-card rounded-2xl overflow-hidden shadow-xl with-border-fade">
+                  <Card className="glass-card rounded-2xl overflow-hidden shadow-xl with-border-fade">
                     <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-500 to-primary"></div>
-                    <div className="p-8">
-                      <div className="grid grid-cols-1 gap-6">
-                        <div className="space-y-2 animate-entrance" style={{ animationDelay: '0.1s' }}>
-                          <h3 className="text-lg font-semibold text-foreground">Accélérez votre croissance internationale</h3>
-                          <p className="text-sm text-foreground/70">
-                            Notre IA simplifie votre expansion et atteint de nouveaux clients partout dans le monde
-                          </p>
+                    <CardContent className="p-8">
+                      <div className="space-y-4 animate-entrance" style={{ animationDelay: '0.1s' }}>
+                        <div className="flex items-center gap-2">
+                          <TrendingUp className="h-5 w-5 text-primary" />
+                          <h3 className="text-xl font-semibold text-foreground">Accélérez votre croissance internationale</h3>
                         </div>
+                        <p className="text-base text-foreground/70">
+                          Notre IA simplifie votre expansion et atteint de nouveaux clients partout dans le monde
+                        </p>
                       </div>
-                    </div>
-                  </div>
+                    </CardContent>
+                  </Card>
                 </div>
               </div>
             </div>
