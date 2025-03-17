@@ -79,7 +79,7 @@ const translations = {
     'pricing.plan2.feature6': 'Free diagnostic',
     
     'pricing.plan3.title': 'Sales Boost',
-    'pricing.plan3.price': '7,800 DH',
+    'pricing.plan3.price': '790$',
     'pricing.plan3.feature1': 'Automated lead generation',
     'pricing.plan3.feature2': 'Lead nurturing',
     'pricing.plan3.feature3': 'Process automation',
@@ -182,7 +182,7 @@ const translations = {
     'pricing.plan2.feature6': 'Diagnostic gratuit',
     
     'pricing.plan3.title': 'Boost Ventes',
-    'pricing.plan3.price': '7 800 DH',
+    'pricing.plan3.price': '790$',
     'pricing.plan3.feature1': 'Génération automatisée de leads',
     'pricing.plan3.feature2': 'Nurturing de leads',
     'pricing.plan3.feature3': 'Automatisation des processus',

@@ -91,7 +91,7 @@ const Pricing = () => {
     },
     {
       title: t('pricing.plan3.title'),
-      price: t('pricing.plan3.price'),
+      price: "790$",
       features: [
         t('pricing.plan3.feature1'),
         t('pricing.plan3.feature2'),
