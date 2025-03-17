@@ -7,10 +7,12 @@ import Solutions from '@/components/Solutions';
 import Pricing from '@/components/Pricing';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
+import ScrollAnimation from '@/components/ScrollAnimation';
 
 const Index = () => {
   return (
     <div className="min-h-screen">
+      <ScrollAnimation />
       <Header />
       <Hero />
       <WhyUs />
