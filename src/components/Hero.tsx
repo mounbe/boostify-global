@@ -11,7 +11,7 @@ import { AspectRatio } from './ui/aspect-ratio';
 const Hero = () => {
   const [bookDemoOpen, setBookDemoOpen] = useState(false);
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
-  const { language } = useLanguage();
+  const { language, t } = useLanguage();
   
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
@@ -46,16 +46,24 @@ const Hero = () => {
           {/* Text content */}
           <div className="space-y-10 animate-on-scroll">
             <Badge variant="secondary" className="mb-2 flex items-center gap-1">
-              <Globe className="mr-1 h-3 w-3" /> Intelligence Artificielle pour Exportateurs
+              <Globe className="mr-1 h-3 w-3" /> 
+              {language === 'fr' ? 'Intelligence Artificielle pour Exportateurs' : 'Artificial Intelligence for Exporters'}
             </Badge>
             
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-display font-bold leading-tight whitespace-normal">
-              Augmentez vos exportations et <span className="hero-text-gradient">pénétrez de nouveaux marchés</span> avec l'IA
+              {language === 'fr' ? (
+                <>Augmentez vos exportations et <span className="hero-text-gradient">pénétrez de nouveaux marchés</span> avec l'IA</>
+              ) : (
+                <>Increase your exports and <span className="hero-text-gradient">penetrate new markets</span> with AI</>
+              )}
             </h1>
             
             <p className="text-xl md:text-2xl text-foreground/80 max-w-5xl">
-              Nous accompagnons les exportateurs africains à conquérir les marchés africains, asiatiques, 
-              américains et européens grâce à une technologie éprouvée dans plus de 50 pays.
+              {language === 'fr' ? (
+                'Nous accompagnons les exportateurs africains à conquérir les marchés africains, asiatiques, américains et européens grâce à une technologie éprouvée dans plus de 50 pays.'
+              ) : (
+                'We help African exporters conquer African, Asian, American, and European markets through technology proven in over 50 countries.'
+              )}
             </p>
             
             <div className="space-y-10 mt-8">
@@ -68,11 +76,15 @@ const Hero = () => {
                       <Rocket className="h-6 w-6" />
                     </div>
                     <h3 className="text-2xl font-semibold font-display bg-gradient-to-r from-primary to-blue-400 bg-clip-text text-transparent">
-                      Accélérez votre croissance internationale
+                      {language === 'fr' ? 'Accélérez votre croissance internationale' : 'Accelerate your international growth'}
                     </h3>
                   </div>
                   <p className="text-lg text-foreground/70 pl-12 mb-6">
-                    Notre IA simplifie votre expansion et atteint de nouveaux clients partout dans le monde
+                    {language === 'fr' ? (
+                      'Notre IA simplifie votre expansion et atteint de nouveaux clients partout dans le monde'
+                    ) : (
+                      'Our AI simplifies your expansion and reaches new customers worldwide'
+                    )}
                   </p>
                 </div>
                 
@@ -84,7 +96,7 @@ const Hero = () => {
                         <div className="relative w-full h-full">
                           <img 
                             src="https://img.youtube.com/vi/r9wXl_Zsu50/maxresdefault.jpg" 
-                            alt="Video thumbnail" 
+                            alt={language === 'fr' ? "Vignette de la vidéo" : "Video thumbnail"} 
                             className="w-full h-full object-cover"
                           />
                           <div className="absolute inset-0 bg-gradient-to-br from-black/70 to-primary/30 flex items-center justify-center backdrop-blur-sm">
@@ -117,10 +129,14 @@ const Hero = () => {
                   <CardContent className="p-6">
                     <div className="flex items-center gap-3 mb-2">
                       <MapPin className="h-5 w-5 text-primary" />
-                      <h4 className="text-base font-medium text-foreground">Marchés ciblés</h4>
+                      <h4 className="text-base font-medium text-foreground">
+                        {language === 'fr' ? 'Marchés ciblés' : 'Target markets'}
+                      </h4>
                     </div>
                     <p className="text-4xl font-bold text-primary mb-2">4</p>
-                    <p className="text-sm text-muted-foreground">Afrique, Asie, Amérique, Europe</p>
+                    <p className="text-sm text-muted-foreground">
+                      {language === 'fr' ? 'Afrique, Asie, Amérique, Europe' : 'Africa, Asia, America, Europe'}
+                    </p>
                   </CardContent>
                 </Card>
                 
@@ -128,10 +144,14 @@ const Hero = () => {
                   <CardContent className="p-6">
                     <div className="flex items-center gap-3 mb-2">
                       <Languages className="h-5 w-5 text-primary" />
-                      <h4 className="text-base font-medium text-foreground">Langues</h4>
+                      <h4 className="text-base font-medium text-foreground">
+                        {language === 'fr' ? 'Langues' : 'Languages'}
+                      </h4>
                     </div>
                     <p className="text-4xl font-bold text-primary mb-2">5+</p>
-                    <p className="text-sm text-muted-foreground">Support multilingue</p>
+                    <p className="text-sm text-muted-foreground">
+                      {language === 'fr' ? 'Support multilingue' : 'Multilingual support'}
+                    </p>
                   </CardContent>
                 </Card>
                 
@@ -139,10 +159,14 @@ const Hero = () => {
                   <CardContent className="p-6">
                     <div className="flex items-center gap-3 mb-2">
                       <Lightbulb className="h-5 w-5 text-primary" />
-                      <h4 className="text-base font-medium text-foreground">Solutions IA</h4>
+                      <h4 className="text-base font-medium text-foreground">
+                        {language === 'fr' ? 'Solutions IA' : 'AI Solutions'}
+                      </h4>
                     </div>
                     <p className="text-4xl font-bold text-primary mb-2">3</p>
-                    <p className="text-sm text-muted-foreground">Site web, Marketing, Ventes</p>
+                    <p className="text-sm text-muted-foreground">
+                      {language === 'fr' ? 'Site web, Marketing, Ventes' : 'Website, Marketing, Sales'}
+                    </p>
                   </CardContent>
                 </Card>
                 
@@ -150,10 +174,14 @@ const Hero = () => {
                   <CardContent className="p-6">
                     <div className="flex items-center gap-3 mb-2">
                       <CreditCard className="h-5 w-5 text-primary" />
-                      <h4 className="text-base font-medium text-foreground">Crédits offerts</h4>
+                      <h4 className="text-base font-medium text-foreground">
+                        {language === 'fr' ? 'Crédits offerts' : 'Free credits'}
+                      </h4>
                     </div>
                     <p className="text-4xl font-bold text-primary mb-2">200 DH</p>
-                    <p className="text-sm text-muted-foreground">Pour Google Ads</p>
+                    <p className="text-sm text-muted-foreground">
+                      {language === 'fr' ? 'Pour Google Ads' : 'For Google Ads'}
+                    </p>
                   </CardContent>
                 </Card>
               </div>
@@ -169,7 +197,7 @@ const Hero = () => {
                 </Button>
                 
                 <Button variant="outline" className="text-foreground border-foreground/20 hover:bg-foreground/5 text-base px-8 py-6 rounded-full">
-                  En savoir plus
+                  {language === 'fr' ? 'En savoir plus' : 'Learn more'}
                   <ExternalLink className="ml-2 h-4 w-4" />
                 </Button>
               </div>
@@ -177,8 +205,10 @@ const Hero = () => {
               <div className="flex items-center gap-2">
                 <Users className="h-5 w-5 text-primary" />
                 <p className="text-base text-muted-foreground">
-                  Déjà utilisé par des exportateurs dans 
-                  <span className="text-foreground font-semibold"> 50+ pays</span>
+                  {language === 'fr' ? 'Déjà utilisé par des exportateurs dans ' : 'Already used by exporters in '}
+                  <span className="text-foreground font-semibold">
+                    {language === 'fr' ? '50+ pays' : '50+ countries'}
+                  </span>
                 </p>
               </div>
             </div>

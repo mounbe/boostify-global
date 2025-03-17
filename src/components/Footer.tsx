@@ -1,8 +1,10 @@
 
 import React from 'react';
+import { useLanguage } from '@/context/LanguageContext';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
+  const { language } = useLanguage();
   
   return (
     <footer className="bg-card border-t border-border">
@@ -47,19 +49,25 @@ const Footer = () => {
       
       <div className="max-w-7xl mx-auto pb-8 px-4 sm:px-6 text-center md:flex md:items-center md:justify-between">
         <div className="mt-8 md:mt-0 text-sm text-muted-foreground">
-          <p>© {currentYear} BoostExportsAI. Tous droits réservés.</p>
+          <p>© {currentYear} BoostExportsAI. {language === 'fr' ? 'Tous droits réservés.' : 'All rights reserved.'}</p>
         </div>
         
         <div className="mt-4 md:mt-0">
           <ul className="flex justify-center md:justify-end space-x-6 text-sm">
             <li>
-              <a href="#" className="text-muted-foreground hover:text-primary">Confidentialité</a>
+              <a href="#" className="text-muted-foreground hover:text-primary">
+                {language === 'fr' ? 'Confidentialité' : 'Privacy'}
+              </a>
             </li>
             <li>
-              <a href="#" className="text-muted-foreground hover:text-primary">CGU</a>
+              <a href="#" className="text-muted-foreground hover:text-primary">
+                {language === 'fr' ? 'CGU' : 'Terms'}
+              </a>
             </li>
             <li>
-              <a href="#" className="text-muted-foreground hover:text-primary">Mentions Légales</a>
+              <a href="#" className="text-muted-foreground hover:text-primary">
+                {language === 'fr' ? 'Mentions Légales' : 'Legal Notice'}
+              </a>
             </li>
           </ul>
         </div>
