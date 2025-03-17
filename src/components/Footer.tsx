@@ -11,7 +11,7 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 md:flex md:items-center md:justify-between">
         <div className="flex justify-center md:justify-start">
           <img 
-            src="/lovable-uploads/f7442bf9-6154-4b4c-890b-a55ef794a477.png" 
+            src="/lovable-uploads/7155a186-ea8e-4d7e-80aa-f2c39bc5df1e.png" 
             alt="BoostExportsAI Logo" 
             className="h-10 w-auto"
           />
