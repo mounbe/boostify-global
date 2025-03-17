@@ -70,7 +70,7 @@ const translations = {
     'pricing.plan1.feature5': 'Free website',
     
     'pricing.plan2.title': 'Digital Marketing Boost',
-    'pricing.plan2.price': '2,800 DH',
+    'pricing.plan2.price': '290$',
     'pricing.plan2.feature1': 'Content generation',
     'pricing.plan2.feature2': 'Strategic editorial',
     'pricing.plan2.feature3': 'Trend analysis',
@@ -173,7 +173,7 @@ const translations = {
     'pricing.plan1.feature5': 'Site web gratuit',
     
     'pricing.plan2.title': 'Boost Marketing Digital',
-    'pricing.plan2.price': '2 800 DH',
+    'pricing.plan2.price': '290$',
     'pricing.plan2.feature1': 'Génération de contenu',
     'pricing.plan2.feature2': 'Éditorial stratégique',
     'pricing.plan2.feature3': 'Analyse des tendances',
