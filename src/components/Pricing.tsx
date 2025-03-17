@@ -1,17 +1,19 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Check } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { useLanguage } from '@/context/LanguageContext';
+import BookDemoDialog from './BookDemoDialog';
 
-const PricingCard = ({ title, price, features, ctaText, popular = false }: { 
+const PricingCard = ({ title, price, features, ctaText, popular = false, onSubscribe }: { 
   title: string, 
   price: string, 
   features: string[], 
   ctaText: string,
-  popular?: boolean 
+  popular?: boolean,
+  onSubscribe: () => void 
 }) => {
   return (
     <Card className={`flex flex-col h-full ${popular ? 'border-primary shadow-lg shadow-primary/20' : ''}`}>
@@ -38,7 +40,10 @@ const PricingCard = ({ title, price, features, ctaText, popular = false }: {
         </ul>
       </CardContent>
       <CardFooter>
-        <Button className={`w-full rounded-full ${popular ? 'bg-primary' : 'bg-secondary text-foreground'}`}>
+        <Button 
+          className={`w-full rounded-full ${popular ? 'bg-primary' : 'bg-secondary text-foreground'}`}
+          onClick={onSubscribe}
+        >
           {ctaText}
         </Button>
       </CardFooter>
@@ -47,7 +52,14 @@ const PricingCard = ({ title, price, features, ctaText, popular = false }: {
 };
 
 const Pricing = () => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
+  const [bookDemoOpen, setBookDemoOpen] = useState(false);
+  const [selectedPlan, setSelectedPlan] = useState<string | null>(null);
+  
+  const handleSubscribe = (planTitle: string) => {
+    setSelectedPlan(planTitle);
+    setBookDemoOpen(true);
+  };
   
   const pricingOptions = [
     {
@@ -113,9 +125,15 @@ const Pricing = () => {
             features={option.features}
             ctaText={option.ctaText}
             popular={option.popular}
+            onSubscribe={() => handleSubscribe(option.title)}
           />
         ))}
       </div>
+      
+      <BookDemoDialog 
+        open={bookDemoOpen} 
+        onOpenChange={setBookDemoOpen} 
+      />
     </section>
   );
 };
