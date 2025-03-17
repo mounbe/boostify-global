@@ -2,7 +2,7 @@
 import React, { useEffect } from 'react';
 import { ChevronRight, Globe, ExternalLink } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import Badge from './ui/Badge';
+import { Badge } from '@/components/ui/badge';
 
 const Hero = () => {
   useEffect(() => {
@@ -33,7 +33,7 @@ const Hero = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Text content */}
           <div className="space-y-8 animate-on-scroll">
-            <Badge variant="subtle" className="mb-4">
+            <Badge variant="secondary" className="mb-4 flex items-center gap-1">
               <Globe className="mr-1 h-3 w-3" /> Intelligence Artificielle pour Exportateurs
             </Badge>
             
