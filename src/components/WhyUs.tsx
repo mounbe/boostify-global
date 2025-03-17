@@ -2,6 +2,7 @@
 import React from 'react';
 import { Badge } from '@/components/ui/badge';
 import { Gift, Award, Lightbulb, TrendingUp } from 'lucide-react';
+import { useLanguage } from '@/context/LanguageContext';
 
 interface FeatureProps {
   icon: React.ReactNode;
@@ -24,26 +25,28 @@ const Feature = ({ icon, title, description }: FeatureProps) => {
 };
 
 const WhyUs = () => {
+  const { t } = useLanguage();
+  
   const features = [
     {
       icon: <Gift className="h-6 w-6 text-primary" />,
-      title: "Free Professional Website",
-      description: "Receive a professional SEO-optimized website, completely free."
+      title: t('whyUs.feature1.title'),
+      description: t('whyUs.feature1.description')
     },
     {
       icon: <Award className="h-6 w-6 text-primary" />,
-      title: "Free Google Ads Credit",
-      description: "Benefit from 200 DH per month credit for your Google Ads campaigns."
+      title: t('whyUs.feature2.title'),
+      description: t('whyUs.feature2.description')
     },
     {
       icon: <Lightbulb className="h-6 w-6 text-primary" />,
-      title: "Free Diagnostic",
-      description: "Complete analysis of your current position and recommendations for your development."
+      title: t('whyUs.feature3.title'),
+      description: t('whyUs.feature3.description')
     },
     {
       icon: <TrendingUp className="h-6 w-6 text-primary" />,
-      title: "Branding and Makeover",
-      description: "Modernization of your logo for better brand recognition."
+      title: t('whyUs.feature4.title'),
+      description: t('whyUs.feature4.description')
     }
   ];
 
@@ -51,10 +54,10 @@ const WhyUs = () => {
     <section id="why-us" className="py-24 px-4 bg-gradient-to-b from-background to-card/50 section-padding">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
-          <Badge variant="secondary" className="mb-4">Why Choose Us</Badge>
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Why BoostExportsAI?</h2>
+          <Badge variant="secondary" className="mb-4">{t('whyUs.badge')}</Badge>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">{t('whyUs.title')}</h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            We offer much more than just a technology solution, discover our exclusive advantages
+            {t('whyUs.description')}
           </p>
         </div>
 
@@ -71,12 +74,10 @@ const WhyUs = () => {
         
         <div className="mt-16 p-8 bg-primary/5 rounded-xl border border-primary/10 animate-on-scroll">
           <h3 className="text-xl md:text-2xl font-semibold text-center mb-4">
-            Simplify Your Business
+            {t('whyUs.simplify.title')}
           </h3>
           <p className="text-center max-w-3xl mx-auto text-muted-foreground">
-            We take care of everything: diagnosis, strategy, communication tools, lead generation, 
-            nurturing, and deal preparation. You only need to focus on negotiation and 
-            closing sales while we manage your digital marketing.
+            {t('whyUs.simplify.description')}
           </p>
         </div>
       </div>

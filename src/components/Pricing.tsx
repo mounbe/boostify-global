@@ -4,6 +4,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Check } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
+import { useLanguage } from '@/context/LanguageContext';
 
 const PricingCard = ({ title, price, features, ctaText, popular = false }: { 
   title: string, 
@@ -46,47 +47,49 @@ const PricingCard = ({ title, price, features, ctaText, popular = false }: {
 };
 
 const Pricing = () => {
+  const { t } = useLanguage();
+  
   const pricingOptions = [
     {
-      title: "Website Boost",
-      price: "1,600 DH",
+      title: t('pricing.plan1.title'),
+      price: t('pricing.plan1.price'),
       features: [
-        "Multilingual AI agent",
-        "Real-time analysis",
-        "Localized SEO",
-        "Landing page creation",
-        "Free website"
+        t('pricing.plan1.feature1'),
+        t('pricing.plan1.feature2'),
+        t('pricing.plan1.feature3'),
+        t('pricing.plan1.feature4'),
+        t('pricing.plan1.feature5')
       ],
-      ctaText: "Get Started",
+      ctaText: t('pricing.getStarted'),
       popular: false
     },
     {
-      title: "Digital Marketing Boost",
-      price: "2,800 DH",
+      title: t('pricing.plan2.title'),
+      price: t('pricing.plan2.price'),
       features: [
-        "Content generation",
-        "Strategic editorial",
-        "Trend analysis",
-        "Trend adaptation",
-        "Detailed reports",
-        "Free diagnostic"
+        t('pricing.plan2.feature1'),
+        t('pricing.plan2.feature2'),
+        t('pricing.plan2.feature3'),
+        t('pricing.plan2.feature4'),
+        t('pricing.plan2.feature5'),
+        t('pricing.plan2.feature6')
       ],
-      ctaText: "Get Started",
+      ctaText: t('pricing.getStarted'),
       popular: true
     },
     {
-      title: "Sales Boost",
-      price: "7,800 DH",
+      title: t('pricing.plan3.title'),
+      price: t('pricing.plan3.price'),
       features: [
-        "Automated lead generation",
-        "Lead nurturing",
-        "Process automation",
-        "Analytics reports",
-        "CRM included",
-        "Mobile app included",
-        "AI voice agent included"
+        t('pricing.plan3.feature1'),
+        t('pricing.plan3.feature2'),
+        t('pricing.plan3.feature3'),
+        t('pricing.plan3.feature4'),
+        t('pricing.plan3.feature5'),
+        t('pricing.plan3.feature6'),
+        t('pricing.plan3.feature7')
       ],
-      ctaText: "Get Started",
+      ctaText: t('pricing.getStarted'),
       popular: false
     }
   ];
@@ -94,10 +97,10 @@ const Pricing = () => {
   return (
     <section id="pricing" className="py-24 px-4 section-padding">
       <div className="max-w-7xl mx-auto text-center mb-12">
-        <Badge variant="secondary" className="mb-4">Offers with 30% discount</Badge>
-        <h2 className="text-3xl md:text-4xl font-bold mb-4">Our Pricing</h2>
+        <Badge variant="secondary" className="mb-4">{t('pricing.badge')}</Badge>
+        <h2 className="text-3xl md:text-4xl font-bold mb-4">{t('pricing.title')}</h2>
         <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-          Choose the offer that best suits your needs. Offer valid until April 7, 2025.
+          {t('pricing.description')}
         </p>
       </div>
 

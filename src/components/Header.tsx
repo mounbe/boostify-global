@@ -3,10 +3,13 @@ import React, { useEffect, useState } from 'react';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { Menu, X, ChevronRight } from 'lucide-react';
+import { useLanguage } from '@/context/LanguageContext';
+import LanguageToggle from './LanguageToggle';
 
 export const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { t } = useLanguage();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -20,11 +23,11 @@ export const Header = () => {
   const toggleMobileMenu = () => setMobileMenuOpen(!mobileMenuOpen);
 
   const navLinks = [
-    { name: 'Home', href: '#hero' },
-    { name: 'Services', href: '#solutions' },
-    { name: 'Benefits', href: '#why-us' },
-    { name: 'Pricing', href: '#pricing' },
-    { name: 'Contact', href: '#contact' }
+    { name: t('nav.home'), href: '#hero' },
+    { name: t('nav.services'), href: '#solutions' },
+    { name: t('nav.benefits'), href: '#why-us' },
+    { name: t('nav.pricing'), href: '#pricing' },
+    { name: t('nav.contact'), href: '#contact' }
   ];
 
   return (
@@ -55,22 +58,26 @@ export const Header = () => {
             ))}
           </nav>
           
-          {/* CTA Button */}
-          <div className="hidden md:block">
+          {/* Language Toggle & CTA Button */}
+          <div className="hidden md:flex items-center gap-4">
+            <LanguageToggle />
             <Button className="bg-primary hover:bg-primary/90 text-white font-medium rounded-full px-6">
-              Book a demo
+              {t('cta.bookDemo')}
               <ChevronRight className="ml-2 h-4 w-4" />
             </Button>
           </div>
           
           {/* Mobile Menu Button */}
-          <button 
-            onClick={toggleMobileMenu} 
-            className="md:hidden flex items-center p-2 rounded-md text-foreground hover:text-primary transition-colors"
-            aria-label="Toggle menu"
-          >
-            {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
+          <div className="md:hidden flex items-center gap-4">
+            <LanguageToggle />
+            <button 
+              onClick={toggleMobileMenu} 
+              className="flex items-center p-2 rounded-md text-foreground hover:text-primary transition-colors"
+              aria-label="Toggle menu"
+            >
+              {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
         </div>
       </div>
       
@@ -93,7 +100,7 @@ export const Header = () => {
             </a>
           ))}
           <Button className="w-full bg-primary hover:bg-primary/90 text-white font-medium rounded-full mt-4">
-            Book a demo
+            {t('cta.bookDemo')}
             <ChevronRight className="ml-2 h-4 w-4" />
           </Button>
         </div>
