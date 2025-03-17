@@ -47,13 +47,13 @@ const Hero = () => {
               Augmentez vos exportations et <span className="hero-text-gradient">pénétrez de nouveaux marchés</span> avec l'IA
             </h1>
             
+            <p className="text-lg text-foreground/80 max-w-none">
+              Nous accompagnons les exportateurs africains à conquérir les marchés africains, asiatiques, 
+              américains et européens grâce à une technologie éprouvée dans plus de 50 pays.
+            </p>
+            
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <div>
-                <p className="text-lg text-foreground/80 max-w-lg mb-6">
-                  Nous accompagnons les exportateurs africains à conquérir les marchés africains, asiatiques, 
-                  américains et européens grâce à une technologie éprouvée dans plus de 50 pays.
-                </p>
-                
                 <div className="space-y-4 mb-6">
                   <div className="space-y-1">
                     <h3 className="text-lg font-semibold text-foreground">Développez votre présence internationale</h3>
