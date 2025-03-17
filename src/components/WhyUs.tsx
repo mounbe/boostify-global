@@ -27,23 +27,23 @@ const WhyUs = () => {
   const features = [
     {
       icon: <Gift className="h-6 w-6 text-primary" />,
-      title: "Site Web Professionnel Gratuit",
-      description: "Recevez un site web professionnel optimisé pour le référencement, entièrement gratuit."
+      title: "Free Professional Website",
+      description: "Receive a professional SEO-optimized website, completely free."
     },
     {
       icon: <Award className="h-6 w-6 text-primary" />,
-      title: "Crédit Google Ads Offert",
-      description: "Bénéficiez d'un crédit de 200 DH par mois pour vos campagnes Google Ads."
+      title: "Free Google Ads Credit",
+      description: "Benefit from 200 DH per month credit for your Google Ads campaigns."
     },
     {
       icon: <Lightbulb className="h-6 w-6 text-primary" />,
-      title: "Diagnostic Gratuit",
-      description: "Analyse complète de votre position actuelle et recommandations pour votre développement."
+      title: "Free Diagnostic",
+      description: "Complete analysis of your current position and recommendations for your development."
     },
     {
       icon: <TrendingUp className="h-6 w-6 text-primary" />,
-      title: "Branding et Relooking",
-      description: "Modernisation de votre logo pour une meilleure reconnaissance de votre marque."
+      title: "Branding and Makeover",
+      description: "Modernization of your logo for better brand recognition."
     }
   ];
 
@@ -51,10 +51,10 @@ const WhyUs = () => {
     <section id="why-us" className="py-24 px-4 bg-gradient-to-b from-background to-card/50 section-padding">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
-          <Badge variant="secondary" className="mb-4">Pourquoi Nous Choisir</Badge>
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Pourquoi BoostExportsAI?</h2>
+          <Badge variant="secondary" className="mb-4">Why Choose Us</Badge>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">Why BoostExportsAI?</h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Nous vous offrons bien plus qu'une simple solution technologique, découvrez nos avantages exclusifs
+            We offer much more than just a technology solution, discover our exclusive advantages
           </p>
         </div>
 
@@ -71,12 +71,12 @@ const WhyUs = () => {
         
         <div className="mt-16 p-8 bg-primary/5 rounded-xl border border-primary/10 animate-on-scroll">
           <h3 className="text-xl md:text-2xl font-semibold text-center mb-4">
-            Simplifiez Votre Business
+            Simplify Your Business
           </h3>
           <p className="text-center max-w-3xl mx-auto text-muted-foreground">
-            Nous nous chargeons de tout : diagnostic, stratégie, outils de communication, génération de leads, 
-            nurturing et préparation des deals. Vous n'avez qu'à vous concentrer sur la négociation et 
-            la conclusion des ventes pendant que nous gérons votre marketing digital.
+            We take care of everything: diagnosis, strategy, communication tools, lead generation, 
+            nurturing, and deal preparation. You only need to focus on negotiation and 
+            closing sales while we manage your digital marketing.
           </p>
         </div>
       </div>

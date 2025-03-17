@@ -17,9 +17,9 @@ const Contact = () => {
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <Badge variant="secondary" className="mb-4">Contact</Badge>
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Prenez Contact Avec Nous</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">Contact Us</h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Contactez notre équipe pour discuter de vos besoins d'exportation et découvrir comment nos solutions peuvent vous aider.
+            Contact our team to discuss your export needs and discover how our solutions can help you.
           </p>
         </div>
 
@@ -29,23 +29,23 @@ const Contact = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium mb-2">
-                    Nom Complet
+                    Full Name
                   </label>
-                  <Input id="name" placeholder="Votre nom" required />
+                  <Input id="name" placeholder="Your name" required />
                 </div>
                 <div>
                   <label htmlFor="email" className="block text-sm font-medium mb-2">
-                    Adresse Email
+                    Email Address
                   </label>
-                  <Input id="email" type="email" placeholder="votre.email@exemple.com" required />
+                  <Input id="email" type="email" placeholder="your.email@example.com" required />
                 </div>
               </div>
               
               <div>
                 <label htmlFor="subject" className="block text-sm font-medium mb-2">
-                  Sujet
+                  Subject
                 </label>
-                <Input id="subject" placeholder="Sujet de votre message" required />
+                <Input id="subject" placeholder="Subject of your message" required />
               </div>
               
               <div>
@@ -54,7 +54,7 @@ const Contact = () => {
                 </label>
                 <Textarea 
                   id="message" 
-                  placeholder="Comment pouvons-nous vous aider?" 
+                  placeholder="How can we help you?" 
                   rows={5} 
                   className="resize-none bg-card/80" 
                   required 
@@ -62,13 +62,13 @@ const Contact = () => {
               </div>
               
               <Button type="submit" className="w-full bg-primary hover:bg-primary/90 text-white font-medium rounded-full">
-                Envoyer Message <Send className="ml-2 h-4 w-4" />
+                Send Message <Send className="ml-2 h-4 w-4" />
               </Button>
             </form>
           </div>
 
           <div className="bg-card/60 p-8 rounded-xl shadow-md with-border-fade animate-on-scroll">
-            <h3 className="text-xl font-semibold mb-6">Informations de Contact</h3>
+            <h3 className="text-xl font-semibold mb-6">Contact Information</h3>
             
             <div className="space-y-6">
               <div className="flex items-start gap-4">
@@ -86,19 +86,19 @@ const Contact = () => {
                   <Phone className="h-6 w-6 text-primary" />
                 </div>
                 <div>
-                  <h4 className="font-medium text-base">Téléphone</h4>
+                  <h4 className="font-medium text-base">Phone</h4>
                   <p className="text-muted-foreground mt-1">+212 6 78 63 63 02</p>
                 </div>
               </div>
             </div>
             
             <div className="mt-8">
-              <h4 className="font-medium text-base mb-2">Site Web</h4>
+              <h4 className="font-medium text-base mb-2">Website</h4>
               <p className="text-muted-foreground">www.boostexportsAI.com</p>
             </div>
             
             <div className="mt-8">
-              <h4 className="font-medium text-base mb-2">Nos Partenaires</h4>
+              <h4 className="font-medium text-base mb-2">Our Partners</h4>
               <div className="flex flex-wrap gap-2 mt-3">
                 <Badge variant="outline">highlevel</Badge>
                 <Badge variant="outline">Mymarky AI</Badge>

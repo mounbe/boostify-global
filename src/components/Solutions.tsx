@@ -32,7 +32,7 @@ const SolutionCard = ({ icon, title, description, features, videoUrl }: Solution
               <iframe 
                 src={videoUrl} 
                 className="absolute inset-0 w-full h-full" 
-                title={`Vidéo explicative - ${title}`}
+                title={`Explanatory Video - ${title}`}
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                 allowFullScreen
               />
@@ -57,40 +57,40 @@ const Solutions = () => {
   const solutions = [
     {
       icon: <Globe className="h-6 w-6 text-primary" />,
-      title: "Boost Site Web",
-      description: "Optimisez votre présence en ligne pour une audience internationale",
+      title: "Website Boost",
+      description: "Optimize your online presence for an international audience",
       videoUrl: "https://www.youtube.com/embed/HpsFXML7vVY", 
       features: [
-        "Agent IA multilingue (anglais, allemand, arabe, mandarin)",
-        "Analyse en temps réel du comportement des visiteurs",
-        "SEO localisé pour chaque pays ciblé",
-        "Création de landing pages sur les marketplaces B2B et B2C"
+        "Multilingual AI agent (English, German, Arabic, Mandarin)",
+        "Real-time visitor behavior analysis",
+        "Localized SEO for each target country",
+        "Landing page creation on B2B and B2C marketplaces"
       ]
     },
     {
       icon: <TrendingUp className="h-6 w-6 text-primary" />,
-      title: "Boost Marketing Digital",
-      description: "Contenu stratégique adapté à chaque marché",
+      title: "Digital Marketing Boost",
+      description: "Strategic content adapted to each market",
       videoUrl: "https://www.youtube.com/embed/zQTCdl87xRs",
       features: [
-        "Génération de contenu pour tous réseaux sociaux",
-        "Éditorial stratégique avec calendrier de publication",
-        "Analyse des tendances pour un contenu captivant",
-        "Adaptation aux tendances pour maximiser l'impact",
-        "Rapports détaillés pour optimiser les campagnes"
+        "Content generation for all social networks",
+        "Strategic editorial calendar for publications",
+        "Trend analysis for engaging content",
+        "Adaptation to market trends for maximum impact",
+        "Detailed reports to optimize campaigns"
       ]
     },
     {
       icon: <BarChartHorizontal className="h-6 w-6 text-primary" />,
-      title: "Boost Ventes",
-      description: "Automatisez votre processus d'acquisition de clients",
+      title: "Sales Boost",
+      description: "Automate your customer acquisition process",
       videoUrl: "https://www.youtube.com/embed/r9wXl_Zsu50",
       features: [
-        "Génération de leads automatisée avec stratégies avancées",
-        "Nurturing des leads avec séquences personnalisées",
-        "Automatisation du processus pour une gestion centralisée",
-        "Rapports analytics avec données détaillées",
-        "Outils inclus: CRM, application mobile, agent vocal IA"
+        "Automated lead generation with advanced strategies",
+        "Lead nurturing with personalized sequences",
+        "Process automation for centralized management",
+        "Analytics reports with detailed data",
+        "Included tools: CRM, mobile app, AI voice agent"
       ]
     }
   ];
@@ -99,11 +99,11 @@ const Solutions = () => {
     <section id="solutions" className="py-24 px-4 relative section-padding">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
-          <Badge variant="secondary" className="mb-4">Nos Solutions</Badge>
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Solutions IA pour Exportateurs</h2>
+          <Badge variant="secondary" className="mb-4">Our Solutions</Badge>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">AI Solutions for Exporters</h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Nos solutions d'intelligence artificielle sont conçues spécifiquement pour aider les exportateurs 
-            à se développer sur les marchés internationaux.
+            Our artificial intelligence solutions are specifically designed to help exporters 
+            grow in international markets.
           </p>
         </div>
 
@@ -111,12 +111,12 @@ const Solutions = () => {
           <Tabs defaultValue="view-cards">
             <div className="flex justify-center mb-8">
               <TabsList>
-                <TabsTrigger value="view-cards">Vue Cartes</TabsTrigger>
-                <TabsTrigger value="view-videos">Vue Vidéos</TabsTrigger>
+                <TabsTrigger value="view-cards">Card View</TabsTrigger>
+                <TabsTrigger value="view-videos">Video View</TabsTrigger>
               </TabsList>
             </div>
             
-            <TabsContent value="view-cards" className="w-full">
+            <TabsContent value="view-cards" className="w-full mt-8">
               <div className="grid md:grid-cols-3 gap-8">
                 {solutions.map((solution, index) => (
                   <div key={index}>
@@ -132,7 +132,7 @@ const Solutions = () => {
               </div>
             </TabsContent>
             
-            <TabsContent value="view-videos" className="w-full">
+            <TabsContent value="view-videos" className="w-full mt-8">
               <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
                 {solutions.map((solution, index) => (
                   <div key={index} className="bg-card/60 p-6 rounded-lg shadow-md">
@@ -145,7 +145,7 @@ const Solutions = () => {
                       <iframe
                         src={solution.videoUrl}
                         className="w-full h-full"
-                        title={`Vidéo explicative - ${solution.title}`}
+                        title={`Explanatory Video - ${solution.title}`}
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                         allowFullScreen
                       />
@@ -155,7 +155,7 @@ const Solutions = () => {
                       <HoverCardTrigger asChild>
                         <button className="inline-flex items-center text-primary gap-1 hover:underline">
                           <Play className="h-4 w-4" />
-                          Voir les fonctionnalités
+                          View features
                         </button>
                       </HoverCardTrigger>
                       <HoverCardContent className="w-80">

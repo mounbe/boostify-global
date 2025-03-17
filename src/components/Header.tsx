@@ -20,10 +20,10 @@ export const Header = () => {
   const toggleMobileMenu = () => setMobileMenuOpen(!mobileMenuOpen);
 
   const navLinks = [
-    { name: 'Accueil', href: '#hero' },
+    { name: 'Home', href: '#hero' },
     { name: 'Services', href: '#solutions' },
-    { name: 'Avantages', href: '#why-us' },
-    { name: 'Tarifs', href: '#pricing' },
+    { name: 'Benefits', href: '#why-us' },
+    { name: 'Pricing', href: '#pricing' },
     { name: 'Contact', href: '#contact' }
   ];
 
@@ -58,7 +58,7 @@ export const Header = () => {
           {/* CTA Button */}
           <div className="hidden md:block">
             <Button className="bg-primary hover:bg-primary/90 text-white font-medium rounded-full px-6">
-              Réserver une démo
+              Book a demo
               <ChevronRight className="ml-2 h-4 w-4" />
             </Button>
           </div>
@@ -93,7 +93,7 @@ export const Header = () => {
             </a>
           ))}
           <Button className="w-full bg-primary hover:bg-primary/90 text-white font-medium rounded-full mt-4">
-            Réserver une démo
+            Book a demo
             <ChevronRight className="ml-2 h-4 w-4" />
           </Button>
         </div>
