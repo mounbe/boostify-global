@@ -26,7 +26,7 @@ export default {
 				background: 'hsl(var(--background))',
 				foreground: 'hsl(var(--foreground))',
 				primary: {
-					DEFAULT: 'hsl(var(--primary))',
+					DEFAULT: '#1E90FF', // Changed to logo blue color
 					foreground: 'hsl(var(--primary-foreground))'
 				},
 				secondary: {
@@ -42,7 +42,7 @@ export default {
 					foreground: 'hsl(var(--muted-foreground))'
 				},
 				accent: {
-					DEFAULT: 'hsl(var(--accent))',
+					DEFAULT: '#1678D4', // Darker shade of logo blue for accent
 					foreground: 'hsl(var(--accent-foreground))'
 				},
 				popover: {
@@ -56,7 +56,7 @@ export default {
 				sidebar: {
 					DEFAULT: 'hsl(var(--sidebar-background))',
 					foreground: 'hsl(var(--sidebar-foreground))',
-					primary: 'hsl(var(--sidebar-primary))',
+					primary: '#1E90FF', // Added logo blue for sidebar
 					'primary-foreground': 'hsl(var(--sidebar-primary-foreground))',
 					accent: 'hsl(var(--sidebar-accent))',
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',

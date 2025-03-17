@@ -56,7 +56,7 @@ export const Header = () => {
               <a
                 key={link.name}
                 href={link.href}
-                className="text-foreground/90 hover:text-primary transition-colors duration-200 text-sm font-medium"
+                className="text-foreground/90 hover:text-[#1E90FF] transition-colors duration-200 text-sm font-medium"
               >
                 {link.name}
               </a>
@@ -67,7 +67,7 @@ export const Header = () => {
           <div className="hidden md:flex items-center gap-4">
             <LanguageToggle />
             <Button 
-              className="bg-primary hover:bg-primary/90 text-white font-medium rounded-full px-6"
+              className="bg-[#1E90FF] hover:bg-[#1E90FF]/90 text-white font-medium rounded-full px-6"
               onClick={() => setBookDemoOpen(true)}
             >
               <Calendar className="mr-2 h-4 w-4" />
@@ -81,7 +81,7 @@ export const Header = () => {
             <LanguageToggle />
             <button 
               onClick={toggleMobileMenu} 
-              className="flex items-center p-2 rounded-md text-foreground hover:text-primary transition-colors"
+              className="flex items-center p-2 rounded-md text-foreground hover:text-[#1E90FF] transition-colors"
               aria-label="Toggle menu"
             >
               {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -102,14 +102,14 @@ export const Header = () => {
             <a
               key={link.name}
               href={link.href}
-              className="block py-3 text-foreground hover:text-primary transition-colors"
+              className="block py-3 text-foreground hover:text-[#1E90FF] transition-colors"
               onClick={() => setMobileMenuOpen(false)}
             >
               {link.name}
             </a>
           ))}
           <Button 
-            className="w-full bg-primary hover:bg-primary/90 text-white font-medium rounded-full mt-4"
+            className="w-full bg-[#1E90FF] hover:bg-[#1E90FF]/90 text-white font-medium rounded-full mt-4"
             onClick={() => {
               setMobileMenuOpen(false);
               setBookDemoOpen(true);
