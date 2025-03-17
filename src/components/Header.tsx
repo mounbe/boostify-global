@@ -44,7 +44,7 @@ export const Header = () => {
             <img 
               src="/lovable-uploads/7155a186-ea8e-4d7e-80aa-f2c39bc5df1e.png" 
               alt="BoostExportsAI Logo" 
-              className="h-10 md:h-12 w-auto"
+              className="h-14 md:h-16 w-auto" // Increased from h-10 md:h-12
             />
           </a>
           
