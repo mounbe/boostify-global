@@ -42,7 +42,7 @@ const Hero = () => {
               <Globe className="mr-1 h-3 w-3" /> Intelligence Artificielle pour Exportateurs
             </Badge>
             
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-display font-bold leading-tight">
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold leading-tight whitespace-normal">
               Augmentez vos exportations et <span className="hero-text-gradient">pénétrez de nouveaux marchés</span> avec l'IA
             </h1>
             
