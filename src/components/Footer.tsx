@@ -11,7 +11,7 @@ const Footer = () => {
           <img 
             src="/lovable-uploads/f7442bf9-6154-4b4c-890b-a55ef794a477.png" 
             alt="BoostExportsAI Logo" 
-            className="h-20 w-auto"
+            className="h-10 w-auto"
           />
         </div>
         
