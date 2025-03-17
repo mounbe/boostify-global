@@ -94,17 +94,12 @@ const ExporterCTA = () => {
                 <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center">
                   <div className="bg-white/90 p-6 rounded-lg shadow-lg max-w-md">
                     <h3 className="text-xl font-bold text-blue-800 mb-2">
-                      {language === 'fr' ? 'Témoignage' : 'Testimonial'}
+                      {language === 'fr' ? 'Conditions' : 'Terms'}
                     </h3>
-                    <p className="italic text-gray-700">
+                    <p className="text-gray-700">
                       {language === 'fr'
-                        ? '"Grâce à mon nouveau site web exportateur, j\'ai augmenté mes ventes internationales de 40% en seulement 3 mois."'
-                        : '"Thanks to my new exporter website, I increased my international sales by 40% in just 3 months."'}
-                    </p>
-                    <p className="mt-2 font-semibold text-gray-900">
-                      {language === 'fr' 
-                        ? '— Mohammed L., Exportateur de produits cosmétiques' 
-                        : '— Mohammed L., Cosmetic Products Exporter'}
+                        ? 'Offre valable pour les 25 premiers exportateurs marocains qui souscrivent à l\'un de nos packs Boost Marketing Digital ou Boost Ventes.'
+                        : 'Offer valid for the first 25 Moroccan exporters who subscribe to one of our Digital Marketing Boost or Sales Boost packages.'}
                     </p>
                   </div>
                 </div>
