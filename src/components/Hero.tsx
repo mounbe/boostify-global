@@ -1,14 +1,16 @@
 
 import React, { useEffect, useState } from 'react';
-import { ChevronRight, Globe, ExternalLink, Calendar, TrendingUp, Users, MapPin, Languages, Lightbulb, CreditCard, Rocket } from 'lucide-react';
+import { ChevronRight, Globe, ExternalLink, Calendar, TrendingUp, Users, MapPin, Languages, Lightbulb, CreditCard, Rocket, Play } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import BookDemoDialog from './BookDemoDialog';
 import { useLanguage } from '@/context/LanguageContext';
 import { Card, CardContent } from './ui/card';
+import { AspectRatio } from './ui/aspect-ratio';
 
 const Hero = () => {
   const [bookDemoOpen, setBookDemoOpen] = useState(false);
+  const [isVideoPlaying, setIsVideoPlaying] = useState(false);
   const { language } = useLanguage();
   
   useEffect(() => {
@@ -26,6 +28,14 @@ const Hero = () => {
 
     return () => observer.disconnect();
   }, []);
+
+  const handlePlayVideo = () => {
+    setIsVideoPlaying(true);
+    const videoElement = document.getElementById('promo-video') as HTMLVideoElement;
+    if (videoElement) {
+      videoElement.play();
+    }
+  };
 
   return (
     <section id="hero" className="relative min-h-screen flex items-center pt-16 overflow-hidden section-padding">
@@ -62,6 +72,43 @@ const Hero = () => {
                   <p className="text-lg text-foreground/70">
                     Automatisez vos processus d'exportation avec nos solutions d'IA
                   </p>
+                  
+                  {/* Video Section */}
+                  <div className="mt-6 relative rounded-xl overflow-hidden border border-primary/20 shadow-lg shadow-primary/5">
+                    <AspectRatio ratio={16/9} className="bg-black">
+                      {!isVideoPlaying ? (
+                        <div className="absolute inset-0 flex items-center justify-center">
+                          <div className="relative w-full h-full">
+                            <img 
+                              src="/placeholder.svg" 
+                              alt="Video thumbnail" 
+                              className="w-full h-full object-cover"
+                            />
+                            <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
+                              <Button 
+                                onClick={handlePlayVideo}
+                                variant="ghost" 
+                                size="icon" 
+                                className="w-16 h-16 rounded-full bg-primary/90 hover:bg-primary hover:scale-105 transition-all duration-300 text-white"
+                              >
+                                <Play className="h-8 w-8" />
+                              </Button>
+                            </div>
+                          </div>
+                        </div>
+                      ) : null}
+                      <video
+                        id="promo-video"
+                        className="w-full h-full object-cover"
+                        controls={isVideoPlaying}
+                        poster="/placeholder.svg"
+                        playsInline
+                      >
+                        <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4" />
+                        Votre navigateur ne supporte pas la lecture de vidéos.
+                      </video>
+                    </AspectRatio>
+                  </div>
                 </div>
                 
                 <div className="grid grid-cols-2 gap-6">
