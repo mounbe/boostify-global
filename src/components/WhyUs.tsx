@@ -86,7 +86,7 @@ const WhyUs = () => {
                 <div className="h-12 w-12 rounded-full bg-[#3b82f6]/20 flex items-center justify-center text-[#3b82f6] group-hover:bg-[#3b82f6]/40 transition-colors duration-300 mr-3">
                   <Search className="h-6 w-6 text-[#3b82f6]" />
                 </div>
-                <h4 className="text-[#3b82f6] font-semibold text-lg">{t('whyUs.simplify.step1.title')}</h4>
+                <h4 className="text-white font-semibold text-lg">{t('whyUs.simplify.step1.title')}</h4>
               </div>
               <div className="pl-2 border-l-2 border-[#3b82f6]/20">
                 <p className="text-blue-600/80">{t('whyUs.simplify.step1.description')}</p>
@@ -98,7 +98,7 @@ const WhyUs = () => {
                 <div className="h-12 w-12 rounded-full bg-[#3b82f6]/20 flex items-center justify-center text-[#3b82f6] group-hover:bg-[#3b82f6]/40 transition-colors duration-300 mr-3">
                   <Map className="h-6 w-6 text-[#3b82f6]" />
                 </div>
-                <h4 className="text-[#3b82f6] font-semibold text-lg">{t('whyUs.simplify.step2.title')}</h4>
+                <h4 className="text-white font-semibold text-lg">{t('whyUs.simplify.step2.title')}</h4>
               </div>
               <div className="pl-2 border-l-2 border-[#3b82f6]/20">
                 <p className="text-blue-600/80">{t('whyUs.simplify.step2.description')}</p>
@@ -110,7 +110,7 @@ const WhyUs = () => {
                 <div className="h-12 w-12 rounded-full bg-[#3b82f6]/20 flex items-center justify-center text-[#3b82f6] group-hover:bg-[#3b82f6]/40 transition-colors duration-300 mr-3">
                   <Activity className="h-6 w-6 text-[#3b82f6]" />
                 </div>
-                <h4 className="text-[#3b82f6] font-semibold text-lg">{t('whyUs.simplify.step3.title')}</h4>
+                <h4 className="text-white font-semibold text-lg">{t('whyUs.simplify.step3.title')}</h4>
               </div>
               <div className="pl-2 border-l-2 border-[#3b82f6]/20">
                 <p className="text-blue-600/80">{t('whyUs.simplify.step3.description')}</p>
