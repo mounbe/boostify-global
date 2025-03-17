@@ -172,7 +172,7 @@ const Hero = () => {
                         {language === 'fr' ? 'Crédits offerts' : 'Free credits'}
                       </h4>
                     </div>
-                    <p className="text-4xl font-bold text-primary mb-2">200 DH <span className="text-lg">20$/mois</span></p>
+                    <p className="text-4xl font-bold text-primary mb-2"><span className="text-lg">20$/mois</span></p>
                     <p className="text-sm text-muted-foreground">
                       {language === 'fr' ? 'Pour Google Ads' : 'For Google Ads'}
                     </p>
