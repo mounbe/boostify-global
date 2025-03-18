@@ -82,11 +82,11 @@ const Solutions = () => {
     
   const digitalMarketingFeatures = language === 'fr'
     ? [
-        "1 - Génération de Contenu Sur Mesure : Création de contenu adapté à votre marque pour Facebook, Instagram, LinkedIn et Twitter, garantissant un engagement optimal de votre audience.",
-        "2 - Éditorial : Élaboration d'un calendrier stratégique pour assurer une présence constante et pertinente sur les réseaux sociaux.",
-        "3 - Suggestions de Contenu : Analyse des tendances actuelles pour proposer des idées captivantes qui résonnent avec votre public cible.",
-        "4 - Adaptation aux Tendances : Suivi des dernières tendances pour maximiser l'impact de votre contenu.",
-        "5 - Analyse et Rapports : Rapports détaillés sur les performances de vos publications, permettant des ajustements en temps réel."
+        "Génération de Contenu Sur Mesure : Création de contenu adapté à votre marque pour Facebook, Instagram, LinkedIn et Twitter, garantissant un engagement optimal de votre audience.",
+        "Éditorial : Élaboration d'un calendrier stratégique pour assurer une présence constante et pertinente sur les réseaux sociaux.",
+        "Suggestions de Contenu : Analyse des tendances actuelles pour proposer des idées captivantes qui résonnent avec votre public cible.",
+        "Adaptation aux Tendances : Suivi des dernières tendances pour maximiser l'impact de votre contenu.",
+        "Analyse et Rapports : Rapports détaillés sur les performances de vos publications, permettant des ajustements en temps réel."
       ]
     : [
         "Content generation for all social networks",
