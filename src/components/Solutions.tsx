@@ -75,6 +75,26 @@ const Solutions = () => {
         "Localized SEO for each target country",
         "Landing page creation on B2B and B2C marketplaces"
       ];
+      
+  const digitalMarketingDescription = language === 'fr'
+    ? "Propulsez votre marque sur les réseaux sociaux avec notre service \"Boost Marketing Digital\". Nous offrons une approche stratégique et personnalisée pour maximiser votre impact et atteindre vos objectifs commerciaux:"
+    : "Strategic content adapted to each market";
+    
+  const digitalMarketingFeatures = language === 'fr'
+    ? [
+        "1 - Génération de Contenu Sur Mesure : Création de contenu adapté à votre marque pour Facebook, Instagram, LinkedIn et Twitter, garantissant un engagement optimal de votre audience.",
+        "2 - Éditorial : Élaboration d'un calendrier stratégique pour assurer une présence constante et pertinente sur les réseaux sociaux.",
+        "3 - Suggestions de Contenu : Analyse des tendances actuelles pour proposer des idées captivantes qui résonnent avec votre public cible.",
+        "4 - Adaptation aux Tendances : Suivi des dernières tendances pour maximiser l'impact de votre contenu.",
+        "5 - Analyse et Rapports : Rapports détaillés sur les performances de vos publications, permettant des ajustements en temps réel."
+      ]
+    : [
+        "Content generation for all social networks",
+        "Strategic editorial calendar for publications",
+        "Trend analysis for engaging content",
+        "Adaptation to market trends for maximum impact",
+        "Detailed reports to optimize campaigns"
+      ];
 
   const solutions = [
     {
@@ -87,15 +107,9 @@ const Solutions = () => {
     {
       icon: <TrendingUp className="h-6 w-6 text-primary" />,
       title: "Digital Marketing Boost",
-      description: "Strategic content adapted to each market",
+      description: digitalMarketingDescription,
       videoUrl: "https://www.youtube.com/embed/zQTCdl87xRs",
-      features: [
-        "Content generation for all social networks",
-        "Strategic editorial calendar for publications",
-        "Trend analysis for engaging content",
-        "Adaptation to market trends for maximum impact",
-        "Detailed reports to optimize campaigns"
-      ]
+      features: digitalMarketingFeatures
     },
     {
       icon: <BarChartHorizontal className="h-6 w-6 text-primary" />,
