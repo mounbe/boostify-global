@@ -149,7 +149,7 @@ const Pricing = () => {
         "CRM : Intégration fluide pour une gestion simplifiée.",
         "Application Mobile : Accédez à vos données où que vous soyez.",
         "Agent Vocal IA : Gérez vos appels entrants et sortants avec l'IA.",
-        "Campagnes Emailing/SMS Boostées par IA (1.800 DH/mois)",
+        "Campagnes Emailing/SMS Boostées par IA",
         "Création Automatique : Des campagnes engageantes optimisées par l'IA.",
         "Segmentation Précise : Ciblez vos prospects efficacement.",
         "A/B Testing : Testez et améliorez vos messages.",
