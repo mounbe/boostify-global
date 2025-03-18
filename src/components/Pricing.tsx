@@ -127,14 +127,14 @@ const PricingCard = ({
     <Card className={`flex flex-col h-full ${popular ? 'border-primary shadow-lg shadow-primary/20' : ''}`}>
       {popular && (
         <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-          <Badge variant="default" className="px-3 py-1">Popular</Badge>
+          <Badge variant="default" className="px-3 py-1">{language === 'fr' ? 'Populaire' : 'Popular'}</Badge>
         </div>
       )}
       <CardHeader className="text-center">
         <CardTitle className="text-xl font-bold">{title}</CardTitle>
         <CardDescription>
           <span className="text-3xl font-bold mt-4">{price}</span>
-          <span className="text-muted-foreground"> / month</span>
+          <span className="text-muted-foreground">{language === 'fr' ? ' / mois' : ' / month'}</span>
         </CardDescription>
       </CardHeader>
       <CardContent className="flex-grow">
@@ -151,7 +151,7 @@ const PricingCard = ({
         
         {bonus && (
           <div className="mt-6 pt-6 border-t border-border">
-            <h4 className="font-bold text-primary mb-2">Bonus</h4>
+            <h4 className="font-bold text-primary mb-2">{language === 'fr' ? 'Bonus' : 'Bonus'}</h4>
             {renderBonusContent()}
           </div>
         )}
@@ -201,11 +201,11 @@ const Pricing = () => {
         "SEO localisé pour vos marchés cibles",
         "Création de landing B2B & B2C"
       ] : [
-        t('pricing.plan1.feature1'),
-        t('pricing.plan1.feature2'),
-        t('pricing.plan1.feature3'),
-        t('pricing.plan1.feature4'),
-        t('pricing.plan1.feature5')
+        "Transform your website into a tireless salesperson, equipped with visionary AI capable of interacting and closing sales 24/7!",
+        "Multilingual AI agent (English, German, Arabic, Mandarin...)",
+        "AI chatbots available 24/7",
+        "Localized SEO for your target markets",
+        "B2B & B2C landing page creation"
       ],
       ctaText: t('pricing.getStarted'),
       popular: false,
@@ -221,12 +221,11 @@ const Pricing = () => {
         "Idées tendance : Des suggestions inspirées des dernières tendances pour captiver votre audience.",
         "Analyse & optimisation : Suivi des performances et ajustements en temps réel pour des résultats concrets."
       ] : [
-        t('pricing.plan2.feature1'),
-        t('pricing.plan2.feature2'),
-        t('pricing.plan2.feature3'),
-        t('pricing.plan2.feature4'),
-        t('pricing.plan2.feature5'),
-        t('pricing.plan2.feature6')
+        "Boost your brand on social media! We analyze your needs and communication to create a tailored strategy that maximizes your impact and achieves your goals.",
+        "Personalized content: Posts adapted to your brand for Facebook, Instagram, LinkedIn and Twitter.",
+        "Editorial calendar: Strategic planning for a regular and relevant presence.",
+        "Trending ideas: Suggestions inspired by the latest trends to captivate your audience.",
+        "Analysis & optimization: Performance monitoring and real-time adjustments for concrete results."
       ],
       ctaText: t('pricing.getStarted'),
       popular: true,
@@ -251,13 +250,20 @@ const Pricing = () => {
         "A/B Testing : Testez et améliorez vos messages.",
         "Envoi Intelligent : Maximisez l'impact avec des horaires optimisés."
       ] : [
-        t('pricing.plan3.feature1'),
-        t('pricing.plan3.feature2'),
-        t('pricing.plan3.feature3'),
-        t('pricing.plan3.feature4'),
-        t('pricing.plan3.feature5'),
-        t('pricing.plan3.feature6'),
-        t('pricing.plan3.feature7')
+        "Transform your sales with our AI lead generation solution!",
+        "Lead Generation: Attract qualified prospects with advanced strategies.",
+        "Automated Nurturing: Engage your leads with personalized sequences.",
+        "Complete Automation: Let our system manage the entire process while you focus on conversion.",
+        "Real-Time Reports: Analyze your performance and adjust your strategies instantly.",
+        "Included tools:",
+        "CRM: Seamless integration for simplified management.",
+        "Mobile App: Access your data wherever you are.",
+        "AI Voice Agent: Manage your incoming and outgoing calls with AI.",
+        "AI-Boosted Email/SMS Campaigns",
+        "Automatic Creation: Engaging campaigns optimized by AI.",
+        "Precise Segmentation: Target your prospects effectively.",
+        "A/B Testing: Test and improve your messages.",
+        "Intelligent Sending: Maximize impact with optimized schedules."
       ],
       ctaText: t('pricing.getStarted'),
       popular: false,
