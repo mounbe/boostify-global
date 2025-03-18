@@ -104,7 +104,8 @@ const Pricing = () => {
     setBookDemoOpen(true);
   };
   
-  const bonusText = "Une chaine youtube pour renforcer votre visibilité, avec 4 vidéos par mois. Ces vidéos sont conçues pour renforcer votre marque à l'international grâce à un contenu de haute valeur ajoutée.";
+  const defaultBonusText = "Une chaine youtube pour renforcer votre visibilité, avec 4 vidéos par mois. Ces vidéos sont conçues pour renforcer votre marque à l'international grâce à un contenu de haute valeur ajoutée.";
+  const webSiteBonusText = "Mise à jour ou nouveau Site web en langue anglaise offert";
   
   const pricingOptions = [
     {
@@ -125,7 +126,7 @@ const Pricing = () => {
       ],
       ctaText: t('pricing.getStarted'),
       popular: false,
-      bonus: bonusText
+      bonus: webSiteBonusText
     },
     {
       title: t('pricing.plan2.title'),
@@ -146,7 +147,7 @@ const Pricing = () => {
       ],
       ctaText: t('pricing.getStarted'),
       popular: true,
-      bonus: bonusText
+      bonus: defaultBonusText
     },
     {
       title: t('pricing.plan3.title'),
@@ -177,7 +178,7 @@ const Pricing = () => {
       ],
       ctaText: t('pricing.getStarted'),
       popular: false,
-      bonus: bonusText
+      bonus: defaultBonusText
     }
   ];
 
