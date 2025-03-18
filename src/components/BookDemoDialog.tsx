@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
@@ -40,6 +40,8 @@ const formSchema = z.object({
   phone: z.string().min(6, {
     message: "Phone number must be at least 6 characters.",
   }),
+  hasWebsite: z.enum(["yes", "no"]),
+  websiteUrl: z.string().url().optional().or(z.literal('')),
 });
 
 type FormValues = z.infer<typeof formSchema>;
@@ -52,6 +54,7 @@ interface BookDemoDialogProps {
 export function BookDemoDialog({ open, onOpenChange }: BookDemoDialogProps) {
   const { language } = useLanguage();
   const { toast } = useToast();
+  const [showWebsiteField, setShowWebsiteField] = useState(false);
   
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
@@ -60,14 +63,22 @@ export function BookDemoDialog({ open, onOpenChange }: BookDemoDialogProps) {
       email: "",
       company: "",
       phone: "",
+      hasWebsite: "no",
+      websiteUrl: "",
     },
   });
+
+  const watchHasWebsite = form.watch("hasWebsite");
+  
+  React.useEffect(() => {
+    setShowWebsiteField(watchHasWebsite === "yes");
+  }, [watchHasWebsite]);
 
   const onSubmit = (data: FormValues) => {
     // Here you would typically send the data to your backend/API
     console.log("Form submitted with data:", data);
     
-    // Show success toast - Fix: removed the icon property and include the Check icon in the description
+    // Show success toast
     toast({
       title: language === 'fr' ? 'Demande envoyée' : 'Request sent',
       description: (
@@ -169,6 +180,62 @@ export function BookDemoDialog({ open, onOpenChange }: BookDemoDialogProps) {
                 </FormItem>
               )}
             />
+            
+            <FormField
+              control={form.control}
+              name="hasWebsite"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>
+                    {language === 'fr' ? 'Avez-vous déjà un site web ?' : 'Do you already have a website?'}
+                  </FormLabel>
+                  <div className="flex gap-4">
+                    <label className="flex items-center gap-2">
+                      <input 
+                        type="radio"
+                        {...field}
+                        value="yes"
+                        checked={field.value === "yes"}
+                        className="h-4 w-4"
+                      />
+                      {language === 'fr' ? 'Oui' : 'Yes'}
+                    </label>
+                    <label className="flex items-center gap-2">
+                      <input 
+                        type="radio"
+                        {...field}
+                        value="no"
+                        checked={field.value === "no"}
+                        className="h-4 w-4"
+                      />
+                      {language === 'fr' ? 'Non' : 'No'}
+                    </label>
+                  </div>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            
+            {showWebsiteField && (
+              <FormField
+                control={form.control}
+                name="websiteUrl"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>
+                      {language === 'fr' ? 'Quelle est l\'adresse de votre site web ?' : 'What is your website address?'}
+                    </FormLabel>
+                    <FormControl>
+                      <Input 
+                        placeholder={language === 'fr' ? 'https://www.votresite.com' : 'https://www.yourwebsite.com'} 
+                        {...field} 
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            )}
             
             <DialogFooter className="pt-4">
               <Button type="submit" className="w-full bg-primary hover:bg-primary/90">
