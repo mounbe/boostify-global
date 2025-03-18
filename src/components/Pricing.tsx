@@ -119,7 +119,7 @@ const Pricing = () => {
       title: t('pricing.plan2.title'),
       price: "290$",
       features: language === 'fr' ? [
-        "Boostez votre marque sur les réseaux sociaux avec \"Boost Marketing Digital\" ! Nous analysons vos besoins et votre communication pour créer une stratégie sur-mesure qui maximise votre impact et atteint vos objectifs.",
+        "Boostez votre marque sur les réseaux sociaux ! Nous analysons vos besoins et votre communication pour créer une stratégie sur-mesure qui maximise votre impact et atteint vos objectifs.",
         "Contenu personnalisé : Des posts adaptés à votre marque pour Facebook, Instagram, LinkedIn et Twitter.",
         "Calendrier éditorial : Une planification stratégique pour une présence régulière et pertinente.",
         "Idées tendance : Des suggestions inspirées des dernières tendances pour captiver votre audience.",
