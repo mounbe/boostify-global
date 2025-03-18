@@ -48,8 +48,8 @@ const SolutionCard = ({ icon, title, description, features, videoUrl }: Solution
                 <div dangerouslySetInnerHTML={{ __html: feature }} />
               ) : (
                 <>
-                  <span className="absolute left-0 top-2 w-2 h-2 bg-primary rounded-full"></span>
-                  <span>{feature}</span>
+                  <span className="absolute left-0 top-2 w-2 h-2 bg-logo-green rounded-full"></span>
+                  <span dangerouslySetInnerHTML={{ __html: feature }} />
                 </>
               )}
             </li>
@@ -69,10 +69,10 @@ const Solutions = () => {
     
   const websiteBoostFeatures = language === 'fr'
     ? [
-        "Agent IA sur votre site web - Intégrez un agent intelligent capable de parler, entendre et échanger avec vos visiteurs en plusieurs langues, y compris l'anglais, l'allemand, l'arabe et le mandarin.",
-        "Chats IA 24/7 avec Voix Humaine - Parlez ou écrivez : Lancez un agent conversationnel avec une simple commande vocale ou texte. Vendez 24/7 : Répondez aux questions, négociez et concluez des ventes avec une voix naturelle, sans script rigide.",
-        "SEO Localisé - Nous optimisons votre site avec des mots-clés spécifiques à chaque pays, accompagnés de blogs et de contenus pertinents pour améliorer votre référencement.",
-        "Création de Landing Pages sur Marketplaces: B2B / B2C - Nous vous aidons à créer des pages d'atterrissage efficaces sur les principales marketplaces."
+        "<span class='text-logo-green font-semibold'>Agent IA sur votre site web</span> - Intégrez un agent intelligent capable de parler, entendre et échanger avec vos visiteurs en plusieurs langues, y compris l'anglais, l'allemand, l'arabe et le mandarin.",
+        "<span class='text-logo-green font-semibold'>Chats IA 24/7 avec Voix Humaine</span> - Parlez ou écrivez : Lancez un agent conversationnel avec une simple commande vocale ou texte. <span class='text-logo-green font-semibold'>Vendez 24/7</span> : Répondez aux questions, négociez et concluez des ventes avec une voix naturelle, sans script rigide.",
+        "<span class='text-logo-green font-semibold'>SEO Localisé</span> - Nous optimisons votre site avec des mots-clés spécifiques à chaque pays, accompagnés de blogs et de contenus pertinents pour améliorer votre référencement.",
+        "<span class='text-logo-green font-semibold'>Création de Landing Pages sur Marketplaces</span>: B2B / B2C - Nous vous aidons à créer des pages d'atterrissage efficaces sur les principales marketplaces."
       ]
     : [
         "Multilingual AI agent (English, German, Arabic, Mandarin)",
@@ -87,11 +87,11 @@ const Solutions = () => {
     
   const digitalMarketingFeatures = language === 'fr'
     ? [
-        "Génération de Contenu Sur Mesure : Création de contenu adapté à votre marque pour Facebook, Instagram, LinkedIn et Twitter, garantissant un engagement optimal de votre audience.",
-        "Éditorial : Élaboration d'un calendrier stratégique pour assurer une présence constante et pertinente sur les réseaux sociaux.",
-        "Suggestions de Contenu : Analyse des tendances actuelles pour proposer des idées captivantes qui résonnent avec votre public cible.",
-        "Adaptation aux Tendances : Suivi des dernières tendances pour maximiser l'impact de votre contenu.",
-        "Analyse et Rapports : Rapports détaillés sur les performances de vos publications, permettant des ajustements en temps réel."
+        "<span class='text-logo-green font-semibold'>Génération de Contenu Sur Mesure</span> : Création de contenu adapté à votre marque pour Facebook, Instagram, LinkedIn et Twitter, garantissant un engagement optimal de votre audience.",
+        "<span class='text-logo-green font-semibold'>Éditorial</span> : Élaboration d'un calendrier stratégique pour assurer une présence constante et pertinente sur les réseaux sociaux.",
+        "<span class='text-logo-green font-semibold'>Suggestions de Contenu</span> : Analyse des tendances actuelles pour proposer des idées captivantes qui résonnent avec votre public cible.",
+        "<span class='text-logo-green font-semibold'>Adaptation aux Tendances</span> : Suivi des dernières tendances pour maximiser l'impact de votre contenu.",
+        "<span class='text-logo-green font-semibold'>Analyse et Rapports</span> : Rapports détaillés sur les performances de vos publications, permettant des ajustements en temps réel."
       ]
     : [
         "Content generation for all social networks",
