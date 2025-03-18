@@ -85,7 +85,14 @@ const Pricing = () => {
     {
       title: t('pricing.plan2.title'),
       price: "290$",
-      features: [
+      features: language === 'fr' ? [
+        "Propulsez votre marque sur les réseaux sociaux avec notre service \"Boost Marketing Digital\". Nous adoptons une approche scientifique; on commence par un diagnostique de votre communication & une analyse de vos attentes pour maximiser votre impact et atteindre vos objectifs commerciaux:",
+        "- Génération de Contenu Sur Mesure : Création de contenu adapté à votre marque pour Facebook, Instagram, LinkedIn et Twitter, garantissant un engagement optimal de votre audience.",
+        "- Éditorial : Élaboration d'un calendrier stratégique pour assurer une présence constante et pertinente sur les réseaux sociaux.",
+        "- Suggestions de Contenu : Analyse des tendances actuelles pour proposer des idées captivantes qui résonnent avec votre public cible.",
+        "- Adaptation aux Tendances : Suivi des dernières tendances pour maximiser l'impact de votre contenu.",
+        "- Analyse et Rapports : Rapports détaillés sur les performances de vos publications, permettant des ajustements en temps réel."
+      ] : [
         t('pricing.plan2.feature1'),
         t('pricing.plan2.feature2'),
         t('pricing.plan2.feature3'),
