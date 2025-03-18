@@ -105,7 +105,22 @@ const Pricing = () => {
     {
       title: t('pricing.plan3.title'),
       price: "790$",
-      features: [
+      features: language === 'fr' ? [
+        "Transformez vos ventes avec notre solution IA de génération de leads !",
+        "Génération de Leads : Attirez des prospects qualifiés grâce à des stratégies avancées.",
+        "Nurturing Automatisé : Engagez vos leads avec des séquences personnalisées.",
+        "Automatisation Complète : Laissez notre système gérer tout le processus pendant que vous vous concentrez sur la conversion.",
+        "Rapports en Temps Réel : Analysez vos performances et ajustez vos stratégies instantanément.",
+        "Outils inclus :",
+        "CRM : Intégration fluide pour une gestion simplifiée.",
+        "Application Mobile : Accédez à vos données où que vous soyez.",
+        "Agent Vocal IA : Gérez vos appels entrants et sortants avec l'IA.",
+        "Campagnes Emailing/SMS Boostées par IA (1.800 DH/mois)",
+        "Création Automatique : Des campagnes engageantes optimisées par l'IA.",
+        "Segmentation Précise : Ciblez vos prospects efficacement.",
+        "A/B Testing : Testez et améliorez vos messages.",
+        "Envoi Intelligent : Maximisez l'impact avec des horaires optimisés."
+      ] : [
         t('pricing.plan3.feature1'),
         t('pricing.plan3.feature2'),
         t('pricing.plan3.feature3'),
