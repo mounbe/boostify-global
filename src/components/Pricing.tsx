@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Check } from 'lucide-react';
@@ -33,7 +32,9 @@ const PricingCard = ({ title, price, features, ctaText, popular = false, onSubsc
         <ul className="space-y-3">
           {features.map((feature, i) => (
             <li key={i} className="flex items-center gap-2">
-              <Check className="h-4 w-4 text-primary flex-shrink-0" />
+              {!(i === 0 && title === t('pricing.plan1.title') && language === 'fr') && (
+                <Check className="h-4 w-4 text-primary flex-shrink-0" />
+              )}
               <span className="text-sm">{feature}</span>
             </li>
           ))}
