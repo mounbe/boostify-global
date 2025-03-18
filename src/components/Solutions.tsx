@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -48,7 +47,7 @@ const SolutionCard = ({ icon, title, description, features, videoUrl }: Solution
                 <div dangerouslySetInnerHTML={{ __html: feature }} />
               ) : (
                 <>
-                  <span className="absolute left-0 top-2 w-2 h-2 bg-logo-green rounded-full"></span>
+                  <span className="absolute left-0 top-2 w-2 h-2 bg-[#8FD14F] rounded-full"></span>
                   <span dangerouslySetInnerHTML={{ __html: feature }} />
                 </>
               )}
@@ -69,10 +68,10 @@ const Solutions = () => {
     
   const websiteBoostFeatures = language === 'fr'
     ? [
-        "<span class='text-logo-green font-semibold'>Agent IA sur votre site web</span> - Intégrez un agent intelligent capable de parler, entendre et échanger avec vos visiteurs en plusieurs langues, y compris l'anglais, l'allemand, l'arabe et le mandarin.",
-        "<span class='text-logo-green font-semibold'>Chats IA 24/7 avec Voix Humaine</span> - Parlez ou écrivez : Lancez un agent conversationnel avec une simple commande vocale ou texte. <span class='text-logo-green font-semibold'>Vendez 24/7</span> : Répondez aux questions, négociez et concluez des ventes avec une voix naturelle, sans script rigide.",
-        "<span class='text-logo-green font-semibold'>SEO Localisé</span> - Nous optimisons votre site avec des mots-clés spécifiques à chaque pays, accompagnés de blogs et de contenus pertinents pour améliorer votre référencement.",
-        "<span class='text-logo-green font-semibold'>Création de Landing Pages sur Marketplaces</span>: B2B / B2C - Nous vous aidons à créer des pages d'atterrissage efficaces sur les principales marketplaces."
+        "<span class='text-[#8FD14F] font-semibold'>Agent IA sur votre site web</span> - Intégrez un agent intelligent capable de parler, entendre et échanger avec vos visiteurs en plusieurs langues, y compris l'anglais, l'allemand, l'arabe et le mandarin.",
+        "<span class='text-[#8FD14F] font-semibold'>Chats IA 24/7 avec Voix Humaine</span> - Parlez ou écrivez : Lancez un agent conversationnel avec une simple commande vocale ou texte. <span class='text-[#8FD14F] font-semibold'>Vendez 24/7</span> : Répondez aux questions, négociez et concluez des ventes avec une voix naturelle, sans script rigide.",
+        "<span class='text-[#8FD14F] font-semibold'>SEO Localisé</span> - Nous optimisons votre site avec des mots-clés spécifiques à chaque pays, accompagnés de blogs et de contenus pertinents pour améliorer votre référencement.",
+        "<span class='text-[#8FD14F] font-semibold'>Création de Landing Pages sur Marketplaces</span>: B2B / B2C - Nous vous aidons à créer des pages d'atterrissage efficaces sur les principales marketplaces."
       ]
     : [
         "Multilingual AI agent (English, German, Arabic, Mandarin)",
@@ -87,11 +86,11 @@ const Solutions = () => {
     
   const digitalMarketingFeatures = language === 'fr'
     ? [
-        "<span class='text-logo-green font-semibold'>Génération de Contenu Sur Mesure</span> : Création de contenu adapté à votre marque pour Facebook, Instagram, LinkedIn et Twitter, garantissant un engagement optimal de votre audience.",
-        "<span class='text-logo-green font-semibold'>Éditorial</span> : Élaboration d'un calendrier stratégique pour assurer une présence constante et pertinente sur les réseaux sociaux.",
-        "<span class='text-logo-green font-semibold'>Suggestions de Contenu</span> : Analyse des tendances actuelles pour proposer des idées captivantes qui résonnent avec votre public cible.",
-        "<span class='text-logo-green font-semibold'>Adaptation aux Tendances</span> : Suivi des dernières tendances pour maximiser l'impact de votre contenu.",
-        "<span class='text-logo-green font-semibold'>Analyse et Rapports</span> : Rapports détaillés sur les performances de vos publications, permettant des ajustements en temps réel."
+        "<span class='text-[#8FD14F] font-semibold'>Génération de Contenu Sur Mesure</span> : Création de contenu adapté à votre marque pour Facebook, Instagram, LinkedIn et Twitter, garantissant un engagement optimal de votre audience.",
+        "<span class='text-[#8FD14F] font-semibold'>Éditorial</span> : Élaboration d'un calendrier stratégique pour assurer une présence constante et pertinente sur les réseaux sociaux.",
+        "<span class='text-[#8FD14F] font-semibold'>Suggestions de Contenu</span> : Analyse des tendances actuelles pour proposer des idées captivantes qui résonnent avec votre public cible.",
+        "<span class='text-[#8FD14F] font-semibold'>Adaptation aux Tendances</span> : Suivi des dernières tendances pour maximiser l'impact de votre contenu.",
+        "<span class='text-[#8FD14F] font-semibold'>Analyse et Rapports</span> : Rapports détaillés sur les performances de vos publications, permettant des ajustements en temps réel."
       ]
     : [
         "Content generation for all social networks",
@@ -108,21 +107,21 @@ const Solutions = () => {
   const salesBoostFeatures = language === 'fr'
     ? [
         "Transformez votre processus de vente avec notre solution de génération de leads alimentée par l'intelligence artificielle.",
-        "<span class='text-logo-green font-semibold'>Solution 1 - Système Automatisé de Génération de Leads Boosté par IA</span>",
-        "<span class='text-logo-green font-semibold'>1 - Génération de Leads:</span> Attirez des prospects qualifiés grâce à des stratégies avancées.",
-        "<span class='text-logo-green font-semibold'>2 - Nurturing des Leads:</span> Automatisez le nurturing avec des séquences personnalisées,",
-        "<span class='text-logo-green font-semibold'>3 - Automatisation du Processus:</span> Concentrez-vous sur la conversion des prospects en clients, tandis que notre système gère l'ensemble du processus de génération de leads.",
-        "<span class='text-logo-green font-semibold'>4 - Rapports Analytics:</span> Recevez des rapports détaillés sur les performances de vos campagnes pour ajuster vos stratégies en temps réel.",
-        "<span class='text-logo-green font-semibold'>OUTILS inclus</span>",
-        "<span class='text-logo-green font-semibold'>CRM :</span> Intégrez votre CRM pour une gestion fluide des leads.",
-        "<span class='text-logo-green font-semibold'>Application Mobile :</span> Accédez à vos données et gérez vos leads où que vous soyez!",
-        "<span class='text-logo-green font-semibold'>Agent Vocal IA :</span> Facilitez la communication avec un agent vocal IA pour la réception et l'émission d'appels.",
-        "<span class='text-logo-green font-semibold'>Solution 2 - Campagnes Emailing/SMS Boostées par IA</span> (1.800 DH/mois)",
-        "<span class='text-logo-green font-semibold'>Création et Optimisation Automatique:</span> Notre système utilise l'IA pour créer et optimiser vos campagnes, garantissant un contenu engageant.",
+        "<span class='text-[#8FD14F] font-semibold'>Solution 1 - Système Automatisé de Génération de Leads Boosté par IA</span>",
+        "<span class='text-[#8FD14F] font-semibold'>1 - Génération de Leads:</span> Attirez des prospects qualifiés grâce à des stratégies avancées.",
+        "<span class='text-[#8FD14F] font-semibold'>2 - Nurturing des Leads:</span> Automatisez le nurturing avec des séquences personnalisées,",
+        "<span class='text-[#8FD14F] font-semibold'>3 - Automatisation du Processus:</span> Concentrez-vous sur la conversion des prospects en clients, tandis que notre système gère l'ensemble du processus de génération de leads.",
+        "<span class='text-[#8FD14F] font-semibold'>4 - Rapports Analytics:</span> Recevez des rapports détaillés sur les performances de vos campagnes pour ajuster vos stratégies en temps réel.",
+        "<span class='text-[#8FD14F] font-semibold'>OUTILS inclus</span>",
+        "<span class='text-[#8FD14F] font-semibold'>CRM :</span> Intégrez votre CRM pour une gestion fluide des leads.",
+        "<span class='text-[#8FD14F] font-semibold'>Application Mobile :</span> Accédez à vos données et gérez vos leads où que vous soyez!",
+        "<span class='text-[#8FD14F] font-semibold'>Agent Vocal IA :</span> Facilitez la communication avec un agent vocal IA pour la réception et l'émission d'appels.",
+        "<span class='text-[#8FD14F] font-semibold'>Solution 2 - Campagnes Emailing/SMS Boostées par IA</span> (1.800 DH/mois)",
+        "<span class='text-[#8FD14F] font-semibold'>Création et Optimisation Automatique:</span> Notre système utilise l'IA pour créer et optimiser vos campagnes, garantissant un contenu engageant.",
         "Fonctionnalités Avancées",
-        "<span class='text-logo-green font-semibold'>- Segmentation Automatique :</span> Ciblez vos prospects avec précision.",
-        "<span class='text-logo-green font-semibold'>- A/B Testing :</span> Testez différentes versions de vos emails.",
-        "<span class='text-logo-green font-semibold'>- Optimisation des Heures d'Envoi :</span> Maximisez l'engagement en envoyant vos messages au bon moment."
+        "<span class='text-[#8FD14F] font-semibold'>- Segmentation Automatique :</span> Ciblez vos prospects avec précision.",
+        "<span class='text-[#8FD14F] font-semibold'>- A/B Testing :</span> Testez différentes versions de vos emails.",
+        "<span class='text-[#8FD14F] font-semibold'>- Optimisation des Heures d'Envoi :</span> Maximisez l'engagement en envoyant vos messages au bon moment."
       ]
     : [
         "Automated lead generation with advanced strategies",
@@ -224,7 +223,7 @@ const Solutions = () => {
                         <ul className="space-y-2 text-sm">
                           {solution.features.map((feature, i) => (
                             <li key={i} className="relative pl-5">
-                              <span className="absolute left-0 top-2 w-1.5 h-1.5 bg-primary rounded-full"></span>
+                              <span className="absolute left-0 top-2 w-1.5 h-1.5 bg-[#8FD14F] rounded-full"></span>
                               <span>{feature}</span>
                             </li>
                           ))}
