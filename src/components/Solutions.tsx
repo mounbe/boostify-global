@@ -95,7 +95,7 @@ const Solutions = () => {
         "Detailed reports to optimize campaigns"
       ];
 
-  const salesBoostDescription = language === 'fr'
+  const salesBoostDescription = language === 'fr' 
     ? "Grâce à notre système automatisé, vous pouvez non seulement générer des leads de manière efficace et automatisée, mais aussi les fidéliser tout au long de leur parcours d'achat."
     : "Automate your customer acquisition process";
     
@@ -106,9 +106,9 @@ const Solutions = () => {
         "Automatisation du Processus: L'ensemble du processus de génération de leads est automatisé, ce qui vous permet de vous concentrer sur la conversion des prospects en clients.",
         "Rapports Analytics: Recevez des rapports détaillés sur les performances de vos campagnes, vous permettant d'ajuster vos stratégies en temps réel pour maximiser votre retour sur investissement.",
         "Outils Offerts: Nous proposons la configuration d'outils utiles pouir développer votre activité commerciale;",
-        "- CRM: Intégrez votre CRM pour une gestion fluide des prospects.",
-        "- Application Mobile: Accédez à vos données et gérez vos leads où que vous soyez grâce à notre application mobile intuitive.",
-        "- Agent Vocal IA: Notre agent vocal IA facilite la réception et l'émission d'appels, optimisant ainsi votre communication avec les clients (crédits inclus)."
+        "1 -CRM: Intégrez votre CRM pour une gestion fluide des prospects.",
+        "2 - Application Mobile: Accédez à vos données et gérez vos leads où que vous soyez grâce à notre application mobile intuitive.",
+        "3 - Agent Vocal IA: Notre agent vocal IA facilite la réception et l'émission d'appels, optimisant ainsi votre communication avec les clients (crédits inclus)."
       ]
     : [
         "Automated lead generation with advanced strategies",
