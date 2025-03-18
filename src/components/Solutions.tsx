@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -76,7 +77,7 @@ const Solutions = () => {
       ];
       
   const digitalMarketingDescription = language === 'fr'
-    ? "Propulsez votre marque sur les réseaux sociaux avec notre service \"Boost Marketing Digital\". Nous offrons une approche stratégique et personnalisée pour maximiser votre impact et atteindre vos objectifs commerciaux:"
+    ? "Propulsez votre marque sur les réseaux sociaux. Nous offrons une approche stratégique et personnalisée pour maximiser votre impact et atteindre vos objectifs commerciaux:"
     : "Strategic content adapted to each market";
     
   const digitalMarketingFeatures = language === 'fr'
