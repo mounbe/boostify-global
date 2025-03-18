@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -96,6 +95,26 @@ const Solutions = () => {
         "Detailed reports to optimize campaigns"
       ];
 
+  const salesBoostDescription = language === 'fr'
+    ? "Automatisez votre processus d'acquisition client pour maximiser vos ventes à l'international"
+    : "Automate your customer acquisition process";
+    
+  const salesBoostFeatures = language === 'fr'
+    ? [
+        "Génération automatisée de leads avec des stratégies avancées",
+        "Nurturing de leads avec des séquences personnalisées",
+        "Automatisation des processus pour une gestion centralisée",
+        "Rapports analytiques avec des données détaillées",
+        "Outils inclus: CRM, application mobile, agent vocal IA"
+      ]
+    : [
+        "Automated lead generation with advanced strategies",
+        "Lead nurturing with personalized sequences",
+        "Process automation for centralized management",
+        "Analytics reports with detailed data",
+        "Included tools: CRM, mobile app, AI voice agent"
+      ];
+
   const solutions = [
     {
       icon: <Globe className="h-6 w-6 text-primary" />,
@@ -114,15 +133,9 @@ const Solutions = () => {
     {
       icon: <BarChartHorizontal className="h-6 w-6 text-primary" />,
       title: "Sales Boost",
-      description: "Automate your customer acquisition process",
+      description: salesBoostDescription,
       videoUrl: "https://www.youtube.com/embed/r9wXl_Zsu50",
-      features: [
-        "Automated lead generation with advanced strategies",
-        "Lead nurturing with personalized sequences",
-        "Process automation for centralized management",
-        "Analytics reports with detailed data",
-        "Included tools: CRM, mobile app, AI voice agent"
-      ]
+      features: salesBoostFeatures
     }
   ];
 
