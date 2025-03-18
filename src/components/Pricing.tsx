@@ -67,11 +67,11 @@ const Pricing = () => {
       price: "190$",
       features: language === 'fr' ? [
         "Transformer votre site web en un vendeur infatigable, doté d'une IA visionnaire capable d'observer, d'interagir et de conclure des ventes 24h/24!",
-        "-Agent multilingue IA (anglais, allemand, arabe, mandarin...)",
-        "-Chatbots IA disponibles 24/7",
-        "-Analyse en temps réel du comportement des visiteurs",
-        "-SEO localisé pour vos marchés cibles",
-        "-Création de landing B2B & B2C"
+        "Agent multilingue IA (anglais, allemand, arabe, mandarin...)",
+        "Chatbots IA disponibles 24/7",
+        "Analyse en temps réel du comportement des visiteurs",
+        "SEO localisé pour vos marchés cibles",
+        "Création de landing B2B & B2C"
       ] : [
         t('pricing.plan1.feature1'),
         t('pricing.plan1.feature2'),
