@@ -15,7 +15,8 @@ const PricingCard = ({
   popular = false, 
   onSubscribe,
   language,
-  translationFunction
+  translationFunction,
+  bonus
 }: { 
   title: string, 
   price: string, 
@@ -24,7 +25,8 @@ const PricingCard = ({
   popular?: boolean,
   onSubscribe: () => void,
   language: string,
-  translationFunction: (key: string) => string
+  translationFunction: (key: string) => string,
+  bonus?: string
 }) => {
   // Function to determine if the check icon should be hidden for this feature
   const shouldHideCheckIcon = (index: number, feature: string) => {
@@ -72,6 +74,13 @@ const PricingCard = ({
             </li>
           ))}
         </ul>
+        
+        {bonus && (
+          <div className="mt-6 pt-6 border-t border-border">
+            <h4 className="font-bold text-primary mb-2">Bonus</h4>
+            <p className="text-sm">{bonus}</p>
+          </div>
+        )}
       </CardContent>
       <CardFooter>
         <Button 
@@ -95,6 +104,8 @@ const Pricing = () => {
     setBookDemoOpen(true);
   };
   
+  const bonusText = "Une chaine youtube pour renforcer votre visibilité, avec 4 vidéos par mois. Ces vidéos sont conçues pour renforcer votre marque à l'international grâce à un contenu de haute valeur ajoutée.";
+  
   const pricingOptions = [
     {
       title: t('pricing.plan1.title'),
@@ -113,7 +124,8 @@ const Pricing = () => {
         t('pricing.plan1.feature5')
       ],
       ctaText: t('pricing.getStarted'),
-      popular: false
+      popular: false,
+      bonus: bonusText
     },
     {
       title: t('pricing.plan2.title'),
@@ -133,7 +145,8 @@ const Pricing = () => {
         t('pricing.plan2.feature6')
       ],
       ctaText: t('pricing.getStarted'),
-      popular: true
+      popular: true,
+      bonus: bonusText
     },
     {
       title: t('pricing.plan3.title'),
@@ -163,7 +176,8 @@ const Pricing = () => {
         t('pricing.plan3.feature7')
       ],
       ctaText: t('pricing.getStarted'),
-      popular: false
+      popular: false,
+      bonus: bonusText
     }
   ];
 
@@ -189,6 +203,7 @@ const Pricing = () => {
             onSubscribe={() => handleSubscribe(option.title)}
             language={language}
             translationFunction={t}
+            bonus={option.bonus}
           />
         ))}
       </div>
