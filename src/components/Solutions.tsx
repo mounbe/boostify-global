@@ -69,8 +69,6 @@ const Solutions = () => {
   const websiteBoostFeatures = language === 'fr'
     ? [
         "Agent IA sur votre site web - Intégrez un agent intelligent capable de parler, entendre et échanger avec vos visiteurs en plusieurs langues, y compris l'anglais, l'allemand, l'arabe et le mandarin.",
-        "Chats IA 24/7 avec Voix Humaine - Parlez ou écrivez : Lancez un agent conversationnel avec une simple commande vocale ou texte. Vendez 24/7 : Répondez aux questions, négociez et concluez des ventes avec une voix naturelle.",
-        "IA Prédictive Hyper-Personnalisée - Anticipez les besoins : Proposez des recommandations sur-mesure.",
         "SEO Localisé - Nous optimisons votre site avec des mots-clés spécifiques à chaque pays, accompagnés de blogs et de contenus pertinents pour améliorer votre référencement.",
         "Création de Landing Pages sur Marketplaces: B2B / B2C - Nous vous aidons à créer des pages d'atterrissage efficaces sur les principales marketplaces."
       ]
