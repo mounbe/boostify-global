@@ -27,7 +27,7 @@ const PricingCard = ({
   language: string,
   translationFunction: (key: string) => string,
   bonus?: string
-}) {
+}) => {
   const shouldHideCheckIcon = (index: number, feature: string) => {
     if (language !== 'fr' && language !== 'en') return false;
     
