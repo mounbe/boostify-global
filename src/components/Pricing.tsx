@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Check } from 'lucide-react';
@@ -6,13 +7,24 @@ import { Badge } from '@/components/ui/badge';
 import { useLanguage } from '@/context/LanguageContext';
 import BookDemoDialog from './BookDemoDialog';
 
-const PricingCard = ({ title, price, features, ctaText, popular = false, onSubscribe }: { 
+const PricingCard = ({ 
+  title, 
+  price, 
+  features, 
+  ctaText, 
+  popular = false, 
+  onSubscribe,
+  language,
+  translationFunction
+}: { 
   title: string, 
   price: string, 
   features: string[], 
   ctaText: string,
   popular?: boolean,
-  onSubscribe: () => void 
+  onSubscribe: () => void,
+  language: string,
+  translationFunction: (key: string) => string
 }) => {
   return (
     <Card className={`flex flex-col h-full ${popular ? 'border-primary shadow-lg shadow-primary/20' : ''}`}>
@@ -32,7 +44,7 @@ const PricingCard = ({ title, price, features, ctaText, popular = false, onSubsc
         <ul className="space-y-3">
           {features.map((feature, i) => (
             <li key={i} className="flex items-center gap-2">
-              {!(i === 0 && title === t('pricing.plan1.title') && language === 'fr') && (
+              {!(i === 0 && title === translationFunction('pricing.plan1.title') && language === 'fr') && (
                 <Check className="h-4 w-4 text-primary flex-shrink-0" />
               )}
               <span className="text-sm">{feature}</span>
@@ -155,6 +167,8 @@ const Pricing = () => {
             ctaText={option.ctaText}
             popular={option.popular}
             onSubscribe={() => handleSubscribe(option.title)}
+            language={language}
+            translationFunction={t}
           />
         ))}
       </div>
