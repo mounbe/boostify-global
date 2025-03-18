@@ -108,7 +108,7 @@ const Solutions = () => {
   const salesBoostFeatures = language === 'fr'
     ? [
         "Transformez votre processus de vente avec notre solution de génération de leads alimentée par l'intelligence artificielle.",
-        "<span class='text-logo-green font-semibold'>A. Système Automatisé de Génération de Leads Boosté par IA</span>",
+        "<span class='text-logo-green font-semibold'>Solution 1 - Système Automatisé de Génération de Leads Boosté par IA</span>",
         "<span class='text-logo-green font-semibold'>1 - Génération de Leads:</span> Attirez des prospects qualifiés grâce à des stratégies avancées.",
         "<span class='text-logo-green font-semibold'>2 - Nurturing des Leads:</span> Automatisez le nurturing avec des séquences personnalisées,",
         "<span class='text-logo-green font-semibold'>3 - Automatisation du Processus:</span> Concentrez-vous sur la conversion des prospects en clients, tandis que notre système gère l'ensemble du processus de génération de leads.",
@@ -117,7 +117,7 @@ const Solutions = () => {
         "<span class='text-logo-green font-semibold'>CRM :</span> Intégrez votre CRM pour une gestion fluide des leads.",
         "<span class='text-logo-green font-semibold'>Application Mobile :</span> Accédez à vos données et gérez vos leads où que vous soyez!",
         "<span class='text-logo-green font-semibold'>Agent Vocal IA :</span> Facilitez la communication avec un agent vocal IA pour la réception et l'émission d'appels.",
-        "<span class='text-logo-green font-semibold'>B. Campagnes Emailing/SMS Boostées par IA</span> (1.800 DH/mois)",
+        "<span class='text-logo-green font-semibold'>Solution 2 - Campagnes Emailing/SMS Boostées par IA</span> (1.800 DH/mois)",
         "<span class='text-logo-green font-semibold'>Création et Optimisation Automatique:</span> Notre système utilise l'IA pour créer et optimiser vos campagnes, garantissant un contenu engageant.",
         "Fonctionnalités Avancées",
         "<span class='text-logo-green font-semibold'>- Segmentation Automatique :</span> Ciblez vos prospects avec précision.",
