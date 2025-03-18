@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Check } from 'lucide-react';
@@ -28,16 +27,12 @@ const PricingCard = ({
   translationFunction: (key: string) => string,
   bonus?: string
 }) => {
-  // Function to determine if the check icon should be hidden for this feature
   const shouldHideCheckIcon = (index: number, feature: string) => {
     if (language !== 'fr') return false;
     
-    // Hide for first feature in all plans
     if (index === 0) return true;
     
-    // For "Boost Ventes" plan (plan3), hide for specific features
     if (title === translationFunction('pricing.plan3.title')) {
-      // Hide for "Outils inclus :" and "Campagnes Emailing/SMS Boostées par IA"
       if (
         feature.includes("Outils inclus") || 
         feature.includes("Campagnes Emailing/SMS Boostées par IA")
@@ -47,6 +42,46 @@ const PricingCard = ({
     }
     
     return false;
+  };
+
+  const renderBonusContent = () => {
+    if (title === translationFunction('pricing.plan3.title')) {
+      return (
+        <div className="space-y-3">
+          <div className="flex items-start gap-2">
+            <div className="h-5 w-5 rounded-full bg-primary flex items-center justify-center flex-shrink-0 mt-0.5">
+              <span className="text-xs font-bold text-white">1</span>
+            </div>
+            <div>
+              <h5 className="font-semibold text-sm">Diagnostic & Stratégie</h5>
+              <p className="text-sm text-muted-foreground">Analyse de votre positionnement et recommandations pour conquérir de nouveaux marchés et optimiser votre présence internationale.</p>
+            </div>
+          </div>
+          
+          <div className="flex items-start gap-2">
+            <div className="h-5 w-5 rounded-full bg-primary flex items-center justify-center flex-shrink-0 mt-0.5">
+              <span className="text-xs font-bold text-white">2</span>
+            </div>
+            <div>
+              <h5 className="font-semibold text-sm">Rebranding & Identité Visuelle</h5>
+              <p className="text-sm text-muted-foreground">Modernisation de votre logo pour refléter vos valeurs et renforcer l'impact de votre marque.</p>
+            </div>
+          </div>
+          
+          <div className="flex items-start gap-2">
+            <div className="h-5 w-5 rounded-full bg-primary flex items-center justify-center flex-shrink-0 mt-0.5">
+              <span className="text-xs font-bold text-white">3</span>
+            </div>
+            <div>
+              <h5 className="font-semibold text-sm">Site Web Offert</h5>
+              <p className="text-sm text-muted-foreground">Création d'un site professionnel, optimisé pour le SEO et conçu pour maximiser l'expérience utilisateur.</p>
+            </div>
+          </div>
+        </div>
+      );
+    }
+    
+    return <p className="text-sm">{bonus}</p>;
   };
 
   return (
@@ -78,7 +113,7 @@ const PricingCard = ({
         {bonus && (
           <div className="mt-6 pt-6 border-t border-border">
             <h4 className="font-bold text-primary mb-2">Bonus</h4>
-            <p className="text-sm">{bonus}</p>
+            {renderBonusContent()}
           </div>
         )}
       </CardContent>
