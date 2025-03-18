@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -106,10 +105,10 @@ const Solutions = () => {
         "Nurturing des Leads: Notre système automatise le nurturing des leads avec des séquences personnalisées, garantissant que chaque prospect reçoit le bon message au bon moment.",
         "Automatisation du Processus: L'ensemble du processus de génération de leads est automatisé, ce qui vous permet de vous concentrer sur la conversion des prospects en clients.",
         "Rapports Analytics: Recevez des rapports détaillés sur les performances de vos campagnes, vous permettant d'ajuster vos stratégies en temps réel pour maximiser votre retour sur investissement.",
-        "Outils Offerts: Nous proposons la configuration ou l'intégration de votre CRM pour une gestion fluide de vos leads. De plus, un chatbot IA est disponible 24/7 pour interagir avec vos prospects.",
-        "CRM: Intégrez votre CRM pour une gestion fluide des prospects.",
-        "Application Mobile: Accédez à vos données et gérez vos leads où que vous soyez grâce à notre application mobile intuitive.",
-        "Agent Vocal IA: Notre agent vocal IA facilite la réception et l'émission d'appels, optimisant ainsi votre communication avec les clients (crédits inclus)."
+        "Outils Offerts: Nous proposons la configuration d'outils utiles pouir développer votre activité commerciale;",
+        "- CRM: Intégrez votre CRM pour une gestion fluide des prospects.",
+        "- Application Mobile: Accédez à vos données et gérez vos leads où que vous soyez grâce à notre application mobile intuitive.",
+        "- Agent Vocal IA: Notre agent vocal IA facilite la réception et l'émission d'appels, optimisant ainsi votre communication avec les clients (crédits inclus)."
       ]
     : [
         "Automated lead generation with advanced strategies",
