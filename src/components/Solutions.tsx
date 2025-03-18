@@ -43,8 +43,14 @@ const SolutionCard = ({ icon, title, description, features, videoUrl }: Solution
         <ul className="space-y-3">
           {features.map((feature, index) => (
             <li key={index} className="relative pl-6">
-              <span className="absolute left-0 top-2 w-2 h-2 bg-primary rounded-full"></span>
-              <span>{feature}</span>
+              {title === "Sales Boost" ? (
+                <div dangerouslySetInnerHTML={{ __html: feature }} />
+              ) : (
+                <>
+                  <span className="absolute left-0 top-2 w-2 h-2 bg-primary rounded-full"></span>
+                  <span>{feature}</span>
+                </>
+              )}
             </li>
           ))}
         </ul>
@@ -102,21 +108,21 @@ const Solutions = () => {
   const salesBoostFeatures = language === 'fr'
     ? [
         "Transformez votre processus de vente avec notre solution de génération de leads alimentée par l'intelligence artificielle.",
-        "A. Système Automatisé de Génération de Leads Boosté par IA",
-        "1 - Génération de Leads: Attirez des prospects qualifiés grâce à des stratégies avancées.",
-        "2 - Nurturing des Leads: Automatisez le nurturing avec des séquences personnalisées,",
-        "3 - Automatisation du Processus: Concentrez-vous sur la conversion des prospects en clients, tandis que notre système gère l'ensemble du processus de génération de leads.",
-        "4 - Rapports Analytics: Recevez des rapports détaillés sur les performances de vos campagnes pour ajuster vos stratégies en temps réel.",
-        "OUTILS inclus",
-        "CRM : Intégrez votre CRM pour une gestion fluide des leads.",
-        "Application Mobile : Accédez à vos données et gérez vos leads où que vous soyez!",
-        "Agent Vocal IA : Facilitez la communication avec un agent vocal IA pour la réception et l'émission d'appels.",
-        "B. Campagnes Emailing/SMS Boostées par IA (1.800 DH/mois)",
-        "Création et Optimisation Automatique: Notre système utilise l'IA pour créer et optimiser vos campagnes, garantissant un contenu engageant.",
+        "<span class='text-logo-green font-semibold'>A. Système Automatisé de Génération de Leads Boosté par IA</span>",
+        "<span class='text-logo-green font-semibold'>1 - Génération de Leads:</span> Attirez des prospects qualifiés grâce à des stratégies avancées.",
+        "<span class='text-logo-green font-semibold'>2 - Nurturing des Leads:</span> Automatisez le nurturing avec des séquences personnalisées,",
+        "<span class='text-logo-green font-semibold'>3 - Automatisation du Processus:</span> Concentrez-vous sur la conversion des prospects en clients, tandis que notre système gère l'ensemble du processus de génération de leads.",
+        "<span class='text-logo-green font-semibold'>4 - Rapports Analytics:</span> Recevez des rapports détaillés sur les performances de vos campagnes pour ajuster vos stratégies en temps réel.",
+        "<span class='text-logo-green font-semibold'>OUTILS inclus</span>",
+        "<span class='text-logo-green font-semibold'>CRM :</span> Intégrez votre CRM pour une gestion fluide des leads.",
+        "<span class='text-logo-green font-semibold'>Application Mobile :</span> Accédez à vos données et gérez vos leads où que vous soyez!",
+        "<span class='text-logo-green font-semibold'>Agent Vocal IA :</span> Facilitez la communication avec un agent vocal IA pour la réception et l'émission d'appels.",
+        "<span class='text-logo-green font-semibold'>B. Campagnes Emailing/SMS Boostées par IA</span> (1.800 DH/mois)",
+        "<span class='text-logo-green font-semibold'>Création et Optimisation Automatique:</span> Notre système utilise l'IA pour créer et optimiser vos campagnes, garantissant un contenu engageant.",
         "Fonctionnalités Avancées",
-        "- Segmentation Automatique : Ciblez vos prospects avec précision.",
-        "- A/B Testing : Testez différentes versions de vos emails.",
-        "- Optimisation des Heures d'Envoi : Maximisez l'engagement en envoyant vos messages au bon moment."
+        "<span class='text-logo-green font-semibold'>- Segmentation Automatique :</span> Ciblez vos prospects avec précision.",
+        "<span class='text-logo-green font-semibold'>- A/B Testing :</span> Testez différentes versions de vos emails.",
+        "<span class='text-logo-green font-semibold'>- Optimisation des Heures d'Envoi :</span> Maximisez l'engagement en envoyant vos messages au bon moment."
       ]
     : [
         "Automated lead generation with advanced strategies",
