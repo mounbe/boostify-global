@@ -101,14 +101,22 @@ const Solutions = () => {
     
   const salesBoostFeatures = language === 'fr'
     ? [
-        "Génération de Leads: Nous mettons en place des stratégies avancées pour attirer des prospects qualifiés, augmentant ainsi votre base de clients potentiel.",
-        "Nurturing des Leads: Notre système automatise le nurturing des leads avec des séquences personnalisées, garantissant que chaque prospect reçoit le bon message au bon moment.",
-        "Automatisation du Processus: L'ensemble du processus de génération de leads est automatisé, ce qui vous permet de vous concentrer sur la conversion des prospects en clients.",
-        "Rapports Analytics: Recevez des rapports détaillés sur les performances de vos campagnes, vous permettant d'ajuster vos stratégies en temps réel pour maximiser votre retour sur investissement.",
-        "Outils Offerts: Nous proposons la configuration d'outils utiles pouir développer votre activité commerciale;",
-        "1 -CRM: Intégrez votre CRM pour une gestion fluide des prospects.",
-        "2 - Application Mobile: Accédez à vos données et gérez vos leads où que vous soyez grâce à notre application mobile intuitive.",
-        "3 - Agent Vocal IA: Notre agent vocal IA facilite la réception et l'émission d'appels, optimisant ainsi votre communication avec les clients (crédits inclus)."
+        "Transformez votre processus de vente avec notre solution de génération de leads alimentée par l'intelligence artificielle.",
+        "A. Système Automatisé de Génération de Leads Boosté par IA",
+        "1 - Génération de Leads: Attirez des prospects qualifiés grâce à des stratégies avancées.",
+        "2 - Nurturing des Leads: Automatisez le nurturing avec des séquences personnalisées,",
+        "3 - Automatisation du Processus: Concentrez-vous sur la conversion des prospects en clients, tandis que notre système gère l'ensemble du processus de génération de leads.",
+        "4 - Rapports Analytics: Recevez des rapports détaillés sur les performances de vos campagnes pour ajuster vos stratégies en temps réel.",
+        "OUTILS inclus",
+        "CRM : Intégrez votre CRM pour une gestion fluide des leads.",
+        "Application Mobile : Accédez à vos données et gérez vos leads où que vous soyez!",
+        "Agent Vocal IA : Facilitez la communication avec un agent vocal IA pour la réception et l'émission d'appels.",
+        "B. Campagnes Emailing/SMS Boostées par IA (1.800 DH/mois)",
+        "Création et Optimisation Automatique: Notre système utilise l'IA pour créer et optimiser vos campagnes, garantissant un contenu engageant.",
+        "Fonctionnalités Avancées",
+        "- Segmentation Automatique : Ciblez vos prospects avec précision.",
+        "- A/B Testing : Testez différentes versions de vos emails.",
+        "- Optimisation des Heures d'Envoi : Maximisez l'engagement en envoyant vos messages au bon moment."
       ]
     : [
         "Automated lead generation with advanced strategies",
