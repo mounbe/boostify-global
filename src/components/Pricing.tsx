@@ -27,16 +27,18 @@ const PricingCard = ({
   language: string,
   translationFunction: (key: string) => string,
   bonus?: string
-}) => {
+}) {
   const shouldHideCheckIcon = (index: number, feature: string) => {
-    if (language !== 'fr') return false;
+    if (language !== 'fr' && language !== 'en') return false;
     
     if (index === 0) return true;
     
     if (title === translationFunction('pricing.plan3.title')) {
       if (
         feature.includes("Outils inclus") || 
-        feature.includes("Campagnes Emailing/SMS Boostées par IA")
+        feature.includes("Campagnes Emailing/SMS Boostées par IA") ||
+        feature.includes("Included tools:") ||
+        feature.includes("AI-Boosted Email/SMS Campaigns")
       ) {
         return true;
       }
