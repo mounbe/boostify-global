@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Check } from 'lucide-react';
@@ -25,6 +26,27 @@ const PricingCard = ({
   language: string,
   translationFunction: (key: string) => string
 }) => {
+  // Function to determine if the check icon should be hidden for this feature
+  const shouldHideCheckIcon = (index: number, feature: string) => {
+    if (language !== 'fr') return false;
+    
+    // Hide for first feature in all plans
+    if (index === 0) return true;
+    
+    // For "Boost Ventes" plan (plan3), hide for specific features
+    if (title === translationFunction('pricing.plan3.title')) {
+      // Hide for "Outils inclus :" and "Campagnes Emailing/SMS Boostées par IA"
+      if (
+        feature.includes("Outils inclus") || 
+        feature.includes("Campagnes Emailing/SMS Boostées par IA")
+      ) {
+        return true;
+      }
+    }
+    
+    return false;
+  };
+
   return (
     <Card className={`flex flex-col h-full ${popular ? 'border-primary shadow-lg shadow-primary/20' : ''}`}>
       {popular && (
@@ -43,7 +65,7 @@ const PricingCard = ({
         <ul className="space-y-3">
           {features.map((feature, i) => (
             <li key={i} className="flex items-center gap-2">
-              {!(i === 0 && language === 'fr') && (
+              {!shouldHideCheckIcon(i, feature) && (
                 <Check className="h-4 w-4 text-primary flex-shrink-0" />
               )}
               <span className="text-sm">{feature}</span>
