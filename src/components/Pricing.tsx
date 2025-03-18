@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Check } from 'lucide-react';
@@ -46,7 +47,7 @@ const PricingCard = ({
 
   const renderBonusContent = () => {
     if (title === translationFunction('pricing.plan3.title')) {
-      return (
+      return language === 'fr' ? (
         <div className="space-y-3">
           <div className="flex items-start gap-2">
             <div className="h-5 w-5 rounded-full bg-primary flex items-center justify-center flex-shrink-0 mt-0.5">
@@ -78,6 +79,44 @@ const PricingCard = ({
             </div>
           </div>
         </div>
+      ) : (
+        <div className="space-y-3">
+          <div className="flex items-start gap-2">
+            <div className="h-5 w-5 rounded-full bg-primary flex items-center justify-center flex-shrink-0 mt-0.5">
+              <span className="text-xs font-bold text-white">1</span>
+            </div>
+            <div>
+              <h5 className="font-semibold text-sm">Diagnostic & Strategy</h5>
+              <p className="text-sm text-muted-foreground">Analysis of your positioning and recommendations to conquer new markets and optimize your international presence.</p>
+            </div>
+          </div>
+          
+          <div className="flex items-start gap-2">
+            <div className="h-5 w-5 rounded-full bg-primary flex items-center justify-center flex-shrink-0 mt-0.5">
+              <span className="text-xs font-bold text-white">2</span>
+            </div>
+            <div>
+              <h5 className="font-semibold text-sm">Rebranding & Visual Identity</h5>
+              <p className="text-sm text-muted-foreground">Modernization of your logo to reflect your values and strengthen your brand impact.</p>
+            </div>
+          </div>
+          
+          <div className="flex items-start gap-2">
+            <div className="h-5 w-5 rounded-full bg-primary flex items-center justify-center flex-shrink-0 mt-0.5">
+              <span className="text-xs font-bold text-white">3</span>
+            </div>
+            <div>
+              <h5 className="font-semibold text-sm">Free Website</h5>
+              <p className="text-sm text-muted-foreground">Creation of a professional website, optimized for SEO and designed to maximize user experience.</p>
+            </div>
+          </div>
+        </div>
+      );
+    } else if (title === translationFunction('pricing.plan1.title')) {
+      return language === 'fr' ? (
+        <p className="text-sm">Mise à jour ou nouveau Site web en langue anglaise offert</p>
+      ) : (
+        <p className="text-sm">Free update or new website in English language</p>
       );
     }
     
@@ -139,9 +178,17 @@ const Pricing = () => {
     setBookDemoOpen(true);
   };
   
-  const defaultBonusText = "Une chaine youtube pour renforcer votre visibilité, avec 4 vidéos par mois. Ces vidéos sont conçues pour renforcer votre marque à l'international grâce à un contenu de haute valeur ajoutée.";
-  const webSiteBonusText = "Mise à jour ou nouveau Site web en langue anglaise offert";
-  const salesBoostBonusText = "Diagnostic & Stratégie : Analyse de votre positionnement et recommandations pour conquérir de nouveaux marchés et optimiser votre présence internationale.\nRebranding & Identité Visuelle : Modernisation de votre logo pour refléter vos valeurs et renforcer l'impact de votre marque.\nSite Web Offert : Création d'un site professionnel, optimisé pour le SEO et conçu pour maximiser l'expérience utilisateur";
+  const defaultBonusText = language === 'fr' 
+    ? "Une chaine youtube pour renforcer votre visibilité, avec 4 vidéos par mois. Ces vidéos sont conçues pour renforcer votre marque à l'international grâce à un contenu de haute valeur ajoutée."
+    : "A YouTube channel to strengthen your visibility, with 4 videos per month. These videos are designed to strengthen your brand internationally through high-value content.";
+  
+  const webSiteBonusText = language === 'fr'
+    ? "Mise à jour ou nouveau Site web en langue anglaise offert"
+    : "Free update or new website in English language";
+  
+  const salesBoostBonusText = language === 'fr'
+    ? "Diagnostic & Stratégie : Analyse de votre positionnement et recommandations pour conquérir de nouveaux marchés et optimiser votre présence internationale.\nRebranding & Identité Visuelle : Modernisation de votre logo pour refléter vos valeurs et renforcer l'impact de votre marque.\nSite Web Offert : Création d'un site professionnel, optimisé pour le SEO et conçu pour maximiser l'expérience utilisateur"
+    : "Diagnostic & Strategy: Analysis of your positioning and recommendations to conquer new markets and optimize your international presence.\nRebranding & Visual Identity: Modernization of your logo to reflect your values and strengthen your brand impact.\nFree Website: Creation of a professional website, optimized for SEO and designed to maximize user experience";
   
   const pricingOptions = [
     {
