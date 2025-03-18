@@ -106,6 +106,7 @@ const Pricing = () => {
   
   const defaultBonusText = "Une chaine youtube pour renforcer votre visibilité, avec 4 vidéos par mois. Ces vidéos sont conçues pour renforcer votre marque à l'international grâce à un contenu de haute valeur ajoutée.";
   const webSiteBonusText = "Mise à jour ou nouveau Site web en langue anglaise offert";
+  const salesBoostBonusText = "Diagnostic & Stratégie : Analyse de votre positionnement et recommandations pour conquérir de nouveaux marchés et optimiser votre présence internationale.\nRebranding & Identité Visuelle : Modernisation de votre logo pour refléter vos valeurs et renforcer l'impact de votre marque.\nSite Web Offert : Création d'un site professionnel, optimisé pour le SEO et conçu pour maximiser l'expérience utilisateur";
   
   const pricingOptions = [
     {
@@ -178,7 +179,7 @@ const Pricing = () => {
       ],
       ctaText: t('pricing.getStarted'),
       popular: false,
-      bonus: defaultBonusText
+      bonus: salesBoostBonusText
     }
   ];
 
