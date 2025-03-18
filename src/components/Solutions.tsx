@@ -6,6 +6,7 @@ import { Globe, TrendingUp, BarChartHorizontal, Play } from 'lucide-react';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { HoverCard, HoverCardContent, HoverCardTrigger } from '@/components/ui/hover-card';
+import { useLanguage } from '@/context/LanguageContext';
 
 interface SolutionCardProps {
   icon: React.ReactNode;
@@ -54,18 +55,34 @@ const SolutionCard = ({ icon, title, description, features, videoUrl }: Solution
 };
 
 const Solutions = () => {
-  const solutions = [
-    {
-      icon: <Globe className="h-6 w-6 text-primary" />,
-      title: "Website Boost",
-      description: "Optimize your online presence for an international audience",
-      videoUrl: "https://www.youtube.com/embed/HpsFXML7vVY", 
-      features: [
+  const { language } = useLanguage();
+  
+  const websiteBoostDescription = language === 'fr' 
+    ? "Notre service \"Boost Site Web\" est conçu pour propulser votre présence en ligne et maximiser votre impact sur le marché. Voici ce que nous proposons :"
+    : "Optimize your online presence for an international audience";
+    
+  const websiteBoostFeatures = language === 'fr'
+    ? [
+        "Agent IA sur votre site web - Intégrez un agent intelligent capable de parler, entendre et échanger avec vos visiteurs en plusieurs langues, y compris l'anglais, l'allemand, l'arabe et le mandarin.",
+        "Chats IA 24/7 avec Voix Humaine - Parlez ou écrivez : Lancez un agent conversationnel avec une simple commande vocale ou texte. Vendez 24/7 : Répondez aux questions, négociez et concluez des ventes avec une voix naturelle.",
+        "IA Prédictive Hyper-Personnalisée - Anticipez les besoins : Proposez des recommandations sur-mesure.",
+        "SEO Localisé - Nous optimisons votre site avec des mots-clés spécifiques à chaque pays, accompagnés de blogs et de contenus pertinents pour améliorer votre référencement.",
+        "Création de Landing Pages sur Marketplaces: B2B / B2C - Nous vous aidons à créer des pages d'atterrissage efficaces sur les principales marketplaces."
+      ]
+    : [
         "Multilingual AI agent (English, German, Arabic, Mandarin)",
         "Real-time visitor behavior analysis",
         "Localized SEO for each target country",
         "Landing page creation on B2B and B2C marketplaces"
-      ]
+      ];
+
+  const solutions = [
+    {
+      icon: <Globe className="h-6 w-6 text-primary" />,
+      title: "Website Boost",
+      description: websiteBoostDescription,
+      videoUrl: "https://www.youtube.com/embed/HpsFXML7vVY", 
+      features: websiteBoostFeatures
     },
     {
       icon: <TrendingUp className="h-6 w-6 text-primary" />,
