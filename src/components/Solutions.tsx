@@ -96,7 +96,7 @@ const Solutions = () => {
       ];
 
   const salesBoostDescription = language === 'fr'
-    ? "A. Système Automatisé de Génération de Leads Boosté par IA\nNotre solution de génération de leads utilise l'intelligence artificielle pour transformer votre processus de vente. Grâce à notre système automatisé, vous pouvez non seulement générer des leads de manière efficace, mais aussi les nourrir tout au long de leur parcours d'achat."
+    ? "Grâce à notre système automatisé, vous pouvez non seulement générer des leads de manière efficace et automatisée, mais aussi les fidéliser tout au long de leur parcours d'achat."
     : "Automate your customer acquisition process";
     
   const salesBoostFeatures = language === 'fr'
