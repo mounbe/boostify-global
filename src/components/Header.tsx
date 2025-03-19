@@ -55,7 +55,7 @@ export const Header = () => {
                 <a
                   key={link.name}
                   href={link.href}
-                  className="text-foreground/90 hover:text-primary transition-colors duration-200 text-sm font-medium"
+                  className="text-foreground/90 hover:text-[#3b82f6] transition-colors duration-200 text-sm font-medium"
                 >
                   {link.name}
                 </a>
@@ -67,7 +67,7 @@ export const Header = () => {
           <div className="hidden md:flex items-center gap-4">
             <LanguageToggle />
             <Button 
-              className="bg-green-600 hover:bg-green-700 text-white font-medium rounded-full px-6"
+              className="bg-[#3b82f6] hover:bg-[#2563eb] text-white font-medium rounded-full px-6"
               onClick={() => setBookDemoOpen(true)}
             >
               <Calendar className="mr-2 h-4 w-4" />
@@ -81,7 +81,7 @@ export const Header = () => {
             <LanguageToggle />
             <button 
               onClick={toggleMobileMenu} 
-              className="flex items-center p-2 rounded-md text-foreground hover:text-primary transition-colors"
+              className="flex items-center p-2 rounded-md text-foreground hover:text-[#3b82f6] transition-colors"
               aria-label="Toggle menu"
             >
               {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -93,7 +93,7 @@ export const Header = () => {
       {/* Mobile Navigation */}
       <div
         className={cn(
-          "md:hidden fixed inset-x-0 top-16 bg-green-900/95 backdrop-blur-lg shadow-lg transition-transform duration-300 ease-in-out z-40",
+          "md:hidden fixed inset-x-0 top-16 bg-[#3b82f6]/95 backdrop-blur-lg shadow-lg transition-transform duration-300 ease-in-out z-40",
           mobileMenuOpen ? "translate-y-0" : "-translate-y-full"
         )}
       >
@@ -109,7 +109,7 @@ export const Header = () => {
             </a>
           ))}
           <Button 
-            className="w-full bg-green-600 hover:bg-green-700 text-white font-medium rounded-full mt-4"
+            className="w-full bg-[#3b82f6] hover:bg-[#2563eb] text-white font-medium rounded-full mt-4"
             onClick={() => {
               setMobileMenuOpen(false);
               setBookDemoOpen(true);
