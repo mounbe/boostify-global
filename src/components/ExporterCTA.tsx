@@ -53,7 +53,7 @@ const ExporterCTA = () => {
                       <p className="text-sm text-gray-600">
                         {language === 'fr' 
                           ? 'En français, anglais, espagnol et arabe' 
-                          : 'In English, French, Spanish and Arabic'}
+                          : 'in English'}
                       </p>
                     </div>
                   </div>
@@ -116,4 +116,3 @@ const ExporterCTA = () => {
 };
 
 export default ExporterCTA;
-
