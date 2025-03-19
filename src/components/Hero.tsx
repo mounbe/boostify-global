@@ -213,7 +213,7 @@ const Hero = () => {
               <div className="flex items-center gap-2">
                 <Users className="h-5 w-5 text-primary" />
                 <p className="text-base text-muted-foreground">
-                  {language === 'fr' ? 'Déjà utilisé par des exportateurs dans ' : 'Already used by exporters in '}
+                  {language === 'fr' ? 'Déjà utilisé par des entreprises dans ' : 'Already used by businesses in '}
                   <span className="text-foreground font-semibold">
                     {language === 'fr' ? '50+ pays' : '50+ countries'}
                   </span>
