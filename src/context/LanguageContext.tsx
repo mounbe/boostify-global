@@ -1,3 +1,4 @@
+
 import React, { createContext, useContext, useState, ReactNode } from 'react';
 
 export type Language = 'en' | 'fr';
@@ -147,11 +148,11 @@ const translations = {
     'whyUs.badge': 'Pourquoi Nous Choisir',
     'whyUs.title': 'Pourquoi BoostExportsAI ?',
     'whyUs.description': 'Nous offrons bien plus qu\'une simple solution technologique, découvrez nos avantages exclusifs',
-    'whyUs.feature1.title': 'Site Web Professionnel Gratuit',
+    'whyUs.feature1.title': 'Site Web Professionnel',
     'whyUs.feature1.description': 'Recevez un site web professionnel optimisé pour le SEO, totalement gratuit.',
-    'whyUs.feature2.title': 'Crédit Google Ads Gratuit',
+    'whyUs.feature2.title': 'Crédit Google Ads',
     'whyUs.feature2.description': 'Bénéficiez de 20$ par mois de crédit pour vos campagnes Google Ads.',
-    'whyUs.feature3.title': 'Diagnostic Gratuit',
+    'whyUs.feature3.title': 'Diagnostic',
     'whyUs.feature3.description': 'Analyse complète de votre position actuelle et recommandations pour votre développement.',
     'whyUs.feature4.title': 'Branding et Relooking',
     'whyUs.feature4.description': 'Modernisation de votre logo pour une meilleure reconnaissance de marque.',
