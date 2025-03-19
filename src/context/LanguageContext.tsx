@@ -12,7 +12,7 @@ const translations = {
   en: {
     // Header
     'nav.home': 'Home',
-    'nav.services': 'Services',
+    'nav.services': 'Solutions',
     'nav.benefits': 'Benefits',
     'nav.pricing': 'Pricing',
     'nav.contact': 'Contact',
@@ -122,7 +122,7 @@ const translations = {
   fr: {
     // Header
     'nav.home': 'Accueil',
-    'nav.services': 'Services',
+    'nav.services': 'Solutions',
     'nav.benefits': 'Avantages',
     'nav.pricing': 'Tarification',
     'nav.contact': 'Contact',
