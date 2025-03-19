@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Badge } from '@/components/ui/badge';
 import { Gift, Award, Lightbulb, TrendingUp, Search, Map, Activity, Play, Monitor } from 'lucide-react';
@@ -107,7 +106,7 @@ const WhyUs = () => {
                 <h4 className="text-white font-semibold text-lg">{t('whyUs.simplify.step2.title')}</h4>
               </div>
               <div className="pl-2 border-l-2 border-[#3b82f6]/20">
-                <p className="text-blue-600/80">{t('whyUs.simplify.step2.description')}</p>
+                <p className="text-white">{t('whyUs.simplify.step2.description')}</p>
               </div>
             </div>
             
@@ -119,13 +118,12 @@ const WhyUs = () => {
                 <h4 className="text-white font-semibold text-lg">{t('whyUs.simplify.step3.title')}</h4>
               </div>
               <div className="pl-2 border-l-2 border-[#3b82f6]/20">
-                <p className="text-blue-600/80">{t('whyUs.simplify.step3.description')}</p>
+                <p className="text-white">{t('whyUs.simplify.step3.description')}</p>
               </div>
             </div>
           </div>
         </div>
         
-        {/* How it works section */}
         <div className="mt-16 p-8 bg-primary/10 rounded-xl border border-primary/20 animate-on-scroll">
           <h3 className="text-xl md:text-2xl font-semibold text-center mb-8 text-white">
             {language === 'fr' ? 'Comment ça marche ?' : 'How It Works?'}
