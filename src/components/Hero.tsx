@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import { ChevronRight, Globe, ExternalLink, Calendar, TrendingUp, Users, MapPin, Languages, Lightbulb, CreditCard, Rocket, Play } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -31,6 +30,13 @@ const Hero = () => {
 
   const handlePlayVideo = () => {
     setIsVideoPlaying(true);
+  };
+
+  const scrollToSolutions = () => {
+    const solutionsSection = document.getElementById('solutions');
+    if (solutionsSection) {
+      solutionsSection.scrollIntoView({ behavior: 'smooth' });
+    }
   };
 
   return (
@@ -194,7 +200,11 @@ const Hero = () => {
                   <ChevronRight className="ml-2 h-5 w-5" />
                 </Button>
                 
-                <Button variant="outline" className="text-foreground border-foreground/20 hover:bg-foreground/5 text-base px-8 py-6 rounded-full">
+                <Button 
+                  variant="outline" 
+                  className="text-foreground border-foreground/20 hover:bg-foreground/5 text-base px-8 py-6 rounded-full"
+                  onClick={scrollToSolutions}
+                >
                   {language === 'fr' ? 'En savoir plus' : 'Learn more'}
                   <ExternalLink className="ml-2 h-4 w-4" />
                 </Button>
