@@ -98,8 +98,8 @@ const ExporterCTA = () => {
                     </h3>
                     <p className="text-gray-700">
                       {language === 'fr'
-                        ? 'Offre valable pour les 25 premiers exportateurs marocains qui souscrivent à l\'un de nos packs Boost Marketing Digital ou Boost Ventes.'
-                        : 'Offer valid for the first 25 Moroccan exporters who subscribe to one of our Digital Marketing Boost or Sales Boost packages.'}
+                        ? 'Exclusif pour les Exportateurs, valable jusqu\'au 7 Avril 2025.'
+                        : 'Exclusive for Exporters, valid until 7 Avril 2025'}
                     </p>
                   </div>
                 </div>
@@ -116,3 +116,4 @@ const ExporterCTA = () => {
 };
 
 export default ExporterCTA;
+
