@@ -139,7 +139,7 @@ const WhyUs = () => {
                 </div>
                 <p className="text-foreground/90">
                   {language === 'fr' 
-                    ? 'Découvrez comment accélérer vos exportations dès aujourd'hui ! Augmenter les exportations et pénétrer de nouveaux marchés.'
+                    ? 'Découvrez comment accélérer vos exportations dès aujourd\'hui ! Augmenter les exportations et pénétrer de nouveaux marchés.'
                     : 'Discover how to accelerate your exports today! Increase exports and penetrate new markets.'}
                 </p>
               </div>
