@@ -1,3 +1,4 @@
+
 import React, { createContext, useContext, useState, ReactNode } from 'react';
 
 export type Language = 'en' | 'fr';
@@ -42,7 +43,7 @@ const translations = {
     'whyUs.feature2.title': 'Free Google Ads Credit',
     'whyUs.feature2.description': 'Benefit from 20$ per month credit for your Google Ads campaigns.',
     'whyUs.feature3.title': 'Free Diagnostic',
-    'whyUs.feature3.description': 'Complete analysis of your current position and recommendations for your development.',
+    'whyUs.feature3.description': 'Complete analysis of your Marketing & Sales activities with our recommendations to shine worldwide.',
     'whyUs.feature4.title': 'Branding and Makeover',
     'whyUs.feature4.description': 'Modernization of your logo for better brand recognition.',
     'whyUs.simplify.title': 'Simplify Your Business',
@@ -152,7 +153,7 @@ const translations = {
     'whyUs.feature2.title': 'Crédit Google Ads Gratuit',
     'whyUs.feature2.description': 'Bénéficiez de 20$ par mois de crédit pour vos campagnes Google Ads.',
     'whyUs.feature3.title': 'Diagnostic Gratuit',
-    'whyUs.feature3.description': 'Analyse complète de votre position actuelle et recommandations pour votre développement.',
+    'whyUs.feature3.description': 'Analyse complète de vos activités Marketing & Ventes avec nos recommandations pour briller à l\'international.',
     'whyUs.feature4.title': 'Branding et Relooking',
     'whyUs.feature4.description': 'Modernisation de votre logo pour une meilleure reconnaissance de marque.',
     'whyUs.simplify.title': 'Simplifiez Votre Business',
