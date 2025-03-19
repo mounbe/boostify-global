@@ -62,7 +62,7 @@ const WhyUs = () => {
         <div className="text-center mb-16">
           <Badge variant="secondary" className="mb-4 bg-[#3b82f6]/20 text-[#3b82f6] hover:bg-[#3b82f6]/30">{t('whyUs.badge')}</Badge>
           <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">{t('whyUs.title')}</h2>
-          <p className="text-lg text-blue-600/80 max-w-2xl mx-auto">
+          <p className="text-lg text-white max-w-2xl mx-auto">
             {t('whyUs.description')}
           </p>
         </div>
