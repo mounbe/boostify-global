@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Badge } from '@/components/ui/badge';
 import { Gift, Award, Lightbulb, TrendingUp, Search, Map, Activity, Play, Monitor } from 'lucide-react';
@@ -54,6 +55,11 @@ const WhyUs = () => {
   const handlePlayVideo = () => {
     setIsVideoPlaying(true);
   };
+
+  // Define the video URL based on language
+  const videoUrl = language === 'fr' 
+    ? "https://www.youtube.com/embed/r9wXl_Zsu50?autoplay=1"
+    : "https://www.youtube.com/embed/-PmM7CchUHE?autoplay=1";
 
   return (
     <section id="why-us" className="py-24 px-4 bg-gradient-to-b from-background to-[#3b82f6]/10 section-padding">
@@ -186,7 +192,7 @@ const WhyUs = () => {
                 </div>
               ) : (
                 <iframe 
-                  src="https://www.youtube.com/embed/r9wXl_Zsu50?autoplay=1" 
+                  src={videoUrl}
                   title="YouTube video" 
                   className="w-full h-full absolute inset-0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
