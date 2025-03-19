@@ -1,3 +1,4 @@
+
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700&display=swap');
 
 @tailwind base;
@@ -15,8 +16,8 @@
     --popover: 225 40% 15%;
     --popover-foreground: 210 40% 98%;
 
-    /* Updated primary to match the boostexports logo blue */
-    --primary: 214 83% 60%;
+    /* Updated primary to green */
+    --primary: 142 76% 36%;
     --primary-foreground: 210 40% 98%;
 
     /* Added logo-green color for the arrow in the logo */
@@ -28,7 +29,7 @@
     --muted: 225 35% 20%;
     --muted-foreground: 215 16% 75%;
 
-    --accent: 214 83% 20%;
+    --accent: 142 76% 16%;
     --accent-foreground: 210 40% 98%;
 
     --destructive: 0 84% 60%;
@@ -36,7 +37,7 @@
 
     --border: 225 25% 25%;
     --input: 225 25% 25%;
-    --ring: 214 83% 60%;
+    --ring: 142 76% 36%;
 
     --radius: 0.8rem;
   }

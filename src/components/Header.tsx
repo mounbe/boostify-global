@@ -44,11 +44,11 @@ export const Header = () => {
             <img 
               src="/lovable-uploads/7155a186-ea8e-4d7e-80aa-f2c39bc5df1e.png" 
               alt="BoostExportsAI Logo" 
-              className="h-14 md:h-16 w-auto" // Increased from h-10 md:h-12
+              className="h-14 md:h-16 w-auto"
             />
           </a>
           
-          {/* Desktop Navigation - Now displayed horizontally */}
+          {/* Desktop Navigation */}
           <div className="hidden md:flex flex-1 justify-center">
             <nav className="flex items-center space-x-8">
               {navLinks.map((link) => (
@@ -67,7 +67,7 @@ export const Header = () => {
           <div className="hidden md:flex items-center gap-4">
             <LanguageToggle />
             <Button 
-              className="bg-primary hover:bg-primary/90 text-white font-medium rounded-full px-6"
+              className="bg-green-600 hover:bg-green-700 text-white font-medium rounded-full px-6"
               onClick={() => setBookDemoOpen(true)}
             >
               <Calendar className="mr-2 h-4 w-4" />
@@ -93,7 +93,7 @@ export const Header = () => {
       {/* Mobile Navigation */}
       <div
         className={cn(
-          "md:hidden fixed inset-x-0 top-16 bg-blue-900/95 backdrop-blur-lg shadow-lg transition-transform duration-300 ease-in-out z-40",
+          "md:hidden fixed inset-x-0 top-16 bg-green-900/95 backdrop-blur-lg shadow-lg transition-transform duration-300 ease-in-out z-40",
           mobileMenuOpen ? "translate-y-0" : "-translate-y-full"
         )}
       >
@@ -109,7 +109,7 @@ export const Header = () => {
             </a>
           ))}
           <Button 
-            className="w-full bg-primary hover:bg-primary/90 text-white font-medium rounded-full mt-4"
+            className="w-full bg-green-600 hover:bg-green-700 text-white font-medium rounded-full mt-4"
             onClick={() => {
               setMobileMenuOpen(false);
               setBookDemoOpen(true);

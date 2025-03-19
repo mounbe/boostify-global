@@ -108,7 +108,7 @@ const Contact = () => {
                 />
               </div>
               
-              <Button type="submit" className="w-full bg-primary hover:bg-primary/90 text-white font-medium rounded-full">
+              <Button type="submit" className="w-full bg-green-600 hover:bg-green-700 text-white font-medium rounded-full">
                 {language === 'fr' ? 'Envoyer le Message' : 'Send Message'} <Send className="ml-2 h-4 w-4" />
               </Button>
             </form>
