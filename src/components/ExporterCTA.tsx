@@ -52,7 +52,7 @@ const ExporterCTA = () => {
                       </h3>
                       <p className="text-sm text-gray-600">
                         {language === 'fr' 
-                          ? 'En français, anglais, espagnol et arabe' 
+                          ? 'en anglais' 
                           : 'in English'}
                       </p>
                     </div>
