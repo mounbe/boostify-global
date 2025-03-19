@@ -240,7 +240,7 @@ export function BookDemoDialog({ open, onOpenChange }: BookDemoDialogProps) {
             <DialogFooter className="pt-4">
               <Button type="submit" className="w-full bg-primary hover:bg-primary/90">
                 <Calendar className="mr-2 h-4 w-4" />
-                {language === 'fr' ? 'Demander une démo' : 'Request a Demo'}
+                {language === 'fr' ? 'Commencer' : 'Get Started'}
               </Button>
             </DialogFooter>
           </form>
