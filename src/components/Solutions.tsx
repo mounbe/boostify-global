@@ -157,7 +157,7 @@ const Solutions = () => {
       icon: <TrendingUp className="h-6 w-6 text-primary" />,
       title: language === 'fr' ? "Boost Marketing Digital" : "Digital Marketing Boost",
       description: digitalMarketingDescription,
-      videoUrl: "https://www.youtube.com/embed/zQTCdl87xRs",
+      videoUrl: language === 'fr' ? "https://www.youtube.com/embed/zQTCdl87xRs" : "https://www.youtube.com/embed/rlTOLp4i3Eo",
       features: digitalMarketingFeatures
     },
     {
