@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
-import { Calendar, Check, CalendarClock } from 'lucide-react';
+import { Calendar, Check, CalendarClock, Globe, Briefcase, Phone } from 'lucide-react';
 
 import {
   Dialog,
@@ -15,6 +15,7 @@ import {
 } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
+import { Textarea } from '@/components/ui/textarea';
 import {
   Form,
   FormControl,
@@ -42,6 +43,8 @@ const formSchema = z.object({
   }),
   hasWebsite: z.enum(["yes", "no"]),
   websiteUrl: z.string().url().optional().or(z.literal('')),
+  businessDescription: z.string().optional(),
+  exportMarkets: z.string().optional(),
 });
 
 type FormValues = z.infer<typeof formSchema>;
@@ -65,6 +68,8 @@ export function BookDemoDialog({ open, onOpenChange }: BookDemoDialogProps) {
       phone: "",
       hasWebsite: "no",
       websiteUrl: "",
+      businessDescription: "",
+      exportMarkets: "",
     },
   });
 
@@ -86,8 +91,8 @@ export function BookDemoDialog({ open, onOpenChange }: BookDemoDialogProps) {
           <Check className="h-4 w-4" />
           <span>
             {language === 'fr' 
-              ? 'Nous vous contacterons bientôt pour planifier votre démo.' 
-              : 'We will contact you soon to schedule your demo.'}
+              ? 'Nous vous contacterons bientôt pour discuter de votre site web gratuit.' 
+              : 'We will contact you soon to discuss your free website.'}
           </span>
         </div>
       ),
@@ -104,16 +109,16 @@ export function BookDemoDialog({ open, onOpenChange }: BookDemoDialogProps) {
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-[500px]">
         <DialogHeader>
-          <div className="flex items-center gap-2 text-primary">
-            <CalendarClock className="h-5 w-5" />
+          <div className="flex items-center gap-2 text-green-600">
+            <Globe className="h-5 w-5" />
             <DialogTitle>
-              {language === 'fr' ? 'Réserver une démo' : 'Book a Demo'}
+              {language === 'fr' ? 'Commander votre site web gratuit' : 'Order your free website'}
             </DialogTitle>
           </div>
           <DialogDescription>
             {language === 'fr' 
-              ? 'Remplissez le formulaire ci-dessous pour réserver votre démo personnalisée.' 
-              : 'Fill out the form below to book your personalized demo.'}
+              ? 'Remplissez le formulaire ci-dessous pour commander votre site web gratuit optimisé pour l\'export.' 
+              : 'Fill out the form below to order your free website optimized for export.'}
           </DialogDescription>
         </DialogHeader>
         
@@ -183,6 +188,44 @@ export function BookDemoDialog({ open, onOpenChange }: BookDemoDialogProps) {
             
             <FormField
               control={form.control}
+              name="businessDescription"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>
+                    {language === 'fr' ? 'Description de votre activité' : 'Business description'}
+                  </FormLabel>
+                  <FormControl>
+                    <Textarea 
+                      placeholder={language === 'fr' ? 'Décrivez brièvement votre entreprise et vos produits/services' : 'Briefly describe your business and products/services'} 
+                      {...field} 
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            
+            <FormField
+              control={form.control}
+              name="exportMarkets"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>
+                    {language === 'fr' ? 'Marchés d\'exportation cibles' : 'Target export markets'}
+                  </FormLabel>
+                  <FormControl>
+                    <Input 
+                      placeholder={language === 'fr' ? 'Ex: Royaume-Uni, États-Unis, Allemagne' : 'E.g., UK, USA, Germany'} 
+                      {...field} 
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            
+            <FormField
+              control={form.control}
               name="hasWebsite"
               render={({ field }) => (
                 <FormItem>
@@ -238,9 +281,9 @@ export function BookDemoDialog({ open, onOpenChange }: BookDemoDialogProps) {
             )}
             
             <DialogFooter className="pt-4">
-              <Button type="submit" className="w-full bg-primary hover:bg-primary/90">
-                <Calendar className="mr-2 h-4 w-4" />
-                {language === 'fr' ? 'Commencer' : 'Get Started'}
+              <Button type="submit" className="w-full bg-green-600 hover:bg-green-700">
+                <Globe className="mr-2 h-4 w-4" />
+                {language === 'fr' ? 'Commander mon site gratuit' : 'Order my free website'}
               </Button>
             </DialogFooter>
           </form>
