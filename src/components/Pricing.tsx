@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Check } from 'lucide-react';
@@ -116,9 +115,9 @@ const PricingCard = ({
       );
     } else if (title === translationFunction('pricing.plan1.title')) {
       return language === 'fr' ? (
-        <p className="text-sm">Mise à jour ou nouveau Site web en langue anglaise offert</p>
+        <p className="text-sm">Mise à jour ou nouveau Site web en 2 langues offert</p>
       ) : (
-        <p className="text-sm">Free update or new website in English language</p>
+        <p className="text-sm">Free update or new website in 2 languages</p>
       );
     }
     
@@ -185,8 +184,8 @@ const Pricing = () => {
     : "A YouTube channel to strengthen your visibility, with 4 videos per month. These videos are designed to strengthen your brand internationally through high-value content.";
   
   const webSiteBonusText = language === 'fr'
-    ? "Mise à jour ou nouveau Site web en langue anglaise offert"
-    : "Free update or new website in English language";
+    ? "Mise à jour ou nouveau Site web en 2 langues offert"
+    : "Free update or new website in 2 languages";
   
   const salesBoostBonusText = language === 'fr'
     ? "Diagnostic & Stratégie : Analyse de votre positionnement et recommandations pour conquérir de nouveaux marchés et optimiser votre présence internationale.\nRebranding & Identité Visuelle : Modernisation de votre logo pour refléter vos valeurs et renforcer l'impact de votre marque.\nSite Web Offert : Création d'un site professionnel, optimisé pour le SEO et conçu pour maximiser l'expérience utilisateur"
