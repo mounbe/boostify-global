@@ -59,12 +59,12 @@ const WhyUs = () => {
           </Badge>
           <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">
             {language === 'fr' 
-              ? 'Votre partenaire d\'exportation intelligent' 
+              ? 'Outillez vous pour la conquête internationale' 
               : 'Your Intelligent Export Partner'}
           </h2>
           <p className="text-lg text-white max-w-2xl mx-auto">
             {language === 'fr'
-              ? 'Découvrez comment notre technologie IA peut transformer votre approche à l\'exportation et accélérer votre croissance internationale.'
+              ? 'En plus de la solution technologique IA, des services à forte valeur ajoutée sont offerts pour garantir votre réussite'
               : 'Discover how our AI technology can transform your approach to exporting and accelerate your international growth.'}
           </p>
         </div>
