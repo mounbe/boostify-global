@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { useLanguage } from '@/context/LanguageContext';
-import { Mail, Phone, Globe, MapPin, ChevronRight } from 'lucide-react';
+import { Mail, Phone, Globe, ChevronRight } from 'lucide-react';
 import { Separator } from '@/components/ui/separator';
 import { Button } from '@/components/ui/button';
 
@@ -29,12 +29,6 @@ const Footer = () => {
                 : 'AI-powered solutions helping exporters conquer new markets with the power of artificial intelligence.'}
             </p>
             <div className="space-y-2">
-              <div className="flex items-center gap-2">
-                <MapPin className="h-4 w-4 text-emerald-500" />
-                <span className="text-muted-foreground text-sm">
-                  {language === 'fr' ? 'Dakar, Sénégal' : 'Dakar, Senegal'}
-                </span>
-              </div>
               <div className="flex items-center gap-2">
                 <Mail className="h-4 w-4 text-emerald-500" />
                 <a href="mailto:contact@boostexportsai.com" className="text-muted-foreground text-sm hover:text-foreground transition-colors">
@@ -184,4 +178,3 @@ const Footer = () => {
 };
 
 export default Footer;
-
