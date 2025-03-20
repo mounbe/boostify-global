@@ -88,8 +88,8 @@ const WhyUs = () => {
           </h3>
           <p className="text-center max-w-3xl mx-auto text-white/80 mb-8">
             {language === 'fr'
-              ? 'Notre approche basée sur l\'IA élimine la complexité de l\'exportation, <span class="text-[#3b82f6] font-semibold">vous permettant de vous concentrer sur ce que vous faites le mieux</span>.'
-              : 'Our AI-powered approach removes the complexity from exporting, <span class="text-[#3b82f6] font-semibold">allowing you to focus on what you do best</span>.'}
+              ? 'Notre approche basée sur l\'IA élimine la complexité de l\'exportation, vous permettant de vous concentrer sur ce que vous faites le mieux.'
+              : 'Our AI-powered approach removes the complexity from exporting, allowing you to focus on what you do best.'}
           </p>
           
           <div className="grid md:grid-cols-3 gap-8 mt-8">
