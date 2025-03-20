@@ -12,7 +12,7 @@ import { sendEmailNotification } from '@/utils/emailService';
 const Contact = () => {
   const { language, t } = useLanguage();
   const { toast } = useToast();
-  const [hasWebsite, setHasWebsite] = useState<string>('no');
+  const [hasWebsite, setHasWebsite] = useState<'yes' | 'no'>('no'); // Fix: explicitly typed as 'yes' | 'no'
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
@@ -38,7 +38,7 @@ const Contact = () => {
         name: formData.name,
         subject: formData.subject,
         message: formData.message,
-        hasWebsite,
+        hasWebsite: hasWebsite as 'yes' | 'no', // Ensure type safety
         websiteUrl: hasWebsite === 'yes' ? formData.websiteUrl : undefined
       });
       
