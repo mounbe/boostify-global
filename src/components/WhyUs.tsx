@@ -25,7 +25,7 @@ const Feature = ({ icon, title, description }: FeatureProps) => {
 };
 
 const WhyUs = () => {
-  const { language, t } = useLanguage();
+  const { t } = useLanguage();
   
   const features = [
     {
@@ -54,18 +54,10 @@ const WhyUs = () => {
     <section id="why-us" className="py-24 px-4 bg-gradient-to-b from-background to-[#3b82f6]/10 section-padding">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
-          <Badge variant="secondary" className="mb-4 bg-[#3b82f6]/20 text-[#3b82f6] hover:bg-[#3b82f6]/30">
-            {language === 'fr' ? 'Pourquoi BoostExports AI ?' : 'Why BoostExports AI?'}
-          </Badge>
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">
-            {language === 'fr' 
-              ? 'Votre partenaire d\'exportation intelligent' 
-              : 'Your Intelligent Export Partner'}
-          </h2>
+          <Badge variant="secondary" className="mb-4 bg-[#3b82f6]/20 text-[#3b82f6] hover:bg-[#3b82f6]/30">{t('whyUs.badge')}</Badge>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">{t('whyUs.title')}</h2>
           <p className="text-lg text-white max-w-2xl mx-auto">
-            {language === 'fr'
-              ? 'Découvrez comment notre technologie IA peut transformer votre approche à l\'exportation et accélérer votre croissance internationale.'
-              : 'Discover how our AI technology can transform your approach to exporting and accelerate your international growth.'}
+            {t('whyUs.description')}
           </p>
         </div>
 
@@ -82,14 +74,10 @@ const WhyUs = () => {
         
         <div className="mt-16 p-8 bg-[#3b82f6]/10 rounded-xl border border-[#3b82f6]/20 animate-on-scroll">
           <h3 className="text-xl md:text-2xl font-semibold text-center mb-4 text-white">
-            {language === 'fr' 
-              ? 'Simplifiez votre parcours d\'exportation' 
-              : 'Simplify Your Export Journey'}
+            {t('whyUs.simplify.title')}
           </h3>
-          <p className="text-center max-w-3xl mx-auto text-white/80 mb-8">
-            {language === 'fr'
-              ? 'Notre approche basée sur l\'IA élimine la complexité de l\'exportation, vous permettant de vous concentrer sur ce que vous faites le mieux.'
-              : 'Our AI-powered approach removes the complexity from exporting, allowing you to focus on what you do best.'}
+          <p className="text-center max-w-3xl mx-auto text-blue-600/80 mb-8" 
+             dangerouslySetInnerHTML={{ __html: t('whyUs.simplify.description') }}>
           </p>
           
           <div className="grid md:grid-cols-3 gap-8 mt-8">
@@ -98,16 +86,10 @@ const WhyUs = () => {
                 <div className="h-12 w-12 rounded-full bg-[#3b82f6]/20 flex items-center justify-center text-[#3b82f6] group-hover:bg-[#3b82f6]/40 transition-colors duration-300 mr-3">
                   <Search className="h-6 w-6 text-[#3b82f6]" />
                 </div>
-                <h4 className="text-white font-semibold text-lg">
-                  {language === 'fr' ? 'Analyser' : 'Analyze'}
-                </h4>
+                <h4 className="text-white font-semibold text-lg">{t('whyUs.simplify.step1.title')}</h4>
               </div>
               <div className="pl-2 border-l-2 border-[#3b82f6]/20">
-                <p className="text-white">
-                  {language === 'fr'
-                    ? 'Comprenez votre potentiel d\'exportation grâce à notre technologie d\'analyse avancée.'
-                    : 'Understand your export potential with our advanced analytics technology.'}
-                </p>
+                <p className="text-white">{t('whyUs.simplify.step1.description')}</p>
               </div>
             </div>
             
@@ -116,16 +98,10 @@ const WhyUs = () => {
                 <div className="h-12 w-12 rounded-full bg-[#3b82f6]/20 flex items-center justify-center text-[#3b82f6] group-hover:bg-[#3b82f6]/40 transition-colors duration-300 mr-3">
                   <Map className="h-6 w-6 text-[#3b82f6]" />
                 </div>
-                <h4 className="text-white font-semibold text-lg">
-                  {language === 'fr' ? 'Planifier' : 'Plan'}
-                </h4>
+                <h4 className="text-white font-semibold text-lg">{t('whyUs.simplify.step2.title')}</h4>
               </div>
               <div className="pl-2 border-l-2 border-[#3b82f6]/20">
-                <p className="text-white">
-                  {language === 'fr'
-                    ? 'Développez des stratégies optimisées d\'entrée sur le marché adaptées à vos produits uniques.'
-                    : 'Develop optimized market entry strategies tailored to your unique products.'}
-                </p>
+                <p className="text-white">{t('whyUs.simplify.step2.description')}</p>
               </div>
             </div>
             
@@ -134,16 +110,10 @@ const WhyUs = () => {
                 <div className="h-12 w-12 rounded-full bg-[#3b82f6]/20 flex items-center justify-center text-[#3b82f6] group-hover:bg-[#3b82f6]/40 transition-colors duration-300 mr-3">
                   <Activity className="h-6 w-6 text-[#3b82f6]" />
                 </div>
-                <h4 className="text-white font-semibold text-lg">
-                  {language === 'fr' ? 'Exécuter' : 'Execute'}
-                </h4>
+                <h4 className="text-white font-semibold text-lg">{t('whyUs.simplify.step3.title')}</h4>
               </div>
               <div className="pl-2 border-l-2 border-[#3b82f6]/20">
-                <p className="text-white">
-                  {language === 'fr'
-                    ? 'Mettez en œuvre votre plan d\'exportation avec notre accompagnement et nos outils automatisés.'
-                    : 'Implement your export plan with our guidance and automated tools.'}
-                </p>
+                <p className="text-white">{t('whyUs.simplify.step3.description')}</p>
               </div>
             </div>
           </div>
