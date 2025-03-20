@@ -1,13 +1,59 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { useLanguage } from '@/context/LanguageContext';
 import { Mail, Phone, Globe, ChevronRight } from 'lucide-react';
 import { Separator } from '@/components/ui/separator';
 import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { useToast } from "@/hooks/use-toast";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
   const { language, t } = useLanguage();
+  const { toast } = useToast();
+  const [email, setEmail] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  
+  const handleSubscribe = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    if (!email || !email.includes('@')) {
+      toast({
+        title: language === 'fr' ? "Erreur" : "Error",
+        description: language === 'fr' 
+          ? "Veuillez entrer une adresse email valide" 
+          : "Please enter a valid email address",
+        variant: "destructive",
+      });
+      return;
+    }
+    
+    setIsSubmitting(true);
+    
+    try {
+      // Simulate API call - replace with actual newsletter subscription API
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      
+      toast({
+        title: language === 'fr' ? "Succès" : "Success",
+        description: language === 'fr'
+          ? "Merci de vous être abonné à notre newsletter!"
+          : "Thank you for subscribing to our newsletter!",
+      });
+      
+      setEmail('');
+    } catch (error) {
+      toast({
+        title: language === 'fr' ? "Erreur" : "Error",
+        description: language === 'fr'
+          ? "Un problème est survenu. Veuillez réessayer plus tard."
+          : "Something went wrong. Please try again later.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
   
   return (
     <footer className="bg-background border-t border-border">
@@ -120,16 +166,34 @@ const Footer = () => {
                 ? 'Abonnez-vous à notre newsletter pour les dernières nouvelles et mises à jour.'
                 : 'Subscribe to our newsletter for the latest news and updates.'}
             </p>
-            <div className="flex flex-col sm:flex-row gap-2">
-              <input 
+            <form onSubmit={handleSubscribe} className="flex flex-col sm:flex-row gap-2">
+              <Input 
                 type="email" 
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 placeholder={language === 'fr' ? 'Votre email' : 'Your email'} 
                 className="bg-card/50 border border-border text-foreground rounded-md px-4 py-2 text-sm flex-grow focus:ring-1 focus:ring-emerald-500 focus:border-emerald-500 outline-none"
+                required
               />
-              <Button variant="default" className="shrink-0">
-                {language === 'fr' ? 'S\'abonner' : 'Subscribe'}
+              <Button 
+                type="submit" 
+                variant="default" 
+                className="shrink-0"
+                disabled={isSubmitting}
+              >
+                {isSubmitting ? (
+                  <span className="flex items-center gap-2">
+                    <svg className="animate-spin h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    {language === 'fr' ? 'Envoi...' : 'Sending...'}
+                  </span>
+                ) : (
+                  language === 'fr' ? 'S\'abonner' : 'Subscribe'
+                )}
               </Button>
-            </div>
+            </form>
           </div>
         </div>
       </div>
