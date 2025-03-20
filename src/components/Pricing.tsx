@@ -223,6 +223,7 @@ const Pricing = () => {
   const [selectedPlan, setSelectedPlan] = useState<string | null>(null);
   
   const handleSubscribe = (planTitle: string) => {
+    console.log(`Selected plan: ${planTitle}`);
     setSelectedPlan(planTitle);
     setBookDemoOpen(true);
   };

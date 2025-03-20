@@ -32,6 +32,8 @@ const Contact = () => {
     setIsSubmitting(true);
     
     try {
+      const buttonLabel = language === 'fr' ? 'Envoyer le Message' : 'Send Message';
+      
       const success = await sendEmailNotification({
         type: 'contact',
         email: formData.email,
@@ -40,8 +42,8 @@ const Contact = () => {
         message: formData.message,
         hasWebsite: hasWebsite as 'yes' | 'no', // Ensure type safety
         websiteUrl: hasWebsite === 'yes' ? formData.websiteUrl : undefined,
-        section: 'Contact',
-        buttonName: language === 'fr' ? 'Envoyer le Message' : 'Send Message'
+        section: 'Contact Form',
+        buttonName: buttonLabel
       });
       
       if (success) {

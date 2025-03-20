@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Badge } from '@/components/ui/badge';
 import { Gift, Award, Lightbulb, TrendingUp, Search, Map, Activity, Play, Monitor } from 'lucide-react';
@@ -56,7 +55,6 @@ const WhyUs = () => {
     setIsVideoPlaying(true);
   };
 
-  // Define the video URL based on language
   const videoUrl = language === 'fr' 
     ? "https://www.youtube.com/embed/r9wXl_Zsu50?autoplay=1"
     : "https://www.youtube.com/embed/-PmM7CchUHE?autoplay=1";
@@ -184,6 +182,7 @@ const WhyUs = () => {
                         variant="default" 
                         size="icon" 
                         className="w-16 h-16 rounded-full hover:scale-105 transition-all duration-300 text-white shadow-lg shadow-primary/40"
+                        data-button-name={language === 'fr' ? 'Regarder la vidéo' : 'Watch video'}
                       >
                         <Play className="h-8 w-8 ml-1" />
                       </Button>

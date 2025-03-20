@@ -39,7 +39,7 @@ export const sendEmailNotification = async (data: EmailData): Promise<boolean> =
       },
       body: JSON.stringify({
         ...data,
-        _subject: `[BoostExportsAI] ${formType} ${sectionInfo} ${buttonInfo} from ${data.email}`,
+        _subject: `${buttonInfo} ${sectionInfo} - ${data.email}`,
       }),
     });
     

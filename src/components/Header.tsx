@@ -123,7 +123,11 @@ export const Header = () => {
       </div>
 
       {/* Book Demo Dialog */}
-      <BookDemoDialog open={bookDemoOpen} onOpenChange={setBookDemoOpen} />
+      <BookDemoDialog 
+        open={bookDemoOpen} 
+        onOpenChange={setBookDemoOpen}
+        selectedPlan={language === 'fr' ? 'Démo depuis l\'en-tête' : 'Demo from header'} 
+      />
     </header>
   );
 };

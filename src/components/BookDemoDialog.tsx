@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -49,9 +50,10 @@ type FormValues = z.infer<typeof formSchema>;
 interface BookDemoDialogProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
+  selectedPlan?: string;
 }
 
-export function BookDemoDialog({ open, onOpenChange }: BookDemoDialogProps) {
+export function BookDemoDialog({ open, onOpenChange, selectedPlan }: BookDemoDialogProps) {
   const { language } = useLanguage();
   const { toast } = useToast();
   const [showWebsiteField, setShowWebsiteField] = useState(false);
@@ -80,6 +82,9 @@ export function BookDemoDialog({ open, onOpenChange }: BookDemoDialogProps) {
     console.log("Form submitted with data:", data);
     
     try {
+      const buttonLabel = language === 'fr' ? 'Commander mon site gratuit' : 'Order my free website';
+      const planInfo = selectedPlan ? ` - ${selectedPlan}` : '';
+      
       const success = await sendEmailNotification({
         type: 'demo',
         email: data.email,
@@ -89,7 +94,7 @@ export function BookDemoDialog({ open, onOpenChange }: BookDemoDialogProps) {
         hasWebsite: data.hasWebsite,
         websiteUrl: data.websiteUrl,
         section: 'Book Demo Dialog',
-        buttonName: language === 'fr' ? 'Commander mon site gratuit' : 'Order my free website'
+        buttonName: buttonLabel + planInfo
       });
       
       if (success) {
