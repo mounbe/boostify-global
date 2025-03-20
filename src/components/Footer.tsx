@@ -10,7 +10,7 @@ const Footer = () => {
   const { language, t } = useLanguage();
   
   return (
-    <footer className="bg-emerald-950/90 border-t border-border">
+    <footer className="bg-background border-t border-border">
       {/* Main footer content */}
       <div className="max-w-7xl mx-auto pt-16 pb-12 px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8">
@@ -23,33 +23,33 @@ const Footer = () => {
                 className="h-14 w-auto"
               />
             </div>
-            <p className="text-emerald-300/80 text-sm max-w-xs">
+            <p className="text-muted-foreground text-sm max-w-xs">
               {language === 'fr' 
                 ? 'Solutions d\'IA pour aider les exportateurs à conquérir de nouveaux marchés avec la puissance de l\'intelligence artificielle.'
                 : 'AI-powered solutions helping exporters conquer new markets with the power of artificial intelligence.'}
             </p>
             <div className="space-y-2">
               <div className="flex items-center gap-2">
-                <MapPin className="h-4 w-4 text-emerald-400" />
-                <span className="text-emerald-300/80 text-sm">
+                <MapPin className="h-4 w-4 text-emerald-500" />
+                <span className="text-muted-foreground text-sm">
                   {language === 'fr' ? 'Dakar, Sénégal' : 'Dakar, Senegal'}
                 </span>
               </div>
               <div className="flex items-center gap-2">
-                <Mail className="h-4 w-4 text-emerald-400" />
-                <a href="mailto:contact@boostexportsai.com" className="text-emerald-300/80 text-sm hover:text-emerald-300 transition-colors">
+                <Mail className="h-4 w-4 text-emerald-500" />
+                <a href="mailto:contact@boostexportsai.com" className="text-muted-foreground text-sm hover:text-foreground transition-colors">
                   contact@boostexportsai.com
                 </a>
               </div>
               <div className="flex items-center gap-2">
-                <Phone className="h-4 w-4 text-emerald-400" />
-                <a href="tel:+221123456789" className="text-emerald-300/80 text-sm hover:text-emerald-300 transition-colors">
+                <Phone className="h-4 w-4 text-emerald-500" />
+                <a href="tel:+221123456789" className="text-muted-foreground text-sm hover:text-foreground transition-colors">
                   +221 12 345 6789
                 </a>
               </div>
               <div className="flex items-center gap-2">
-                <Globe className="h-4 w-4 text-emerald-400" />
-                <a href="https://boostexportsai.com" className="text-emerald-300/80 text-sm hover:text-emerald-300 transition-colors">
+                <Globe className="h-4 w-4 text-emerald-500" />
+                <a href="https://boostexportsai.com" className="text-muted-foreground text-sm hover:text-foreground transition-colors">
                   boostexportsai.com
                 </a>
               </div>
@@ -58,31 +58,31 @@ const Footer = () => {
           
           {/* Services Column */}
           <div>
-            <h4 className="text-white font-semibold text-base mb-4">
+            <h4 className="text-foreground font-semibold text-base mb-4">
               {language === 'fr' ? 'Nos Solutions' : 'Our Solutions'}
             </h4>
             <ul className="space-y-3">
               <li>
-                <a href="#" className="flex items-center text-emerald-300/80 text-sm hover:text-emerald-300 transition-colors">
-                  <ChevronRight className="h-3 w-3 mr-2 text-emerald-400" />
+                <a href="#" className="flex items-center text-muted-foreground text-sm hover:text-foreground transition-colors">
+                  <ChevronRight className="h-3 w-3 mr-2 text-emerald-500" />
                   {language === 'fr' ? 'Boost Site Web' : 'Website Boost'}
                 </a>
               </li>
               <li>
-                <a href="#" className="flex items-center text-emerald-300/80 text-sm hover:text-emerald-300 transition-colors">
-                  <ChevronRight className="h-3 w-3 mr-2 text-emerald-400" />
+                <a href="#" className="flex items-center text-muted-foreground text-sm hover:text-foreground transition-colors">
+                  <ChevronRight className="h-3 w-3 mr-2 text-emerald-500" />
                   {language === 'fr' ? 'Boost Marketing Digital' : 'Digital Marketing Boost'}
                 </a>
               </li>
               <li>
-                <a href="#" className="flex items-center text-emerald-300/80 text-sm hover:text-emerald-300 transition-colors">
-                  <ChevronRight className="h-3 w-3 mr-2 text-emerald-400" />
+                <a href="#" className="flex items-center text-muted-foreground text-sm hover:text-foreground transition-colors">
+                  <ChevronRight className="h-3 w-3 mr-2 text-emerald-500" />
                   {language === 'fr' ? 'Boost Ventes' : 'Sales Boost'}
                 </a>
               </li>
               <li>
-                <a href="#" className="flex items-center text-emerald-300/80 text-sm hover:text-emerald-300 transition-colors">
-                  <ChevronRight className="h-3 w-3 mr-2 text-emerald-400" />
+                <a href="#" className="flex items-center text-muted-foreground text-sm hover:text-foreground transition-colors">
+                  <ChevronRight className="h-3 w-3 mr-2 text-emerald-500" />
                   {language === 'fr' ? 'Conseil en Exportation' : 'Export Consulting'}
                 </a>
               </li>
@@ -91,31 +91,31 @@ const Footer = () => {
           
           {/* Quick Links Column */}
           <div>
-            <h4 className="text-white font-semibold text-base mb-4">
+            <h4 className="text-foreground font-semibold text-base mb-4">
               {language === 'fr' ? 'Liens Rapides' : 'Quick Links'}
             </h4>
             <ul className="space-y-3">
               <li>
-                <a href="#" className="flex items-center text-emerald-300/80 text-sm hover:text-emerald-300 transition-colors">
-                  <ChevronRight className="h-3 w-3 mr-2 text-emerald-400" />
+                <a href="#" className="flex items-center text-muted-foreground text-sm hover:text-foreground transition-colors">
+                  <ChevronRight className="h-3 w-3 mr-2 text-emerald-500" />
                   {language === 'fr' ? 'À Propos' : 'About Us'}
                 </a>
               </li>
               <li>
-                <a href="#" className="flex items-center text-emerald-300/80 text-sm hover:text-emerald-300 transition-colors">
-                  <ChevronRight className="h-3 w-3 mr-2 text-emerald-400" />
+                <a href="#" className="flex items-center text-muted-foreground text-sm hover:text-foreground transition-colors">
+                  <ChevronRight className="h-3 w-3 mr-2 text-emerald-500" />
                   {language === 'fr' ? 'FAQ' : 'FAQs'}
                 </a>
               </li>
               <li>
-                <a href="#" className="flex items-center text-emerald-300/80 text-sm hover:text-emerald-300 transition-colors">
-                  <ChevronRight className="h-3 w-3 mr-2 text-emerald-400" />
+                <a href="#" className="flex items-center text-muted-foreground text-sm hover:text-foreground transition-colors">
+                  <ChevronRight className="h-3 w-3 mr-2 text-emerald-500" />
                   {language === 'fr' ? 'Témoignages' : 'Testimonials'}
                 </a>
               </li>
               <li>
-                <a href="#" className="flex items-center text-emerald-300/80 text-sm hover:text-emerald-300 transition-colors">
-                  <ChevronRight className="h-3 w-3 mr-2 text-emerald-400" />
+                <a href="#" className="flex items-center text-muted-foreground text-sm hover:text-foreground transition-colors">
+                  <ChevronRight className="h-3 w-3 mr-2 text-emerald-500" />
                   {language === 'fr' ? 'Blog' : 'Blog'}
                 </a>
               </li>
@@ -124,10 +124,10 @@ const Footer = () => {
           
           {/* Newsletter Column */}
           <div className="md:col-span-3 lg:col-span-1 space-y-4">
-            <h4 className="text-white font-semibold text-base">
+            <h4 className="text-foreground font-semibold text-base">
               {language === 'fr' ? 'Restez Informé' : 'Stay Updated'}
             </h4>
-            <p className="text-emerald-300/80 text-sm">
+            <p className="text-muted-foreground text-sm">
               {language === 'fr' 
                 ? 'Abonnez-vous à notre newsletter pour les dernières nouvelles et mises à jour.'
                 : 'Subscribe to our newsletter for the latest news and updates.'}
@@ -136,7 +136,7 @@ const Footer = () => {
               <input 
                 type="email" 
                 placeholder={language === 'fr' ? 'Votre email' : 'Your email'} 
-                className="bg-emerald-900/50 border border-emerald-800/50 text-emerald-100 rounded-md px-4 py-2 text-sm flex-grow focus:ring-1 focus:ring-emerald-500 focus:border-emerald-500 outline-none"
+                className="bg-card/50 border border-border text-foreground rounded-md px-4 py-2 text-sm flex-grow focus:ring-1 focus:ring-emerald-500 focus:border-emerald-500 outline-none"
               />
               <Button variant="default" className="shrink-0">
                 {language === 'fr' ? 'S\'abonner' : 'Subscribe'}
@@ -150,29 +150,29 @@ const Footer = () => {
       
       {/* Copyright section */}
       <div className="max-w-7xl mx-auto py-8 px-4 sm:px-6 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-        <div className="text-sm text-emerald-300/80">
+        <div className="text-sm text-muted-foreground">
           <p>© {currentYear} BoostExportsAI. {language === 'fr' ? 'Tous droits réservés.' : 'All rights reserved.'}</p>
         </div>
         
         <div>
           <ul className="flex flex-wrap gap-x-6 gap-y-2 text-sm">
             <li>
-              <a href="#" className="text-emerald-300/80 hover:text-emerald-300 transition-colors">
+              <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">
                 {language === 'fr' ? 'Confidentialité' : 'Privacy Policy'}
               </a>
             </li>
             <li>
-              <a href="#" className="text-emerald-300/80 hover:text-emerald-300 transition-colors">
+              <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">
                 {language === 'fr' ? 'CGU' : 'Terms of Service'}
               </a>
             </li>
             <li>
-              <a href="#" className="text-emerald-300/80 hover:text-emerald-300 transition-colors">
+              <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">
                 {language === 'fr' ? 'Mentions Légales' : 'Legal Notice'}
               </a>
             </li>
             <li>
-              <a href="#" className="text-emerald-300/80 hover:text-emerald-300 transition-colors">
+              <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">
                 {language === 'fr' ? 'Politique de Cookies' : 'Cookie Policy'}
               </a>
             </li>
@@ -184,3 +184,4 @@ const Footer = () => {
 };
 
 export default Footer;
+
