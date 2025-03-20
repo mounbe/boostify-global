@@ -74,12 +74,6 @@ const Footer = () => {
                   {language === 'fr' ? 'Boost Ventes' : 'Sales Boost'}
                 </a>
               </li>
-              <li>
-                <a href="#" className="flex items-center text-muted-foreground text-sm hover:text-foreground transition-colors">
-                  <ChevronRight className="h-3 w-3 mr-2 text-emerald-500" />
-                  {language === 'fr' ? 'Conseil en Exportation' : 'Export Consulting'}
-                </a>
-              </li>
             </ul>
           </div>
           
