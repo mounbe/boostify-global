@@ -115,9 +115,45 @@ const PricingCard = ({
       );
     } else if (title === translationFunction('pricing.plan1.title')) {
       return language === 'fr' ? (
-        <p className="text-sm">Mise à jour ou nouveau Site web en 2 langues offert</p>
+        <div className="space-y-3">
+          <div className="flex items-start gap-2">
+            <div className="h-5 w-5 rounded-full bg-primary flex items-center justify-center flex-shrink-0 mt-0.5">
+              <span className="text-xs font-bold text-white">1</span>
+            </div>
+            <div>
+              <p className="text-sm">Mise à jour ou nouveau Site web en 2 langues offert</p>
+            </div>
+          </div>
+          
+          <div className="flex items-start gap-2">
+            <div className="h-5 w-5 rounded-full bg-primary flex items-center justify-center flex-shrink-0 mt-0.5">
+              <span className="text-xs font-bold text-white">2</span>
+            </div>
+            <div>
+              <p className="text-sm">Crédit Google Ads de 20$ par mois pour vos campagnes publicitaires</p>
+            </div>
+          </div>
+        </div>
       ) : (
-        <p className="text-sm">Free update or new website in 2 languages</p>
+        <div className="space-y-3">
+          <div className="flex items-start gap-2">
+            <div className="h-5 w-5 rounded-full bg-primary flex items-center justify-center flex-shrink-0 mt-0.5">
+              <span className="text-xs font-bold text-white">1</span>
+            </div>
+            <div>
+              <p className="text-sm">Free update or new website in 2 languages</p>
+            </div>
+          </div>
+          
+          <div className="flex items-start gap-2">
+            <div className="h-5 w-5 rounded-full bg-primary flex items-center justify-center flex-shrink-0 mt-0.5">
+              <span className="text-xs font-bold text-white">2</span>
+            </div>
+            <div>
+              <p className="text-sm">Free Google Ads Credit: Benefit from 20$ per month credit for your Google Ads campaigns</p>
+            </div>
+          </div>
+        </div>
       );
     }
     
