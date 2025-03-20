@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Check } from 'lucide-react';
@@ -180,7 +181,7 @@ const PricingCard = ({
       <CardHeader className="text-center">
         <CardTitle className="text-xl font-bold">{title}</CardTitle>
         <CardDescription>
-          <span className="text-3xl font-bold mt-4">{price}</span>
+          <span className="text-3xl font-bold mt-4 text-primary">{price}</span>
           <span className="text-muted-foreground">{language === 'fr' ? ' / mois' : ' / month'}</span>
         </CardDescription>
       </CardHeader>
