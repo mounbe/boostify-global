@@ -27,6 +27,9 @@ import { useLanguage } from '@/context/LanguageContext';
 import { useToast } from '@/hooks/use-toast';
 import { sendEmailNotification } from '@/utils/emailService';
 
+// Define a more flexible website URL validation pattern
+const websiteUrlPattern = /^(https?:\/\/)?(www\.)?[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)+(\/[a-zA-Z0-9-._~:/?#[\]@!$&'()*+,;=]*)?$/;
+
 // Define form schema with fewer required fields
 const formSchema = z.object({
   name: z.string().min(2, {
@@ -42,7 +45,10 @@ const formSchema = z.object({
     message: "Phone number must be at least 6 characters.",
   }),
   hasWebsite: z.enum(["yes", "no"]),
-  websiteUrl: z.string().url().optional().or(z.literal('')),
+  websiteUrl: z.string()
+    .regex(websiteUrlPattern, { message: "Please enter a valid website URL" })
+    .optional()
+    .or(z.literal('')),
 });
 
 type FormValues = z.infer<typeof formSchema>;
