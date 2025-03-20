@@ -110,7 +110,11 @@ const ExporterCTA = () => {
       </div>
       
       {/* Book Demo Dialog */}
-      <BookDemoDialog open={bookDemoOpen} onOpenChange={setBookDemoOpen} />
+      <BookDemoDialog 
+        open={bookDemoOpen} 
+        onOpenChange={setBookDemoOpen} 
+        selectedPlan={language === 'fr' ? 'Site gratuit depuis section exportateur' : 'Free website from exporter section'} 
+      />
     </section>
   );
 };

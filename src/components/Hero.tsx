@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from 'react';
 import { ChevronRight, Globe, ExternalLink, Calendar, TrendingUp, Users, MapPin, Languages, Lightbulb, CreditCard, Rocket, Play } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -224,7 +225,11 @@ const Hero = () => {
         </div>
       </div>
       
-      <BookDemoDialog open={bookDemoOpen} onOpenChange={setBookDemoOpen} />
+      <BookDemoDialog 
+        open={bookDemoOpen} 
+        onOpenChange={setBookDemoOpen} 
+        selectedPlan={language === 'fr' ? 'Démo depuis la page d\'accueil' : 'Demo from homepage'} 
+      />
     </section>
   );
 };

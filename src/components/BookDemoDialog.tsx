@@ -59,6 +59,9 @@ export function BookDemoDialog({ open, onOpenChange, selectedPlan }: BookDemoDia
   const [showWebsiteField, setShowWebsiteField] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   
+  // Determine if this is a "Book Demo" context or a "Free Website" context
+  const isBookDemo = selectedPlan?.includes('Demo') || selectedPlan?.includes('Démo');
+  
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -82,7 +85,11 @@ export function BookDemoDialog({ open, onOpenChange, selectedPlan }: BookDemoDia
     console.log("Form submitted with data:", data);
     
     try {
-      const buttonLabel = language === 'fr' ? 'Commander mon site gratuit' : 'Order my free website';
+      // Dynamically set button label based on context
+      const buttonLabel = isBookDemo 
+        ? (language === 'fr' ? 'Réserver une démo' : 'Book a demo')
+        : (language === 'fr' ? 'Commander mon site gratuit' : 'Order my free website');
+      
       const planInfo = selectedPlan ? ` - ${selectedPlan}` : '';
       
       const success = await sendEmailNotification({
@@ -104,9 +111,13 @@ export function BookDemoDialog({ open, onOpenChange, selectedPlan }: BookDemoDia
             <div className="flex items-center gap-2">
               <Check className="h-4 w-4" />
               <span>
-                {language === 'fr' 
-                  ? 'Nous vous contacterons bientôt pour discuter de votre site web gratuit.' 
-                  : 'We will contact you soon to discuss your free website.'}
+                {isBookDemo
+                  ? (language === 'fr' 
+                      ? 'Nous vous contacterons bientôt pour planifier votre démo.' 
+                      : 'We will contact you soon to schedule your demo.')
+                  : (language === 'fr' 
+                      ? 'Nous vous contacterons bientôt pour discuter de votre site web gratuit.' 
+                      : 'We will contact you soon to discuss your free website.')}
               </span>
             </div>
           ),
@@ -137,13 +148,19 @@ export function BookDemoDialog({ open, onOpenChange, selectedPlan }: BookDemoDia
           <div className="flex items-center gap-2 text-green-600">
             <Globe className="h-5 w-5" />
             <DialogTitle>
-              {language === 'fr' ? 'Commander votre site web gratuit' : 'Order your free website'}
+              {isBookDemo
+                ? (language === 'fr' ? 'Réserver une démo' : 'Book a Demo')
+                : (language === 'fr' ? 'Commander votre site web gratuit' : 'Order your free website')}
             </DialogTitle>
           </div>
           <DialogDescription>
-            {language === 'fr' 
-              ? 'Remplissez le formulaire ci-dessous pour commander votre site web gratuit optimisé pour l\'export.' 
-              : 'Fill out the form below to order your free website optimized for export.'}
+            {isBookDemo
+              ? (language === 'fr' 
+                  ? 'Remplissez le formulaire ci-dessous pour réserver une démo personnalisée de nos solutions.' 
+                  : 'Fill out the form below to schedule a personalized demo of our solutions.')
+              : (language === 'fr' 
+                  ? 'Remplissez le formulaire ci-dessous pour commander votre site web gratuit optimisé pour l\'export.' 
+                  : 'Fill out the form below to order your free website optimized for export.')}
           </DialogDescription>
         </DialogHeader>
         
@@ -296,7 +313,9 @@ export function BookDemoDialog({ open, onOpenChange, selectedPlan }: BookDemoDia
                 ) : (
                   <>
                     <Globe className="mr-2 h-4 w-4" />
-                    {language === 'fr' ? 'Commander mon site gratuit' : 'Order my free website'}
+                    {isBookDemo
+                      ? (language === 'fr' ? 'Réserver ma démo' : 'Book my demo')
+                      : (language === 'fr' ? 'Commander mon site gratuit' : 'Order my free website')}
                   </>
                 )}
               </Button>
