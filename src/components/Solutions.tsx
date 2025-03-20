@@ -150,7 +150,7 @@ const Solutions = () => {
       icon: <Globe className="h-6 w-6 text-primary" />,
       title: language === 'fr' ? "Boost Site Web" : "Website Boost",
       description: websiteBoostDescription,
-      videoUrl: "https://www.youtube.com/embed/HpsFXML7vVY", 
+      videoUrl: language === 'fr' ? "https://www.youtube.com/embed/HpsFXML7vVY" : "https://www.youtube.com/embed/uOZOOA0rdJg", 
       features: websiteBoostFeatures
     },
     {
