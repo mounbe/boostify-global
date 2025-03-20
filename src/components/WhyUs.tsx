@@ -29,22 +29,22 @@ const WhyUs = () => {
   
   const features = [
     {
-      icon: <Gift className="h-6 w-6 text-[#3b82f6]" />,
+      icon: <Gift className="h-6 w-6 text-[#10b981]" />,
       title: t('whyUs.feature1.title'),
       description: t('whyUs.feature1.description')
     },
     {
-      icon: <Award className="h-6 w-6 text-[#3b82f6]" />,
+      icon: <Award className="h-6 w-6 text-[#10b981]" />,
       title: t('whyUs.feature2.title'),
       description: t('whyUs.feature2.description')
     },
     {
-      icon: <Lightbulb className="h-6 w-6 text-[#3b82f6]" />,
+      icon: <Lightbulb className="h-6 w-6 text-[#10b981]" />,
       title: t('whyUs.feature3.title'),
       description: t('whyUs.feature3.description')
     },
     {
-      icon: <TrendingUp className="h-6 w-6 text-[#3b82f6]" />,
+      icon: <TrendingUp className="h-6 w-6 text-[#10b981]" />,
       title: t('whyUs.feature4.title'),
       description: t('whyUs.feature4.description')
     }
@@ -96,7 +96,7 @@ const WhyUs = () => {
             <div className="bg-[#3b82f6]/5 p-6 rounded-lg border border-[#3b82f6]/10 hover:bg-[#3b82f6]/10 transition-colors hover:shadow-lg duration-300 group">
               <div className="flex items-center mb-4">
                 <div className="h-12 w-12 rounded-full bg-[#3b82f6]/20 flex items-center justify-center text-[#3b82f6] group-hover:bg-[#3b82f6]/40 transition-colors duration-300 mr-3">
-                  <Search className="h-6 w-6 text-[#3b82f6]" />
+                  <Search className="h-6 w-6 text-[#10b981]" />
                 </div>
                 <h4 className="text-white font-semibold text-lg">
                   {language === 'fr' ? 'Analyser' : 'Analyze'}
@@ -114,7 +114,7 @@ const WhyUs = () => {
             <div className="bg-[#3b82f6]/5 p-6 rounded-lg border border-[#3b82f6]/10 hover:bg-[#3b82f6]/10 transition-colors hover:shadow-lg duration-300 group">
               <div className="flex items-center mb-4">
                 <div className="h-12 w-12 rounded-full bg-[#3b82f6]/20 flex items-center justify-center text-[#3b82f6] group-hover:bg-[#3b82f6]/40 transition-colors duration-300 mr-3">
-                  <Map className="h-6 w-6 text-[#3b82f6]" />
+                  <Map className="h-6 w-6 text-[#10b981]" />
                 </div>
                 <h4 className="text-white font-semibold text-lg">
                   {language === 'fr' ? 'Planifier' : 'Plan'}
@@ -132,7 +132,7 @@ const WhyUs = () => {
             <div className="bg-[#3b82f6]/5 p-6 rounded-lg border border-[#3b82f6]/10 hover:bg-[#3b82f6]/10 transition-colors hover:shadow-lg duration-300 group">
               <div className="flex items-center mb-4">
                 <div className="h-12 w-12 rounded-full bg-[#3b82f6]/20 flex items-center justify-center text-[#3b82f6] group-hover:bg-[#3b82f6]/40 transition-colors duration-300 mr-3">
-                  <Activity className="h-6 w-6 text-[#3b82f6]" />
+                  <Activity className="h-6 w-6 text-[#10b981]" />
                 </div>
                 <h4 className="text-white font-semibold text-lg">
                   {language === 'fr' ? 'Exécuter' : 'Execute'}
