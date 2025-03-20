@@ -6,14 +6,73 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Mail, Phone, Send } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
+import { useToast } from "@/hooks/use-toast";
+import { sendEmailNotification } from '@/utils/emailService';
 
 const Contact = () => {
   const { language, t } = useLanguage();
+  const { toast } = useToast();
   const [hasWebsite, setHasWebsite] = useState<string>('no');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    subject: '',
+    message: '',
+    websiteUrl: ''
+  });
   
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { id, value } = e.target;
+    setFormData(prev => ({ ...prev, [id]: value }));
+  };
+  
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // Handle form submission here
+    setIsSubmitting(true);
+    
+    try {
+      const success = await sendEmailNotification({
+        type: 'contact',
+        email: formData.email,
+        name: formData.name,
+        subject: formData.subject,
+        message: formData.message,
+        hasWebsite,
+        websiteUrl: hasWebsite === 'yes' ? formData.websiteUrl : undefined
+      });
+      
+      if (success) {
+        toast({
+          title: language === 'fr' ? 'Message Envoyé' : 'Message Sent',
+          description: language === 'fr' 
+            ? 'Nous vous contacterons bientôt.' 
+            : 'We will contact you soon.',
+        });
+        
+        // Reset form
+        setFormData({
+          name: '',
+          email: '',
+          subject: '',
+          message: '',
+          websiteUrl: ''
+        });
+        setHasWebsite('no');
+      } else {
+        throw new Error('Failed to send message');
+      }
+    } catch (error) {
+      toast({
+        title: language === 'fr' ? 'Erreur' : 'Error',
+        description: language === 'fr'
+          ? 'Un problème est survenu. Veuillez réessayer plus tard.'
+          : 'Something went wrong. Please try again later.',
+        variant: 'destructive',
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -35,13 +94,26 @@ const Contact = () => {
                   <label htmlFor="name" className="block text-sm font-medium mb-2">
                     {language === 'fr' ? 'Nom Complet' : 'Full Name'}
                   </label>
-                  <Input id="name" placeholder={language === 'fr' ? 'Votre nom' : 'Your name'} required />
+                  <Input 
+                    id="name" 
+                    value={formData.name}
+                    onChange={handleChange}
+                    placeholder={language === 'fr' ? 'Votre nom' : 'Your name'} 
+                    required 
+                  />
                 </div>
                 <div>
                   <label htmlFor="email" className="block text-sm font-medium mb-2">
                     {language === 'fr' ? 'Adresse Email' : 'Email Address'}
                   </label>
-                  <Input id="email" type="email" placeholder={language === 'fr' ? 'votre.email@exemple.com' : 'your.email@example.com'} required />
+                  <Input 
+                    id="email" 
+                    type="email" 
+                    value={formData.email}
+                    onChange={handleChange}
+                    placeholder={language === 'fr' ? 'votre.email@exemple.com' : 'your.email@example.com'} 
+                    required 
+                  />
                 </div>
               </div>
               
@@ -49,7 +121,13 @@ const Contact = () => {
                 <label htmlFor="subject" className="block text-sm font-medium mb-2">
                   {language === 'fr' ? 'Sujet' : 'Subject'}
                 </label>
-                <Input id="subject" placeholder={language === 'fr' ? 'Sujet de votre message' : 'Subject of your message'} required />
+                <Input 
+                  id="subject" 
+                  value={formData.subject}
+                  onChange={handleChange}
+                  placeholder={language === 'fr' ? 'Sujet de votre message' : 'Subject of your message'} 
+                  required 
+                />
               </div>
               
               <div>
@@ -90,6 +168,8 @@ const Contact = () => {
                   <Input 
                     id="websiteUrl" 
                     type="url" 
+                    value={formData.websiteUrl}
+                    onChange={handleChange}
                     placeholder={language === 'fr' ? 'https://www.votresite.com' : 'https://www.yourwebsite.com'} 
                   />
                 </div>
@@ -101,6 +181,8 @@ const Contact = () => {
                 </label>
                 <Textarea 
                   id="message" 
+                  value={formData.message}
+                  onChange={handleChange}
                   placeholder={language === 'fr' ? 'Comment pouvons-nous vous aider ?' : 'How can we help you?'} 
                   rows={5} 
                   className="resize-none bg-card/80" 
@@ -108,8 +190,24 @@ const Contact = () => {
                 />
               </div>
               
-              <Button type="submit" className="w-full bg-green-600 hover:bg-green-700 text-white font-medium rounded-full">
-                {language === 'fr' ? 'Envoyer le Message' : 'Send Message'} <Send className="ml-2 h-4 w-4" />
+              <Button 
+                type="submit" 
+                className="w-full bg-green-600 hover:bg-green-700 text-white font-medium rounded-full"
+                disabled={isSubmitting}
+              >
+                {isSubmitting ? (
+                  <span className="flex items-center justify-center gap-2">
+                    <svg className="animate-spin h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    {language === 'fr' ? 'Envoi...' : 'Sending...'}
+                  </span>
+                ) : (
+                  <>
+                    {language === 'fr' ? 'Envoyer le Message' : 'Send Message'} <Send className="ml-2 h-4 w-4" />
+                  </>
+                )}
               </Button>
             </form>
           </div>

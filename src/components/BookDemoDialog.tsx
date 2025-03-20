@@ -25,6 +25,7 @@ import {
 } from '@/components/ui/form';
 import { useLanguage } from '@/context/LanguageContext';
 import { useToast } from '@/hooks/use-toast';
+import { sendEmailNotification } from '@/utils/emailService';
 
 // Define form schema with fewer required fields
 const formSchema = z.object({
@@ -55,6 +56,7 @@ export function BookDemoDialog({ open, onOpenChange }: BookDemoDialogProps) {
   const { language } = useLanguage();
   const { toast } = useToast();
   const [showWebsiteField, setShowWebsiteField] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
@@ -74,25 +76,52 @@ export function BookDemoDialog({ open, onOpenChange }: BookDemoDialogProps) {
     setShowWebsiteField(watchHasWebsite === "yes");
   }, [watchHasWebsite]);
 
-  const onSubmit = (data: FormValues) => {
+  const onSubmit = async (data: FormValues) => {
+    setIsSubmitting(true);
     console.log("Form submitted with data:", data);
     
-    toast({
-      title: language === 'fr' ? 'Demande envoyée' : 'Request sent',
-      description: (
-        <div className="flex items-center gap-2">
-          <Check className="h-4 w-4" />
-          <span>
-            {language === 'fr' 
-              ? 'Nous vous contacterons bientôt pour discuter de votre site web gratuit.' 
-              : 'We will contact you soon to discuss your free website.'}
-          </span>
-        </div>
-      ),
-    });
-    
-    onOpenChange(false);
-    form.reset();
+    try {
+      const success = await sendEmailNotification({
+        type: 'demo',
+        email: data.email,
+        name: data.name,
+        company: data.company,
+        phone: data.phone,
+        hasWebsite: data.hasWebsite,
+        websiteUrl: data.websiteUrl
+      });
+      
+      if (success) {
+        toast({
+          title: language === 'fr' ? 'Demande envoyée' : 'Request sent',
+          description: (
+            <div className="flex items-center gap-2">
+              <Check className="h-4 w-4" />
+              <span>
+                {language === 'fr' 
+                  ? 'Nous vous contacterons bientôt pour discuter de votre site web gratuit.' 
+                  : 'We will contact you soon to discuss your free website.'}
+              </span>
+            </div>
+          ),
+        });
+        
+        onOpenChange(false);
+        form.reset();
+      } else {
+        throw new Error('Failed to send demo request');
+      }
+    } catch (error) {
+      toast({
+        title: language === 'fr' ? 'Erreur' : 'Error',
+        description: language === 'fr'
+          ? 'Un problème est survenu. Veuillez réessayer plus tard.'
+          : 'Something went wrong. Please try again later.',
+        variant: 'destructive',
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -245,9 +274,25 @@ export function BookDemoDialog({ open, onOpenChange }: BookDemoDialogProps) {
             )}
             
             <DialogFooter className="pt-4">
-              <Button type="submit" className="w-full bg-green-600 hover:bg-green-700">
-                <Globe className="mr-2 h-4 w-4" />
-                {language === 'fr' ? 'Commander mon site gratuit' : 'Order my free website'}
+              <Button 
+                type="submit" 
+                className="w-full bg-green-600 hover:bg-green-700"
+                disabled={isSubmitting}
+              >
+                {isSubmitting ? (
+                  <span className="flex items-center gap-2">
+                    <svg className="animate-spin h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    {language === 'fr' ? 'Envoi...' : 'Sending...'}
+                  </span>
+                ) : (
+                  <>
+                    <Globe className="mr-2 h-4 w-4" />
+                    {language === 'fr' ? 'Commander mon site gratuit' : 'Order my free website'}
+                  </>
+                )}
               </Button>
             </DialogFooter>
           </form>

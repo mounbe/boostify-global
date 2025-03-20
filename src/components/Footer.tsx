@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { useLanguage } from '@/context/LanguageContext';
 import { Mail, Phone, Globe, ChevronRight } from 'lucide-react';
@@ -6,6 +5,7 @@ import { Separator } from '@/components/ui/separator';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { useToast } from "@/hooks/use-toast";
+import { sendEmailNotification } from '@/utils/emailService';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -31,17 +31,23 @@ const Footer = () => {
     setIsSubmitting(true);
     
     try {
-      // Simulate API call - replace with actual newsletter subscription API
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
-      toast({
-        title: language === 'fr' ? "Succès" : "Success",
-        description: language === 'fr'
-          ? "Merci de vous être abonné à notre newsletter!"
-          : "Thank you for subscribing to our newsletter!",
+      const success = await sendEmailNotification({
+        type: 'newsletter',
+        email: email,
       });
       
-      setEmail('');
+      if (success) {
+        toast({
+          title: language === 'fr' ? "Succès" : "Success",
+          description: language === 'fr'
+            ? "Merci de vous être abonné à notre newsletter!"
+            : "Thank you for subscribing to our newsletter!",
+        });
+        
+        setEmail('');
+      } else {
+        throw new Error('Failed to subscribe');
+      }
     } catch (error) {
       toast({
         title: language === 'fr' ? "Erreur" : "Error",
