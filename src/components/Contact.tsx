@@ -134,7 +134,7 @@ const Contact = () => {
                 </div>
                 <div>
                   <h4 className="font-medium text-base">{language === 'fr' ? 'Téléphone' : 'Phone'}</h4>
-                  <p className="text-muted-foreground mt-1">+212 6 78 63 63 02</p>
+                  <p className="text-muted-foreground mt-1">+212 0678 63 63 02</p>
                 </div>
               </div>
             </div>

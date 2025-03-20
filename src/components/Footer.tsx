@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { useLanguage } from '@/context/LanguageContext';
 import { Mail, Phone, Globe, ChevronRight } from 'lucide-react';
@@ -36,8 +37,8 @@ const Footer = () => {
               </div>
               <div className="flex items-center gap-2">
                 <Phone className="h-4 w-4 text-emerald-500" />
-                <a href="tel:+221123456789" className="text-muted-foreground text-sm hover:text-foreground transition-colors">
-                  +221 12 345 6789
+                <a href="tel:+2120678636302" className="text-muted-foreground text-sm hover:text-foreground transition-colors">
+                  +212 0678 63 63 02
                 </a>
               </div>
               <div className="flex items-center gap-2">
