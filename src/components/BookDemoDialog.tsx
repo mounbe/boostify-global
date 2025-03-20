@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
-import { Calendar, Check, CalendarClock, Globe, Briefcase, Phone } from 'lucide-react';
+import { Check, Globe, Mail, User, Briefcase, Phone, Link } from 'lucide-react';
 
 import {
   Dialog,
@@ -15,7 +15,6 @@ import {
 } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import { Textarea } from '@/components/ui/textarea';
 import {
   Form,
   FormControl,
@@ -27,7 +26,7 @@ import {
 import { useLanguage } from '@/context/LanguageContext';
 import { useToast } from '@/hooks/use-toast';
 
-// Define form schema
+// Define form schema with fewer required fields
 const formSchema = z.object({
   name: z.string().min(2, {
     message: "Name must be at least 2 characters.",
@@ -43,8 +42,6 @@ const formSchema = z.object({
   }),
   hasWebsite: z.enum(["yes", "no"]),
   websiteUrl: z.string().url().optional().or(z.literal('')),
-  businessDescription: z.string().optional(),
-  exportMarkets: z.string().optional(),
 });
 
 type FormValues = z.infer<typeof formSchema>;
@@ -68,8 +65,6 @@ export function BookDemoDialog({ open, onOpenChange }: BookDemoDialogProps) {
       phone: "",
       hasWebsite: "no",
       websiteUrl: "",
-      businessDescription: "",
-      exportMarkets: "",
     },
   });
 
@@ -80,10 +75,8 @@ export function BookDemoDialog({ open, onOpenChange }: BookDemoDialogProps) {
   }, [watchHasWebsite]);
 
   const onSubmit = (data: FormValues) => {
-    // Here you would typically send the data to your backend/API
     console.log("Form submitted with data:", data);
     
-    // Show success toast
     toast({
       title: language === 'fr' ? 'Demande envoyée' : 'Request sent',
       description: (
@@ -98,10 +91,7 @@ export function BookDemoDialog({ open, onOpenChange }: BookDemoDialogProps) {
       ),
     });
     
-    // Close the dialog
     onOpenChange(false);
-    
-    // Reset the form
     form.reset();
   };
 
@@ -124,116 +114,89 @@ export function BookDemoDialog({ open, onOpenChange }: BookDemoDialogProps) {
         
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-            <FormField
-              control={form.control}
-              name="name"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>
-                    {language === 'fr' ? 'Nom complet' : 'Full name'}
-                  </FormLabel>
-                  <FormControl>
-                    <Input placeholder={language === 'fr' ? 'Votre nom' : 'Your name'} {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <FormField
+                control={form.control}
+                name="name"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className="flex items-center gap-2">
+                      <User className="h-4 w-4" />
+                      {language === 'fr' ? 'Nom' : 'Name'}
+                    </FormLabel>
+                    <FormControl>
+                      <Input placeholder={language === 'fr' ? 'Votre nom' : 'Your name'} {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              
+              <FormField
+                control={form.control}
+                name="email"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className="flex items-center gap-2">
+                      <Mail className="h-4 w-4" />
+                      Email
+                    </FormLabel>
+                    <FormControl>
+                      <Input type="email" placeholder="example@company.com" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
             
-            <FormField
-              control={form.control}
-              name="email"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Email</FormLabel>
-                  <FormControl>
-                    <Input type="email" placeholder="example@company.com" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            
-            <FormField
-              control={form.control}
-              name="company"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>
-                    {language === 'fr' ? 'Entreprise' : 'Company'}
-                  </FormLabel>
-                  <FormControl>
-                    <Input placeholder={language === 'fr' ? 'Nom de votre entreprise' : 'Your company name'} {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            
-            <FormField
-              control={form.control}
-              name="phone"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>
-                    {language === 'fr' ? 'Téléphone' : 'Phone'}
-                  </FormLabel>
-                  <FormControl>
-                    <Input placeholder={language === 'fr' ? 'Votre numéro de téléphone' : 'Your phone number'} {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            
-            <FormField
-              control={form.control}
-              name="businessDescription"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>
-                    {language === 'fr' ? 'Description de votre activité' : 'Business description'}
-                  </FormLabel>
-                  <FormControl>
-                    <Textarea 
-                      placeholder={language === 'fr' ? 'Décrivez brièvement votre entreprise et vos produits/services' : 'Briefly describe your business and products/services'} 
-                      {...field} 
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            
-            <FormField
-              control={form.control}
-              name="exportMarkets"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>
-                    {language === 'fr' ? 'Marchés d\'exportation cibles' : 'Target export markets'}
-                  </FormLabel>
-                  <FormControl>
-                    <Input 
-                      placeholder={language === 'fr' ? 'Ex: Royaume-Uni, États-Unis, Allemagne' : 'E.g., UK, USA, Germany'} 
-                      {...field} 
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <FormField
+                control={form.control}
+                name="company"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className="flex items-center gap-2">
+                      <Briefcase className="h-4 w-4" />
+                      {language === 'fr' ? 'Entreprise' : 'Company'}
+                    </FormLabel>
+                    <FormControl>
+                      <Input placeholder={language === 'fr' ? 'Votre entreprise' : 'Your company'} {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              
+              <FormField
+                control={form.control}
+                name="phone"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className="flex items-center gap-2">
+                      <Phone className="h-4 w-4" />
+                      {language === 'fr' ? 'Téléphone' : 'Phone'}
+                    </FormLabel>
+                    <FormControl>
+                      <Input placeholder="+33 12 345 6789" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
             
             <FormField
               control={form.control}
               name="hasWebsite"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>
+                  <FormLabel className="flex items-center gap-2">
+                    <Globe className="h-4 w-4" />
                     {language === 'fr' ? 'Avez-vous déjà un site web ?' : 'Do you already have a website?'}
                   </FormLabel>
                   <div className="flex gap-4">
-                    <label className="flex items-center gap-2">
+                    <label className="flex items-center gap-2 cursor-pointer">
                       <input 
                         type="radio"
                         {...field}
@@ -243,7 +206,7 @@ export function BookDemoDialog({ open, onOpenChange }: BookDemoDialogProps) {
                       />
                       {language === 'fr' ? 'Oui' : 'Yes'}
                     </label>
-                    <label className="flex items-center gap-2">
+                    <label className="flex items-center gap-2 cursor-pointer">
                       <input 
                         type="radio"
                         {...field}
@@ -265,12 +228,13 @@ export function BookDemoDialog({ open, onOpenChange }: BookDemoDialogProps) {
                 name="websiteUrl"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>
-                      {language === 'fr' ? 'Quelle est l\'adresse de votre site web ?' : 'What is your website address?'}
+                    <FormLabel className="flex items-center gap-2">
+                      <Link className="h-4 w-4" />
+                      {language === 'fr' ? 'Adresse de votre site' : 'Website address'}
                     </FormLabel>
                     <FormControl>
                       <Input 
-                        placeholder={language === 'fr' ? 'https://www.votresite.com' : 'https://www.yourwebsite.com'} 
+                        placeholder="https://www.example.com" 
                         {...field} 
                       />
                     </FormControl>
