@@ -39,7 +39,9 @@ const Contact = () => {
         subject: formData.subject,
         message: formData.message,
         hasWebsite: hasWebsite as 'yes' | 'no', // Ensure type safety
-        websiteUrl: hasWebsite === 'yes' ? formData.websiteUrl : undefined
+        websiteUrl: hasWebsite === 'yes' ? formData.websiteUrl : undefined,
+        section: 'Contact',
+        buttonName: language === 'fr' ? 'Envoyer le Message' : 'Send Message'
       });
       
       if (success) {

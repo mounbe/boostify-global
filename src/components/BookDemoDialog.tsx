@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -88,7 +87,9 @@ export function BookDemoDialog({ open, onOpenChange }: BookDemoDialogProps) {
         company: data.company,
         phone: data.phone,
         hasWebsite: data.hasWebsite,
-        websiteUrl: data.websiteUrl
+        websiteUrl: data.websiteUrl,
+        section: 'Book Demo Dialog',
+        buttonName: language === 'fr' ? 'Commander mon site gratuit' : 'Order my free website'
       });
       
       if (success) {

@@ -13,6 +13,8 @@ type EmailData = {
   phone?: string;
   websiteUrl?: string;
   hasWebsite?: 'yes' | 'no';
+  section?: string;
+  buttonName?: string;
 };
 
 /**
@@ -21,6 +23,11 @@ type EmailData = {
 export const sendEmailNotification = async (data: EmailData): Promise<boolean> => {
   try {
     console.log('Sending email notification:', data);
+    
+    // Create subject line with section and button information
+    const sectionInfo = data.section ? `[${data.section}]` : '';
+    const buttonInfo = data.buttonName ? `[${data.buttonName}]` : '';
+    const formType = `[${data.type}]`;
     
     // In a real implementation, you would replace this with an actual API call
     // to your email sending service (e.g., SendGrid, AWS SES, custom backend, etc.)
@@ -32,7 +39,7 @@ export const sendEmailNotification = async (data: EmailData): Promise<boolean> =
       },
       body: JSON.stringify({
         ...data,
-        _subject: `[BoostExportsAI] New ${data.type} submission from ${data.email}`,
+        _subject: `[BoostExportsAI] ${formType} ${sectionInfo} ${buttonInfo} from ${data.email}`,
       }),
     });
     
