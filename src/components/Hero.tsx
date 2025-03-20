@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from 'react';
 import { ChevronRight, Globe, ExternalLink, Calendar, TrendingUp, Users, MapPin, Languages, Lightbulb, CreditCard, Rocket, Play } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -58,7 +59,7 @@ const Hero = () => {
               {language === 'fr' ? (
                 <>Augmentez vos exportations et <span className="hero-text-gradient">pénétrez de nouveaux marchés</span> avec l'IA</>
               ) : (
-                <><span className="text-[#3b82f6]">Increase your exports</span> and <span className="text-[#4ade80]">penetrate new markets</span> with AI</>
+                <><span className="text-[#3b82f6]">Increase your exports</span> and <span className="text-[#4ade80]">penetrate new markets</span> with <span className="text-[#3b82f6]">AI</span></>
               )}
             </h1>
             
