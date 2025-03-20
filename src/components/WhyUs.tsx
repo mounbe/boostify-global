@@ -60,12 +60,12 @@ const WhyUs = () => {
           <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">
             {language === 'fr' 
               ? 'Outillez vous pour la conquête internationale' 
-              : 'Your Intelligent Export Partner'}
+              : 'Equip Yourself for International Conquest'}
           </h2>
           <p className="text-lg text-white max-w-2xl mx-auto">
             {language === 'fr'
               ? 'En plus de la solution technologique IA, des services à forte valeur ajoutée sont offerts pour garantir votre réussite'
-              : 'Discover how our AI technology can transform your approach to exporting and accelerate your international growth.'}
+              : 'In addition to the AI technology solution, high value-added services are offered to ensure your success'}
           </p>
         </div>
 
