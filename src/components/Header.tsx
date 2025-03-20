@@ -42,7 +42,7 @@ export const Header = () => {
           {/* Logo */}
           <a href="#" className="flex items-center">
             <img 
-              src="/lovable-uploads/7155a186-ea8e-4d7e-80aa-f2c39bc5df1e.png" 
+              src="/lovable-uploads/ba87be27-859e-4b95-91a5-a1183a638e08.png" 
               alt="BoostExportsAI Logo" 
               className="h-14 md:h-16 w-auto"
             />
