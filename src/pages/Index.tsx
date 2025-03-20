@@ -9,6 +9,7 @@ import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
 import ScrollAnimation from '@/components/ScrollAnimation';
 import ExporterCTA from '@/components/ExporterCTA';
+import HowItWorks from '@/components/HowItWorks';
 
 const Index = () => {
   return (
@@ -16,6 +17,7 @@ const Index = () => {
       <ScrollAnimation />
       <Header />
       <Hero />
+      <HowItWorks />
       <WhyUs />
       <ExporterCTA />
       <Solutions />
