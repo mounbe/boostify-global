@@ -113,6 +113,16 @@ const PricingCard = ({
           </div>
         </div>
       );
+    } else if (title === translationFunction('pricing.plan2.title')) {
+      return language === 'fr' ? (
+        <p className="text-sm">
+          Une <span className="text-primary font-semibold">chaine youtube</span> pour renforcer votre visibilité, avec <span className="text-primary font-semibold">4 vidéos par mois</span>. Ces vidéos sont conçues pour renforcer votre marque à l'international grâce à un contenu de haute valeur ajoutée.
+        </p>
+      ) : (
+        <p className="text-sm">
+          A <span className="text-primary font-semibold">YouTube channel</span> to strengthen your visibility, with <span className="text-primary font-semibold">4 videos per month</span>. These videos are designed to strengthen your brand internationally through high-value content.
+        </p>
+      );
     } else if (title === translationFunction('pricing.plan1.title')) {
       return language === 'fr' ? (
         <div className="space-y-3">
@@ -344,3 +354,4 @@ const Pricing = () => {
 };
 
 export default Pricing;
+
