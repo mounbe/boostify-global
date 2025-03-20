@@ -83,7 +83,7 @@ const WhyUs = () => {
         <div className="mt-16 p-8 bg-[#3b82f6]/10 rounded-xl border border-[#3b82f6]/20 animate-on-scroll">
           <h3 className="text-xl md:text-2xl font-semibold text-center mb-4 text-white">
             {language === 'fr' 
-              ? 'Simplifiez votre parcours d\'exportation' 
+              ? 'Simplifiez votre activité' 
               : 'Simplify Your Export Journey'}
           </h3>
           <p className="text-center max-w-3xl mx-auto text-white/80 mb-8">
