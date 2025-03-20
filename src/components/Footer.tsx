@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { useLanguage } from '@/context/LanguageContext';
 import { Mail, Phone, Globe, ChevronRight } from 'lucide-react';
