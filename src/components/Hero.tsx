@@ -57,7 +57,7 @@ const Hero = () => {
             
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-display font-bold leading-tight whitespace-normal">
               {language === 'fr' ? (
-                <>Augmentez vos exportations et <span className="hero-text-gradient">pénétrez de nouveaux marchés</span> avec l'IA</>
+                <><span className="text-[#3b82f6]">Augmentez vos exportations</span> et <span className="text-[#4ade80]">pénétrez de nouveaux marchés</span> avec <span className="text-[#3b82f6]">l'IA</span></>
               ) : (
                 <><span className="text-[#3b82f6]">Increase your exports</span> and <span className="text-[#4ade80]">penetrate new markets</span> with <span className="text-[#3b82f6]">AI</span></>
               )}
