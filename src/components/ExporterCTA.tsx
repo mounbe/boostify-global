@@ -78,7 +78,7 @@ const ExporterCTA = () => {
                   onClick={() => setBookDemoOpen(true)}
                 >
                   <Calendar className="mr-2 h-5 w-5" />
-                  <span>{language === 'fr' ? 'Commandez maintenant' : 'Order now'}</span>
+                  <span>{language === 'fr' ? 'Commander mon site gratuit' : 'Order my free website'}</span>
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
               </CardContent>
