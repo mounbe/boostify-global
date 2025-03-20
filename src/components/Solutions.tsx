@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -25,7 +24,7 @@ const SolutionCard = ({ icon, title, description, features, videoUrl }: Solution
         <div className="bg-primary/10 p-3 rounded-full w-12 h-12 flex items-center justify-center mb-4">
           {icon}
         </div>
-        <CardTitle className="text-xl font-bold">{title}</CardTitle>
+        <CardTitle className="text-2xl md:text-3xl font-bold mb-2">{title}</CardTitle>
         <CardDescription>{description}</CardDescription>
       </CardHeader>
       <CardContent className="flex-grow flex flex-col">
@@ -211,7 +210,7 @@ const Solutions = () => {
               <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
                 {solutions.map((solution, index) => (
                   <div key={index} className="bg-card/60 p-6 rounded-lg shadow-md">
-                    <h3 className="text-xl font-bold mb-3 flex items-center gap-2">
+                    <h3 className="text-2xl md:text-3xl font-bold mb-3 flex items-center gap-2">
                       {solution.icon}
                       {solution.title}
                     </h3>
