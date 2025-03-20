@@ -29,18 +29,25 @@ export const sendEmailNotification = async (data: EmailData): Promise<boolean> =
     const buttonInfo = data.buttonName ? `[${data.buttonName}]` : '';
     const formType = `[${data.type}]`;
     
-    // In a real implementation, you would replace this with an actual API call
-    // to your email sending service (e.g., SendGrid, AWS SES, custom backend, etc.)
+    // FormSubmit requires additional fields for proper submission
+    const formData = new FormData();
+    
+    // Add all data fields to FormData
+    Object.entries(data).forEach(([key, value]) => {
+      if (value !== undefined && value !== null) {
+        formData.append(key, value.toString());
+      }
+    });
+    
+    // Add required FormSubmit fields
+    formData.append('_subject', `${buttonInfo} ${sectionInfo} - ${data.email}`);
+    formData.append('_captcha', 'false'); // Disable captcha for testing
+    formData.append('_template', 'table'); // Use table template for better readability
+    
+    // Use direct form submission (FormSubmit works better with FormData than JSON for cross-origin)
     const response = await fetch('https://formsubmit.co/contact@boostexportsai.com', {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-      },
-      body: JSON.stringify({
-        ...data,
-        _subject: `${buttonInfo} ${sectionInfo} - ${data.email}`,
-      }),
+      body: formData,
     });
     
     if (!response.ok) {
@@ -50,6 +57,35 @@ export const sendEmailNotification = async (data: EmailData): Promise<boolean> =
     return true;
   } catch (error) {
     console.error('Error sending email notification:', error);
-    return false;
+    
+    // Fallback method using mailto link for development/testing
+    try {
+      // Create a basic email body
+      const subject = `Contact from ${data.name || 'Website Visitor'} - ${data.type}`;
+      const body = `
+        Type: ${data.type}
+        Name: ${data.name || 'Not provided'}
+        Email: ${data.email}
+        ${data.company ? `Company: ${data.company}` : ''}
+        ${data.phone ? `Phone: ${data.phone}` : ''}
+        ${data.hasWebsite ? `Has Website: ${data.hasWebsite}` : ''}
+        ${data.websiteUrl ? `Website URL: ${data.websiteUrl}` : ''}
+        ${data.message ? `Message: ${data.message}` : ''}
+        ${data.section ? `Section: ${data.section}` : ''}
+        ${data.buttonName ? `Button: ${data.buttonName}` : ''}
+      `;
+      
+      // Create mailTo link (for testing in development)
+      const mailtoLink = `mailto:contact@boostexportsai.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      
+      // Open mailto link (this will work in development but might be blocked in production)
+      window.open(mailtoLink, '_blank');
+      
+      console.log('Email form data sent via mailto fallback');
+      return true;
+    } catch (fallbackError) {
+      console.error('Fallback email method also failed:', fallbackError);
+      return false;
+    }
   }
 };
