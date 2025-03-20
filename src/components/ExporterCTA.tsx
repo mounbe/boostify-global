@@ -11,7 +11,7 @@ const ExporterCTA = () => {
   const [bookDemoOpen, setBookDemoOpen] = useState(false);
   
   return (
-    <section className="py-16 px-4 bg-gradient-to-br from-green-900 to-green-950 section-padding">
+    <section className="py-16 px-4 bg-gradient-to-br from-emerald-900 to-green-950 section-padding">
       <div className="max-w-7xl mx-auto">
         <Card className="border-0 overflow-hidden shadow-2xl">
           <div className="relative overflow-hidden">
@@ -23,11 +23,11 @@ const ExporterCTA = () => {
             <div className="grid md:grid-cols-2 gap-6">
               {/* Text content */}
               <CardContent className="p-8 md:p-12 flex flex-col justify-center">
-                <div className="mb-4 inline-flex items-center gap-2 bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-medium">
+                <div className="mb-4 inline-flex items-center gap-2 bg-emerald-100 text-emerald-800 px-3 py-1 rounded-full text-sm font-medium">
                   <Gift size={16} />
                   <span>{language === 'fr' ? 'Offre Spéciale Exportateurs' : 'Special Offer for Exporters'}</span>
                 </div>
-                <h2 className="text-3xl md:text-4xl font-bold mb-6 bg-gradient-to-r from-green-700 to-green-500 bg-clip-text text-transparent">
+                <h2 className="text-3xl md:text-4xl font-bold mb-6 bg-gradient-to-r from-emerald-700 to-emerald-500 bg-clip-text text-transparent">
                   {language === 'fr' ? 'Vous êtes exportateur ?' : 'Are you an exporter?'}<br />
                   <span className="text-4xl md:text-5xl">
                     {language === 'fr' 
@@ -43,8 +43,8 @@ const ExporterCTA = () => {
                 </p>
                 <div className="space-y-4">
                   <div className="flex items-start gap-3">
-                    <div className="bg-green-100 p-1 rounded-full">
-                      <Globe className="h-5 w-5 text-green-700" />
+                    <div className="bg-emerald-100 p-1 rounded-full">
+                      <Globe className="h-5 w-5 text-emerald-700" />
                     </div>
                     <div>
                       <h3 className="font-medium">
@@ -58,8 +58,8 @@ const ExporterCTA = () => {
                     </div>
                   </div>
                   <div className="flex items-start gap-3">
-                    <div className="bg-green-100 p-1 rounded-full">
-                      <Globe className="h-5 w-5 text-green-700" />
+                    <div className="bg-emerald-100 p-1 rounded-full">
+                      <Globe className="h-5 w-5 text-emerald-700" />
                     </div>
                     <div>
                       <h3 className="font-medium">
@@ -74,7 +74,7 @@ const ExporterCTA = () => {
                   </div>
                 </div>
                 <Button 
-                  className="mt-8 bg-gradient-to-r from-green-600 to-green-800 hover:from-green-700 hover:to-green-900 text-white font-medium px-6 py-6 rounded-full w-full md:w-auto"
+                  className="mt-8 bg-gradient-to-r from-emerald-600 to-emerald-800 hover:from-emerald-700 hover:to-emerald-900 text-white font-medium px-6 py-6 rounded-full w-full md:w-auto"
                   onClick={() => setBookDemoOpen(true)}
                 >
                   <Calendar className="mr-2 h-5 w-5" />
@@ -84,8 +84,8 @@ const ExporterCTA = () => {
               </CardContent>
               
               {/* Image or illustration */}
-              <div className="relative h-64 md:h-auto overflow-hidden bg-green-50">
-                <div className="absolute inset-0 bg-gradient-to-br from-green-200/50 to-green-100/50" />
+              <div className="relative h-64 md:h-auto overflow-hidden bg-emerald-50">
+                <div className="absolute inset-0 bg-gradient-to-br from-emerald-200/50 to-emerald-100/50" />
                 <img 
                   src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2070&auto=format&fit=crop"
                   alt={language === 'fr' ? 'Exportateur avec site web' : 'Exporter with website'} 
@@ -93,7 +93,7 @@ const ExporterCTA = () => {
                 />
                 <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center">
                   <div className="bg-white/90 p-6 rounded-lg shadow-lg max-w-md">
-                    <h3 className="text-xl font-bold text-green-800 mb-2">
+                    <h3 className="text-xl font-bold text-emerald-800 mb-2">
                       {language === 'fr' ? 'Conditions' : 'Terms'}
                     </h3>
                     <p className="text-gray-700">
