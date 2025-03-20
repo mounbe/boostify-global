@@ -164,7 +164,7 @@ const Solutions = () => {
       icon: <BarChartHorizontal className="h-6 w-6 text-primary" />,
       title: language === 'fr' ? "Boost Ventes" : "Sales Boost",
       description: salesBoostDescription,
-      videoUrl: "https://www.youtube.com/embed/r9wXl_Zsu50",
+      videoUrl: language === 'fr' ? "https://www.youtube.com/embed/r9wXl_Zsu50" : "https://www.youtube.com/embed/-PmM7CchUHE",
       features: salesBoostFeatures
     }
   ];
