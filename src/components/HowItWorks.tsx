@@ -19,7 +19,7 @@ const HowItWorks = () => {
   return (
     <section id="how-it-works" className="py-24 px-4 bg-primary/10 section-padding">
       <div className="max-w-7xl mx-auto">
-        <h3 className="text-xl md:text-2xl font-semibold text-center mb-8 text-white">
+        <h3 className="text-3xl md:text-5xl font-bold text-center mb-12 text-white">
           {language === 'fr' ? 'Comment ça marche ?' : 'How It Works?'}
         </h3>
         
