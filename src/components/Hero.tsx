@@ -59,7 +59,7 @@ const Hero = () => {
               {language === 'fr' ? (
                 <>Augmentez vos exportations et <span className="hero-text-gradient">pénétrez de nouveaux marchés</span> avec l'IA</>
               ) : (
-                <>Increase your exports and <span className="hero-text-gradient">penetrate new markets</span> with AI</>
+                <><span className="text-[#3b82f6]">Increase your exports</span> and <span className="hero-text-gradient">penetrate new markets</span> with AI</>
               )}
             </h1>
             
