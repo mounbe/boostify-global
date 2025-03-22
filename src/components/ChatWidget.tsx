@@ -6,6 +6,8 @@ import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/componen
 import { MessageCircle, Send, X, Loader2, MinusCircle } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
 import ChatBubble from './ChatBubble';
+import { sendEmailNotification } from '@/utils/emailService';
+import { useToast } from '@/hooks/use-toast';
 
 type Message = {
   id: string;
@@ -20,8 +22,12 @@ const ChatWidget = () => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [userEmail, setUserEmail] = useState('');
+  const [askingForEmail, setAskingForEmail] = useState(false);
+  const [waitingForEmail, setWaitingForEmail] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+  const { toast } = useToast();
 
   // Add welcome message when chat is first opened
   useEffect(() => {
@@ -59,6 +65,64 @@ const ChatWidget = () => {
     
     if (!input.trim()) return;
 
+    // If we're waiting for an email address
+    if (waitingForEmail) {
+      const emailInput = input.trim();
+      
+      // Simple email validation
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (emailRegex.test(emailInput)) {
+        setUserEmail(emailInput);
+        setWaitingForEmail(false);
+        
+        // Add user's email to chat
+        const userEmailMessage: Message = {
+          id: Date.now().toString(),
+          content: emailInput,
+          sender: 'user',
+          timestamp: new Date(),
+        };
+        
+        setMessages(prev => [...prev, userEmailMessage]);
+        setInput('');
+        
+        // Respond that we'll send the conversation
+        setTimeout(() => {
+          const thankYouMessage: Message = {
+            id: Date.now().toString(),
+            content: t('chat.emailThanks'),
+            sender: 'bot',
+            timestamp: new Date(),
+          };
+          setMessages(prev => [...prev, thankYouMessage]);
+          
+          // Send the conversation via email
+          sendChatConversation(emailInput);
+        }, 500);
+        
+        return;
+      } else {
+        // Invalid email format
+        const invalidEmailMessage: Message = {
+          id: Date.now().toString(),
+          content: input,
+          sender: 'user',
+          timestamp: new Date(),
+        };
+        
+        const emailErrorMessage: Message = {
+          id: Date.now().toString() + '-error',
+          content: t('chat.invalidEmail'),
+          sender: 'bot',
+          timestamp: new Date(),
+        };
+        
+        setMessages(prev => [...prev, invalidEmailMessage, emailErrorMessage]);
+        setInput('');
+        return;
+      }
+    }
+
     // Add user message to chat
     const userMessage: Message = {
       id: Date.now().toString(),
@@ -75,7 +139,76 @@ const ChatWidget = () => {
     setTimeout(() => {
       handleBotResponse(input);
       setIsLoading(false);
+      
+      // After a few messages, ask if they want to send the conversation by email
+      if (messages.length >= 4 && !askingForEmail && !userEmail) {
+        setTimeout(() => {
+          askForEmail();
+        }, 1000);
+      }
     }, 1000);
+  };
+
+  const askForEmail = () => {
+    setAskingForEmail(true);
+    const emailRequestMessage: Message = {
+      id: 'email-request',
+      content: t('chat.askForEmail'),
+      sender: 'bot',
+      timestamp: new Date(),
+    };
+    setMessages(prev => [...prev, emailRequestMessage]);
+    setWaitingForEmail(true);
+  };
+
+  const sendChatConversation = async (email: string) => {
+    try {
+      // Format conversation for email
+      const formattedConversation = messages.map(msg => {
+        const role = msg.sender === 'user' ? t('chat.user') : t('chat.bot');
+        const time = msg.timestamp.toLocaleTimeString();
+        return `${role} (${time}): ${msg.content}`;
+      }).join('\n\n');
+      
+      // Add the latest message if available
+      const conversationText = `
+        ${t('chat.conversationTranscript')}:
+        
+        ${formattedConversation}
+      `;
+      
+      // Send email using the existing email service
+      const emailData = {
+        type: 'chat',
+        email: email,
+        subject: t('chat.conversationSubject'),
+        message: conversationText,
+        section: 'Chat Widget',
+        buttonName: 'Chat Conversation',
+      };
+      
+      const result = await sendEmailNotification(emailData as any);
+      
+      if (result) {
+        toast({
+          title: t('chat.emailSentTitle'),
+          description: t('chat.emailSentDescription'),
+        });
+      } else {
+        toast({
+          title: t('chat.emailErrorTitle'),
+          description: t('chat.emailErrorDescription'),
+          variant: 'destructive',
+        });
+      }
+    } catch (error) {
+      console.error('Failed to send chat conversation:', error);
+      toast({
+        title: t('chat.emailErrorTitle'),
+        description: t('chat.emailErrorDescription'),
+        variant: 'destructive',
+      });
+    }
   };
 
   const handleBotResponse = (userInput: string) => {
@@ -102,6 +235,18 @@ const ChatWidget = () => {
     } else if (lowercaseInput.includes('ai') || lowercaseInput.includes('artificial intelligence') || 
                lowercaseInput.includes('intelligence artificielle')) {
       botResponse = t('chat.aiInfo');
+    } else if (lowercaseInput.includes('transcript') || lowercaseInput.includes('send') || 
+               lowercaseInput.includes('email') || lowercaseInput.includes('envoyer') ||
+               lowercaseInput.includes('transcription')) {
+      if (!userEmail) {
+        askForEmail();
+        return;
+      } else {
+        botResponse = t('chat.sendingTranscript');
+        setTimeout(() => {
+          sendChatConversation(userEmail);
+        }, 500);
+      }
     } else {
       botResponse = t('chat.defaultResponse');
     }
@@ -166,7 +311,7 @@ const ChatWidget = () => {
             ref={inputRef}
             value={input}
             onChange={(e) => setInput(e.target.value)}
-            placeholder={t('chat.inputPlaceholder')}
+            placeholder={waitingForEmail ? t('chat.emailInputPlaceholder') : t('chat.inputPlaceholder')}
             className="flex-grow"
             disabled={isLoading}
           />

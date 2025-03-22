@@ -4,7 +4,7 @@
  */
 
 type EmailData = {
-  type: 'contact' | 'newsletter' | 'demo';
+  type: 'contact' | 'newsletter' | 'demo' | 'chat';
   email: string;
   name?: string;
   subject?: string;
@@ -40,7 +40,7 @@ export const sendEmailNotification = async (data: EmailData): Promise<boolean> =
     });
     
     // Add required FormSubmit fields
-    formData.append('_subject', `${buttonInfo} ${sectionInfo} - ${data.email}`);
+    formData.append('_subject', `${formType} ${buttonInfo} ${sectionInfo} - ${data.email}`);
     formData.append('_captcha', 'false'); // Disable captcha for testing
     formData.append('_template', 'table'); // Use table template for better readability
     
@@ -61,10 +61,10 @@ export const sendEmailNotification = async (data: EmailData): Promise<boolean> =
     // Fallback method using mailto link for development/testing
     try {
       // Create a basic email body
-      const subject = `Contact from ${data.name || 'Website Visitor'} - ${data.type}`;
+      const subject = `${data.type === 'chat' ? 'Chat Conversation' : `Contact from ${data.name || 'Website Visitor'}`} - ${data.type}`;
       const body = `
         Type: ${data.type}
-        Name: ${data.name || 'Not provided'}
+        ${data.name ? `Name: ${data.name}` : ''}
         Email: ${data.email}
         ${data.company ? `Company: ${data.company}` : ''}
         ${data.phone ? `Phone: ${data.phone}` : ''}
