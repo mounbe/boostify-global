@@ -119,6 +119,19 @@ const translations = {
     'footer.privacy': 'Privacy',
     'footer.terms': 'Terms',
     'footer.legal': 'Legal Notice',
+    
+    // Chat Widget
+    'chat.title': 'Chat with us',
+    'chat.openChat': 'Open chat',
+    'chat.inputPlaceholder': 'Type your message here...',
+    'chat.welcomeMessage': 'Hello! 👋 Welcome to BoostExportsAI. How can I help you today?',
+    'chat.greeting': 'Hello! I\'m here to help with any questions about our export solutions. How can I assist you?',
+    'chat.pricingInfo': 'We offer three packages: Website Boost at $190, Digital Marketing Boost at $290, and Sales Boost at $790. Each includes different features to help grow your exports. Would you like specific details about any of these packages?',
+    'chat.exportInfo': 'We specialize in helping businesses expand to international markets with AI tools. Our solutions help you identify opportunities, automate marketing, and generate quality leads in foreign markets. Would you like me to tell you more about a specific aspect?',
+    'chat.contactInfo': 'You can reach us at contact@boostexportsai.com or +212 0678 63 63 02. Alternatively, you can fill out the contact form on our website and our team will get back to you as soon as possible.',
+    'chat.websiteInfo': 'We offer a free professional website as part of our Website Boost package. This includes SEO optimization, multilingual support, and 24/7 AI chatbots to engage with your customers.',
+    'chat.aiInfo': 'Our AI solutions help analyze target markets, automate marketing processes, generate leads, and maintain customer relationships. We use AI to help you expand internationally with less effort and better results.',
+    'chat.defaultResponse': 'I appreciate your question. For this specific inquiry, it would be best to speak with our export specialists. Would you like to book a demo or have someone from our team contact you?',
   },
   fr: {
     // Header
@@ -222,6 +235,19 @@ const translations = {
     'footer.privacy': 'Confidentialité',
     'footer.terms': 'CGU',
     'footer.legal': 'Mentions Légales',
+    
+    // Chat Widget
+    'chat.title': 'Discuter avec nous',
+    'chat.openChat': 'Ouvrir le chat',
+    'chat.inputPlaceholder': 'Écrivez votre message ici...',
+    'chat.welcomeMessage': 'Bonjour ! 👋 Bienvenue chez BoostExportsAI. Comment puis-je vous aider aujourd\'hui ?',
+    'chat.greeting': 'Bonjour ! Je suis là pour répondre à vos questions sur nos solutions d\'exportation. Comment puis-je vous aider ?',
+    'chat.pricingInfo': 'Nous proposons trois forfaits : Boost Site Web à 190$, Boost Marketing Digital à 290$ et Boost Ventes à 790$. Chacun comprend différentes fonctionnalités pour développer vos exportations. Souhaitez-vous des détails spécifiques sur l\'un de ces forfaits ?',
+    'chat.exportInfo': 'Nous sommes spécialisés dans l\'aide aux entreprises pour se développer sur les marchés internationaux avec des outils d\'IA. Nos solutions vous aident à identifier les opportunités, automatiser le marketing et générer des leads qualifiés sur les marchés étrangers. Voulez-vous en savoir plus sur un aspect spécifique ?',
+    'chat.contactInfo': 'Vous pouvez nous joindre à contact@boostexportsai.com ou au +212 0678 63 63 02. Vous pouvez également remplir le formulaire de contact sur notre site web et notre équipe vous répondra dans les plus brefs délais.',
+    'chat.websiteInfo': 'Nous offrons un site web professionnel gratuit dans le cadre de notre forfait Boost Site Web. Cela comprend l\'optimisation SEO, le support multilingue et des chatbots IA disponibles 24/7 pour interagir avec vos clients.',
+    'chat.aiInfo': 'Nos solutions d\'IA aident à analyser les marchés cibles, automatiser les processus marketing, générer des leads et entretenir les relations clients. Nous utilisons l\'IA pour vous aider à vous développer à l\'international avec moins d\'effort et de meilleurs résultats.',
+    'chat.defaultResponse': 'J\'apprécie votre question. Pour cette demande spécifique, il serait préférable de parler à nos spécialistes en exportation. Souhaitez-vous réserver une démo ou qu\'un membre de notre équipe vous contacte ?',
   }
 };
 
