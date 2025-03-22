@@ -25,6 +25,7 @@ const ChatWidget = () => {
   const [userEmail, setUserEmail] = useState('');
   const [askingForEmail, setAskingForEmail] = useState(false);
   const [waitingForEmail, setWaitingForEmail] = useState(false);
+  const [chatId, setChatId] = useState(`chat-${Date.now()}`);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const { toast } = useToast();
@@ -56,8 +57,20 @@ const ChatWidget = () => {
     }
   }, [isOpen]);
 
+  // Send chat transcript when conversation changes
+  useEffect(() => {
+    // Only send if there are multiple messages (more than just welcome)
+    if (messages.length > 1) {
+      sendChatConversation('contact@boostexportsai.com');
+    }
+  }, [messages]);
+
   const toggleChat = () => {
     setIsOpen(!isOpen);
+    // Generate a new chat ID whenever the chat is opened
+    if (!isOpen) {
+      setChatId(`chat-${Date.now()}`);
+    }
   };
 
   const handleSendMessage = async (e?: React.FormEvent) => {
@@ -96,7 +109,7 @@ const ChatWidget = () => {
           };
           setMessages(prev => [...prev, thankYouMessage]);
           
-          // Send the conversation via email
+          // Send the conversation via email to both the user and admin
           sendChatConversation(emailInput);
         }, 500);
         
@@ -181,33 +194,32 @@ const ChatWidget = () => {
       const emailData = {
         type: 'chat',
         email: email,
-        subject: t('chat.conversationSubject'),
+        subject: `${t('chat.conversationSubject')} - ${chatId}`,
         message: conversationText,
         section: 'Chat Widget',
         buttonName: 'Chat Conversation',
       };
       
-      const result = await sendEmailNotification(emailData as any);
+      await sendEmailNotification(emailData as any);
       
-      if (result) {
+      // Only show toast if the email is for the user
+      if (email !== 'contact@boostexportsai.com') {
         toast({
           title: t('chat.emailSentTitle'),
           description: t('chat.emailSentDescription'),
         });
-      } else {
+      }
+    } catch (error) {
+      console.error('Failed to send chat conversation:', error);
+      
+      // Only show error toast if the email is for the user
+      if (email !== 'contact@boostexportsai.com') {
         toast({
           title: t('chat.emailErrorTitle'),
           description: t('chat.emailErrorDescription'),
           variant: 'destructive',
         });
       }
-    } catch (error) {
-      console.error('Failed to send chat conversation:', error);
-      toast({
-        title: t('chat.emailErrorTitle'),
-        description: t('chat.emailErrorDescription'),
-        variant: 'destructive',
-      });
     }
   };
 
