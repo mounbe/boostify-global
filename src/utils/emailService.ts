@@ -26,7 +26,7 @@ interface EmailNotificationProps {
 }
 
 export const sendEmailNotification = async (props: EmailNotificationProps): Promise<boolean> => {
-  const { type, email, name, message, subject, section, company, phone, hasWebsite, websiteUrl, buttonName, calendarEvent } = props;
+  const { type, email, name, message, subject, section, company, phone, hasWebsite, websiteUrl, buttonName, calendarEvent, transcriptHtml } = props;
   
   // In a real application, you would make an API call to your server here
   // For now, we'll simulate a successful email send
@@ -41,7 +41,9 @@ export const sendEmailNotification = async (props: EmailNotificationProps): Prom
     hasWebsite,
     websiteUrl,
     buttonName,
-    calendarEvent
+    calendarEvent,
+    message: message?.substring(0, 100) + (message && message.length > 100 ? '...' : ''),
+    transcriptHtml: transcriptHtml ? 'HTML content (truncated)' : undefined
   });
   
   // Simulate API call delay
