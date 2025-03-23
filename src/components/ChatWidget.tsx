@@ -267,7 +267,7 @@ const ChatWidget = () => {
   };
 
   const handleBotResponse = (userInput: string) => {
-    // Business-oriented chat logic
+    // Business-oriented chat logic based on website content
     let botResponse = '';
     const lowercaseInput = userInput.toLowerCase();
     let isDefaultResponse = false;
@@ -285,33 +285,37 @@ const ChatWidget = () => {
     } else if (lowercaseInput.includes('price') || lowercaseInput.includes('pricing') || 
                lowercaseInput.includes('prix') || lowercaseInput.includes('tarif') ||
                lowercaseInput.includes('coût') || lowercaseInput.includes('cost')) {
-      botResponse = t('chat.businessPricing');
+      botResponse = t('chat.websitePricing');
       setConsecutiveDefaultResponses(0);
     } else if (lowercaseInput.includes('export') || lowercaseInput.includes('international') || 
                lowercaseInput.includes('market') || lowercaseInput.includes('marché')) {
-      botResponse = t('chat.businessExport');
+      botResponse = t('chat.websiteExport');
       setConsecutiveDefaultResponses(0);
     } else if (lowercaseInput.includes('product') || lowercaseInput.includes('produit') || 
                lowercaseInput.includes('service') || lowercaseInput.includes('offre') ||
                lowercaseInput.includes('offer')) {
-      botResponse = t('chat.businessProducts');
+      botResponse = t('chat.websiteProducts');
       setConsecutiveDefaultResponses(0);
     } else if (lowercaseInput.includes('benefit') || lowercaseInput.includes('avantage') || 
                lowercaseInput.includes('advantage') || lowercaseInput.includes('why') ||
                lowercaseInput.includes('pourquoi')) {
-      botResponse = t('chat.businessBenefits');
+      botResponse = t('chat.websiteBenefits');
       setConsecutiveDefaultResponses(0);
     } else if (lowercaseInput.includes('contact') || lowercaseInput.includes('email') || 
                lowercaseInput.includes('phone') || lowercaseInput.includes('téléphone')) {
-      botResponse = t('chat.businessContact');
+      botResponse = t('chat.websiteContact');
       setConsecutiveDefaultResponses(0);
     } else if (lowercaseInput.includes('website') || lowercaseInput.includes('site web') || 
                lowercaseInput.includes('site internet')) {
-      botResponse = t('chat.businessWebsite');
+      botResponse = t('chat.websiteInfo');
       setConsecutiveDefaultResponses(0);
     } else if (lowercaseInput.includes('ai') || lowercaseInput.includes('artificial intelligence') || 
                lowercaseInput.includes('intelligence artificielle')) {
-      botResponse = t('chat.businessAi');
+      botResponse = t('chat.websiteAi');
+      setConsecutiveDefaultResponses(0);
+    } else if (lowercaseInput.includes('solution') || lowercaseInput.includes('boost') || 
+               lowercaseInput.includes('digital marketing') || lowercaseInput.includes('marketing digital')) {
+      botResponse = t('chat.websiteSolutions');
       setConsecutiveDefaultResponses(0);
     } else if (lowercaseInput.includes('transcript') || lowercaseInput.includes('send') || 
                lowercaseInput.includes('email') || lowercaseInput.includes('envoyer') ||
