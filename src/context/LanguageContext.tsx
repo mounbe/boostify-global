@@ -2,13 +2,22 @@ import React, { createContext, useContext, useState, ReactNode } from 'react';
 
 export type Language = 'en' | 'fr';
 
-type LanguageContextType = {
+type TranslationKey = string;
+
+interface LanguageContextType {
   language: Language;
-  setLanguage: (language: Language) => void;
-  t: (key: string) => string;
+  setLanguage: (lang: Language) => void;
+  t: (key: TranslationKey) => string;
+}
+
+const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
+
+type LanguageProviderProps = {
+  children: ReactNode;
+  initialLanguage?: Language;
 };
 
-const translations = {
+export const translations: Record<Language, Record<TranslationKey, string>> = {
   en: {
     // Header
     'nav.home': 'Home',
@@ -283,9 +292,9 @@ const translations = {
     'chat.aiInfo': 'Nos solutions d\'IA aident à analyser les marchés cibles, automatiser les processus marketing, générer des leads et entretenir les relations clients. Nous utilisons l\'IA pour vous aider à vous développer à l\'international avec moins d\'effort et de meilleurs résultats.',
     'chat.defaultResponse': 'J\'apprécie votre question. Pour cette demande spécifique, il serait préférable de parler à nos spécialistes en exportation. Souhaitez-vous réserver une démo ou qu\'un membre de notre équipe vous contacte ?',
     'chat.askForEmail': 'Souhaitez-vous que je vous envoie une transcription de notre conversation ? Veuillez entrer votre adresse email.',
-    'chat.invalidEmail': 'Il semble que l\'adresse email que vous avez fournie n\'est pas valide. Veuillez entrer une adresse email valide.',
+    'chat.invalidEmail': 'It seems like the email address you provided is not valid. Please try again.',
     'chat.emailThanks': 'Merci ! Je vais vous envoyer la transcription de notre conversation à cette adresse email. Si vous avez d\'autres questions, n\'hésitez pas à demander !',
-    'chat.sendingTranscript': 'Je vais envoyer la transcription à votre adresse email tout de suite.',
+    'chat.sendingTranscript': 'I\'ll send the transcript to your email address right away.',
     'chat.conversationTranscript': 'Transcription de la Conversation',
     'chat.conversationSubject': 'Votre conversation avec BoostExportsAI',
     'chat.emailSentTitle': 'Email Envoyé',
@@ -295,13 +304,26 @@ const translations = {
     'chat.user': 'Vous',
     'chat.bot': 'BoostExportsAI',
     
+    // New business-oriented chat translations
+    'chat.businessGreeting': 'Hello! Welcome to BoostExportsAI. We specialize in helping businesses like yours expand internationally with our AI-powered export solutions. How can I assist you today?',
+    'chat.businessPricing': 'Our pricing is tailored to your specific business needs. We offer flexible packages starting from $99/month that include market analysis, partner matching, and regulatory guidance. Would you like to schedule a call with our team to discuss a customized solution for your business?',
+    'chat.businessExport': 'At BoostExportsAI, we help businesses successfully expand into international markets by identifying prime export opportunities, connecting with reliable distributors, and navigating complex regulations. Our AI-powered platform has helped companies increase their export sales by an average of 35% in the first year. What specific markets are you interested in exploring?',
+    'chat.businessProducts': 'We offer a comprehensive suite of export solutions including market opportunity analysis, partner matching, regulatory compliance assistance, and logistics optimization. Our AI platform continuously analyzes global trade data to identify the best opportunities for your products. Would you like to learn more about a specific service?',
+    'chat.businessBenefits': 'By working with BoostExportsAI, you\'ll benefit from reduced market entry risks, faster international expansion, data-driven decision making, and access to our network of verified global partners. Our clients typically see ROI within 6 months of implementation. Would you like to see some case studies relevant to your industry?',
+    'chat.businessContact': 'You can reach our team at contact@boostexportsai.com or schedule a personalized consultation through our website. Our export specialists are available to answer any specific questions about your international expansion plans. Would you prefer that I arrange for one of our experts to contact you directly?',
+    'chat.businessWebsite': 'Our website features detailed information about our services, client success stories, and resources to help with your export journey. Is there a specific aspect of international trade you\'re looking to learn more about that I can direct you to?',
+    'chat.businessAi': 'Our proprietary AI technology analyzes millions of data points from global trade databases, market trends, and regulatory requirements to provide you with actionable insights for your export strategy. This means less research time for you and more confidence in your international business decisions. Would you like to see how our AI could help identify opportunities for your specific products?',
+    'chat.businessDefault': 'I appreciate your question. To provide you with the most relevant information, could you tell me more about your business and your international expansion goals? This will help us tailor our solutions to your specific needs.',
+    'chat.businessGoodbye': 'Thank you for chatting with BoostExportsAI today. If you have any more questions about international expansion, don\'t hesitate to reach out. We\'re here to help your business succeed globally!',
+    'chat.offerAppointment': 'It seems like you might have some specific questions that would be better addressed in a personal consultation. Would you like to schedule a 15-minute call with one of our export specialists? They can provide tailored advice for your business situation at no obligation.',
+    
     // Calendar booking translations
     'calendar.askName': 'Parfait ! Je vais vous aider à prendre rendez-vous. Tout d\'abord, quel est votre nom complet ?',
     'calendar.askEmail': 'Merci. Maintenant, veuillez fournir votre adresse e-mail afin que nous puissions vous envoyer une confirmation.',
     'calendar.askDate': 'Quelle date souhaitez-vous pour votre rendez-vous ? (Veuillez utiliser le format JJ/MM/AAAA)',
     'calendar.askTime': 'Quelle heure vous conviendrait le mieux ? (Veuillez utiliser le format HH:MM, par exemple 14:30)',
     'calendar.askPurpose': 'Quel est l\'objet de ce rendez-vous ?',
-    'calendar.bookingCancelled': 'Processus de réservation annulé. Y a-t-il autre chose que je puisse faire pour vous ?',
+    'calendar.bookingCancelled': 'Processus de réservation annulé. Is there anything else I can help you with?',
     'calendar.invalidEmail': 'Cela ne ressemble pas à une adresse e-mail valide. Veuillez réessayer.',
     'calendar.invalidDate': 'Je n\'ai pas pu comprendre ce format de date. Veuillez utiliser le format JJ/MM/AAAA.',
     'calendar.invalidTime': 'Je n\'ai pas pu comprendre ce format d\'heure. Veuillez utiliser le format HH:MM (par exemple, 14:30).',
@@ -318,26 +340,24 @@ const translations = {
   }
 };
 
-const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
-
-export const LanguageProvider = ({ children }: { children: ReactNode }) => {
-  const [language, setLanguage] = useState<Language>('en');
-
-  const t = (key: string): string => {
-    return translations[language][key as keyof typeof translations[typeof language]] || key;
+export function LanguageProvider({ children, initialLanguage = 'en' }: LanguageProviderProps) {
+  const [language, setLanguage] = useState<Language>(initialLanguage);
+  
+  const t = (key: TranslationKey): string => {
+    return translations[language][key] || key;
   };
-
+  
   return (
     <LanguageContext.Provider value={{ language, setLanguage, t }}>
       {children}
     </LanguageContext.Provider>
   );
-};
+}
 
-export const useLanguage = (): LanguageContextType => {
+export function useLanguage() {
   const context = useContext(LanguageContext);
   if (context === undefined) {
     throw new Error('useLanguage must be used within a LanguageProvider');
   }
   return context;
-};
+}

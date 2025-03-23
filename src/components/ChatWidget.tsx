@@ -1,3 +1,4 @@
+
 import React, { useState, useRef, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -27,6 +28,8 @@ const ChatWidget = () => {
   const [askingForEmail, setAskingForEmail] = useState(false);
   const [waitingForEmail, setWaitingForEmail] = useState(false);
   const [chatId, setChatId] = useState(`chat-${Date.now()}`);
+  const [hasOfferedBooking, setHasOfferedBooking] = useState(false);
+  const [consecutiveDefaultResponses, setConsecutiveDefaultResponses] = useState(0);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const { toast } = useToast();
@@ -76,6 +79,8 @@ const ChatWidget = () => {
     // Generate a new chat ID whenever the chat is opened
     if (!isOpen) {
       setChatId(`chat-${Date.now()}`);
+      setHasOfferedBooking(false);
+      setConsecutiveDefaultResponses(0);
     }
   };
 
@@ -177,7 +182,7 @@ const ChatWidget = () => {
       setIsLoading(false);
       
       // After a few messages, ask if they want to send the conversation by email
-      if (messages.length >= 4 && !askingForEmail && !userEmail) {
+      if (messages.length >= 4 && !askingForEmail && !userEmail && !hasOfferedBooking) {
         setTimeout(() => {
           askForEmail();
         }, 1000);
@@ -246,34 +251,68 @@ const ChatWidget = () => {
     }
   };
 
+  const offerAppointment = () => {
+    if (hasOfferedBooking) return;
+    
+    setHasOfferedBooking(true);
+    
+    const appointmentOfferMessage: Message = {
+      id: 'appointment-offer',
+      content: t('chat.offerAppointment'),
+      sender: 'bot',
+      timestamp: new Date(),
+    };
+    
+    setMessages(prev => [...prev, appointmentOfferMessage]);
+  };
+
   const handleBotResponse = (userInput: string) => {
-    // Enhanced bot responses with booking capability
+    // Business-oriented chat logic
     let botResponse = '';
     const lowercaseInput = userInput.toLowerCase();
+    let isDefaultResponse = false;
 
     if (lowercaseInput.includes('appointment') || lowercaseInput.includes('rendez-vous') || 
         lowercaseInput.includes('booking') || lowercaseInput.includes('schedule') ||
         lowercaseInput.includes('call') || lowercaseInput.includes('rdv')) {
       // Start the booking process
       botResponse = startBookingProcess();
+      setConsecutiveDefaultResponses(0);
     } else if (lowercaseInput.includes('hello') || lowercaseInput.includes('hi') || 
                lowercaseInput.includes('bonjour') || lowercaseInput.includes('salut')) {
-      botResponse = t('chat.greeting');
+      botResponse = t('chat.businessGreeting');
+      setConsecutiveDefaultResponses(0);
     } else if (lowercaseInput.includes('price') || lowercaseInput.includes('pricing') || 
-               lowercaseInput.includes('prix') || lowercaseInput.includes('tarif')) {
-      botResponse = t('chat.pricingInfo');
+               lowercaseInput.includes('prix') || lowercaseInput.includes('tarif') ||
+               lowercaseInput.includes('coût') || lowercaseInput.includes('cost')) {
+      botResponse = t('chat.businessPricing');
+      setConsecutiveDefaultResponses(0);
     } else if (lowercaseInput.includes('export') || lowercaseInput.includes('international') || 
                lowercaseInput.includes('market') || lowercaseInput.includes('marché')) {
-      botResponse = t('chat.exportInfo');
+      botResponse = t('chat.businessExport');
+      setConsecutiveDefaultResponses(0);
+    } else if (lowercaseInput.includes('product') || lowercaseInput.includes('produit') || 
+               lowercaseInput.includes('service') || lowercaseInput.includes('offre') ||
+               lowercaseInput.includes('offer')) {
+      botResponse = t('chat.businessProducts');
+      setConsecutiveDefaultResponses(0);
+    } else if (lowercaseInput.includes('benefit') || lowercaseInput.includes('avantage') || 
+               lowercaseInput.includes('advantage') || lowercaseInput.includes('why') ||
+               lowercaseInput.includes('pourquoi')) {
+      botResponse = t('chat.businessBenefits');
+      setConsecutiveDefaultResponses(0);
     } else if (lowercaseInput.includes('contact') || lowercaseInput.includes('email') || 
                lowercaseInput.includes('phone') || lowercaseInput.includes('téléphone')) {
-      botResponse = t('chat.contactInfo');
+      botResponse = t('chat.businessContact');
+      setConsecutiveDefaultResponses(0);
     } else if (lowercaseInput.includes('website') || lowercaseInput.includes('site web') || 
                lowercaseInput.includes('site internet')) {
-      botResponse = t('chat.websiteInfo');
+      botResponse = t('chat.businessWebsite');
+      setConsecutiveDefaultResponses(0);
     } else if (lowercaseInput.includes('ai') || lowercaseInput.includes('artificial intelligence') || 
                lowercaseInput.includes('intelligence artificielle')) {
-      botResponse = t('chat.aiInfo');
+      botResponse = t('chat.businessAi');
+      setConsecutiveDefaultResponses(0);
     } else if (lowercaseInput.includes('transcript') || lowercaseInput.includes('send') || 
                lowercaseInput.includes('email') || lowercaseInput.includes('envoyer') ||
                lowercaseInput.includes('transcription')) {
@@ -285,9 +324,25 @@ const ChatWidget = () => {
         setTimeout(() => {
           sendChatConversation(userEmail);
         }, 500);
+        setConsecutiveDefaultResponses(0);
       }
+    } else if (lowercaseInput.includes('goodbye') || lowercaseInput.includes('bye') || 
+               lowercaseInput.includes('au revoir') || lowercaseInput.includes('à bientôt') ||
+               lowercaseInput.includes('ciao')) {
+      // If user is trying to leave, offer an appointment before they go
+      botResponse = t('chat.businessGoodbye');
+      
+      // Schedule the appointment offer after the goodbye message
+      setTimeout(() => {
+        offerAppointment();
+      }, 1000);
+      
+      setConsecutiveDefaultResponses(0);
     } else {
-      botResponse = t('chat.defaultResponse');
+      // General default response
+      botResponse = t('chat.businessDefault');
+      isDefaultResponse = true;
+      setConsecutiveDefaultResponses(prev => prev + 1);
     }
 
     const botMessage: Message = {
@@ -298,6 +353,16 @@ const ChatWidget = () => {
     };
 
     setMessages(prev => [...prev, botMessage]);
+    
+    // If we've given default responses twice in a row or reached the end of conversation without helpful answers
+    if ((isDefaultResponse && consecutiveDefaultResponses >= 1) || messages.length >= 8) {
+      // Offer an appointment if we haven't done so already
+      if (!hasOfferedBooking) {
+        setTimeout(() => {
+          offerAppointment();
+        }, 1500);
+      }
+    }
   };
 
   if (!isOpen) {
