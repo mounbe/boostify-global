@@ -1,269 +1,71 @@
-
-import React, { useState, useRef, useEffect } from 'react';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
-import { MessageCircle, Send, X, Loader2, MinusCircle } from 'lucide-react';
+import React, { useState, useEffect, useRef } from 'react';
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Send, XCircle, Copy, Mail } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
 import { useLanguage } from '@/context/LanguageContext';
-import ChatBubble from './ChatBubble';
-import ChatMessage from './ChatMessage';
-import { sendEmailNotification } from '@/utils/emailService';
-import { useToast } from '@/hooks/use-toast';
 import { useCalendarBooking } from '@/hooks/useCalendarBooking';
 
-type Message = {
-  id: string;
-  content: string;
+interface ChatMessage {
   sender: 'user' | 'bot';
-  timestamp: Date;
-};
+  text: string;
+  timestamp: string;
+}
 
-const ChatWidget = () => {
-  const { language, t } = useLanguage();
+interface ChatWidgetProps {
+  initialMessages?: ChatMessage[];
+}
+
+const ChatWidget: React.FC<ChatWidgetProps> = ({ initialMessages = [] }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [messages, setMessages] = useState<Message[]>([]);
-  const [input, setInput] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
-  const [userEmail, setUserEmail] = useState('');
-  const [askingForEmail, setAskingForEmail] = useState(false);
-  const [waitingForEmail, setWaitingForEmail] = useState(false);
-  const [chatId, setChatId] = useState(`chat-${Date.now()}`);
-  const [hasOfferedBooking, setHasOfferedBooking] = useState(false);
-  const [consecutiveDefaultResponses, setConsecutiveDefaultResponses] = useState(0);
-  const messagesEndRef = useRef<HTMLDivElement>(null);
-  const inputRef = useRef<HTMLInputElement>(null);
+  const [messages, setMessages] = useState<ChatMessage[]>(initialMessages);
+  const [newMessage, setNewMessage] = useState('');
+  const chatBodyRef = useRef<HTMLDivElement>(null);
   const { toast } = useToast();
-  const { 
-    isBookingMode, 
-    startBookingProcess, 
-    processBookingInput 
-  } = useCalendarBooking();
+  const { language, t } = useLanguage();
+  const [consecutiveDefaultResponses, setConsecutiveDefaultResponses] = useState(0);
+  const { isBookingMode, bookingStep, startBookingProcess, processBookingInput, cancelBooking } = useCalendarBooking();
 
-  // Add welcome message when chat is first opened
   useEffect(() => {
-    if (isOpen && messages.length === 0) {
-      const welcomeMessage = {
-        id: 'welcome',
-        content: t('chat.welcomeMessage'),
-        sender: 'bot' as const,
-        timestamp: new Date(),
-      };
-      setMessages([welcomeMessage]);
-    }
-  }, [isOpen, messages.length, t]);
-
-  // Auto-scroll to the bottom of messages
-  useEffect(() => {
-    if (isOpen && messagesEndRef.current) {
-      messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
-    }
-  }, [messages, isOpen]);
-
-  // Focus input when chat is opened
-  useEffect(() => {
-    if (isOpen && inputRef.current) {
-      inputRef.current.focus();
-    }
-  }, [isOpen]);
-
-  // Send chat transcript when conversation changes
-  useEffect(() => {
-    // Only send if there are multiple messages (more than just welcome)
-    if (messages.length > 1) {
-      sendChatConversation('contact@boostexportsai.com');
+    if (chatBodyRef.current) {
+      chatBodyRef.current.scrollTop = chatBodyRef.current.scrollHeight;
     }
   }, [messages]);
 
+  useEffect(() => {
+    // Greet the user when the chat widget is opened
+    if (isOpen && messages.length === 0) {
+      addMessage('bot', t('chat.greeting'));
+    }
+  }, [isOpen, t, messages.length]);
+
   const toggleChat = () => {
     setIsOpen(!isOpen);
-    // Generate a new chat ID whenever the chat is opened
-    if (!isOpen) {
-      setChatId(`chat-${Date.now()}`);
-      setHasOfferedBooking(false);
-      setConsecutiveDefaultResponses(0);
+  };
+
+  const addMessage = (sender: 'user' | 'bot', text: string) => {
+    const timestamp = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    setMessages(prevMessages => [...prevMessages, { sender, text, timestamp }]);
+  };
+
+  const handleSendMessage = () => {
+    if (newMessage.trim() !== '') {
+      addMessage('user', newMessage);
+      handleBotResponse(newMessage);
+      setNewMessage('');
     }
   };
 
-  const handleSendMessage = async (e?: React.FormEvent) => {
-    if (e) e.preventDefault();
+  const sendTranscript = () => {
+    const transcriptText = messages.map(msg => `${msg.sender.toUpperCase()}: ${msg.text} (${msg.timestamp})`).join('\n');
     
-    if (!input.trim()) return;
-
-    // If we're waiting for an email address
-    if (waitingForEmail) {
-      const emailInput = input.trim();
-      
-      // Simple email validation
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (emailRegex.test(emailInput)) {
-        setUserEmail(emailInput);
-        setWaitingForEmail(false);
-        
-        // Add user's email to chat
-        const userEmailMessage: Message = {
-          id: Date.now().toString(),
-          content: emailInput,
-          sender: 'user',
-          timestamp: new Date(),
-        };
-        
-        setMessages(prev => [...prev, userEmailMessage]);
-        setInput('');
-        
-        // Respond that we'll send the conversation
-        setTimeout(() => {
-          const thankYouMessage: Message = {
-            id: Date.now().toString(),
-            content: t('chat.emailThanks'),
-            sender: 'bot',
-            timestamp: new Date(),
-          };
-          setMessages(prev => [...prev, thankYouMessage]);
-          
-          // Send the conversation via email to both the user and admin
-          sendChatConversation(emailInput);
-        }, 500);
-        
-        return;
-      } else {
-        // Invalid email format
-        const invalidEmailMessage: Message = {
-          id: Date.now().toString(),
-          content: input,
-          sender: 'user',
-          timestamp: new Date(),
-        };
-        
-        const emailErrorMessage: Message = {
-          id: Date.now().toString() + '-error',
-          content: t('chat.invalidEmail'),
-          sender: 'bot',
-          timestamp: new Date(),
-        };
-        
-        setMessages(prev => [...prev, invalidEmailMessage, emailErrorMessage]);
-        setInput('');
-        return;
-      }
-    }
-
-    // Add user message to chat
-    const userMessage: Message = {
-      id: Date.now().toString(),
-      content: input,
-      sender: 'user',
-      timestamp: new Date(),
-    };
+    // Create a mailto link
+    const mailtoLink = `mailto:contact@boostexportsai.com?subject=Chat Transcript&body=${encodeURIComponent(transcriptText)}`;
     
-    setMessages(prev => [...prev, userMessage]);
-    const userInput = input;
-    setInput('');
-    setIsLoading(true);
-
-    // If in booking mode, process the input differently
-    if (isBookingMode) {
-      setTimeout(() => {
-        const botResponse = processBookingInput(userInput);
-        const botMessage: Message = {
-          id: Date.now().toString(),
-          content: botResponse,
-          sender: 'bot',
-          timestamp: new Date(),
-        };
-        setMessages(prev => [...prev, botMessage]);
-        setIsLoading(false);
-      }, 1000);
-      return;
-    }
-
-    // Regular chat mode
-    setTimeout(() => {
-      handleBotResponse(userInput);
-      setIsLoading(false);
-      
-      // After a few messages, ask if they want to send the conversation by email
-      if (messages.length >= 4 && !askingForEmail && !userEmail && !hasOfferedBooking) {
-        setTimeout(() => {
-          askForEmail();
-        }, 1000);
-      }
-    }, 1000);
-  };
-
-  const askForEmail = () => {
-    setAskingForEmail(true);
-    const emailRequestMessage: Message = {
-      id: 'email-request',
-      content: t('chat.askForEmail'),
-      sender: 'bot',
-      timestamp: new Date(),
-    };
-    setMessages(prev => [...prev, emailRequestMessage]);
-    setWaitingForEmail(true);
-  };
-
-  const sendChatConversation = async (email: string) => {
-    try {
-      // Format conversation for email
-      const formattedConversation = messages.map(msg => {
-        const role = msg.sender === 'user' ? t('chat.user') : t('chat.bot');
-        const time = msg.timestamp.toLocaleTimeString();
-        return `${role} (${time}): ${msg.content}`;
-      }).join('\n\n');
-      
-      // Add the latest message if available
-      const conversationText = `
-        ${t('chat.conversationTranscript')}:
-        
-        ${formattedConversation}
-      `;
-      
-      // Send email using the existing email service
-      const emailData = {
-        type: 'chat',
-        email: email,
-        subject: `${t('chat.conversationSubject')} - ${chatId}`,
-        message: conversationText,
-        section: 'Chat Widget',
-        buttonName: 'Chat Conversation',
-      };
-      
-      await sendEmailNotification(emailData as any);
-      
-      // Only show toast if the email is for the user
-      if (email !== 'contact@boostexportsai.com') {
-        toast({
-          title: t('chat.emailSentTitle'),
-          description: t('chat.emailSentDescription'),
-        });
-      }
-    } catch (error) {
-      console.error('Failed to send chat conversation:', error);
-      
-      // Only show error toast if the email is for the user
-      if (email !== 'contact@boostexportsai.com') {
-        toast({
-          title: t('chat.emailErrorTitle'),
-          description: t('chat.emailErrorDescription'),
-          variant: 'destructive',
-        });
-      }
-    }
-  };
-
-  const offerAppointment = () => {
-    if (hasOfferedBooking) return;
-    
-    setHasOfferedBooking(true);
-    
-    const appointmentOfferMessage: Message = {
-      id: 'appointment-offer',
-      content: t('chat.offerAppointment'),
-      sender: 'bot',
-      timestamp: new Date(),
-    };
-    
-    setMessages(prev => [...prev, appointmentOfferMessage]);
+    // Open the email client
+    window.location.href = mailtoLink;
   };
 
   const handleBotResponse = (userInput: string) => {
@@ -271,17 +73,21 @@ const ChatWidget = () => {
     let botResponse = '';
     const lowercaseInput = userInput.toLowerCase();
     let isDefaultResponse = false;
-
-    if (lowercaseInput.includes('appointment') || lowercaseInput.includes('rendez-vous') || 
-        lowercaseInput.includes('booking') || lowercaseInput.includes('schedule') ||
-        lowercaseInput.includes('call') || lowercaseInput.includes('rdv')) {
-      // Start the booking process
-      botResponse = startBookingProcess();
-      setConsecutiveDefaultResponses(0);
-    } else if (lowercaseInput.includes('hello') || lowercaseInput.includes('hi') || 
-               lowercaseInput.includes('bonjour') || lowercaseInput.includes('salut')) {
-      botResponse = t('chat.businessGreeting');
-      setConsecutiveDefaultResponses(0);
+    
+    // Check if user wants to book a calendar appointment
+    if (
+      lowercaseInput.includes('book') || lowercaseInput.includes('schedule') ||
+      lowercaseInput.includes('appointment') || lowercaseInput.includes('call') ||
+      lowercaseInput.includes('rendez-vous') || lowercaseInput.includes('appel') ||
+      lowercaseInput.includes('réserver') || lowercaseInput.includes('planifier')
+    ) {
+      if (isBookingMode) {
+        // Already in booking mode, so continue with the booking process
+        botResponse = processBookingInput(userInput);
+      } else {
+        // Start the booking process
+        botResponse = startBookingProcess();
+      }
     } else if (lowercaseInput.includes('price') || lowercaseInput.includes('pricing') || 
                lowercaseInput.includes('prix') || lowercaseInput.includes('tarif') ||
                lowercaseInput.includes('coût') || lowercaseInput.includes('cost')) {
@@ -319,111 +125,115 @@ const ChatWidget = () => {
       setConsecutiveDefaultResponses(0);
     } else if (lowercaseInput.includes('transcript') || lowercaseInput.includes('send') || 
                lowercaseInput.includes('email') || lowercaseInput.includes('envoyer') ||
-               lowercaseInput.includes('transcription')) {
-      if (!userEmail) {
-        askForEmail();
-        return;
-      } else {
-        botResponse = t('chat.sendingTranscript');
-        setTimeout(() => {
-          sendChatConversation(userEmail);
-        }, 500);
-        setConsecutiveDefaultResponses(0);
-      }
-    } else if (lowercaseInput.includes('goodbye') || lowercaseInput.includes('bye') || 
-               lowercaseInput.includes('au revoir') || lowercaseInput.includes('à bientôt') ||
-               lowercaseInput.includes('ciao')) {
-      // If user is trying to leave, offer an appointment before they go
-      botResponse = t('chat.businessGoodbye');
-      
-      // Schedule the appointment offer after the goodbye message
-      setTimeout(() => {
-        offerAppointment();
-      }, 1000);
-      
+               lowercaseInput.includes('courriel')) {
+      // Handle transcript sending
+      sendTranscript();
+      botResponse = language === 'fr' 
+        ? 'Merci ! La transcription a été envoyée à notre équipe.'
+        : 'Thank you! The transcript has been sent to our team.';
+      setConsecutiveDefaultResponses(0);
+    } else if (isBookingMode) {
+      // If we're in booking mode, process the booking
+      botResponse = processBookingInput(userInput);
+    } else if (lowercaseInput.includes('bye') || lowercaseInput.includes('au revoir') || 
+               lowercaseInput.includes('goodbye') || lowercaseInput.includes('thanks') || 
+               lowercaseInput.includes('merci')) {
+      botResponse = t('chat.farewell');
       setConsecutiveDefaultResponses(0);
     } else {
-      // General default response
-      botResponse = t('chat.businessDefault');
+      // Default response for unrecognized queries
+      botResponse = t('chat.default');
       isDefaultResponse = true;
       setConsecutiveDefaultResponses(prev => prev + 1);
-    }
-
-    const botMessage: Message = {
-      id: Date.now().toString(),
-      content: botResponse,
-      sender: 'bot',
-      timestamp: new Date(),
-    };
-
-    setMessages(prev => [...prev, botMessage]);
-    
-    // If we've given default responses twice in a row or reached the end of conversation without helpful answers
-    if ((isDefaultResponse && consecutiveDefaultResponses >= 1) || messages.length >= 8) {
-      // Offer an appointment if we haven't done so already
-      if (!hasOfferedBooking) {
-        setTimeout(() => {
-          offerAppointment();
-        }, 1500);
+      
+      // If consecutive default responses reach threshold (2), suggest scheduling
+      if (consecutiveDefaultResponses >= 1) {
+        botResponse = t('chat.defaultFollowUp');
       }
+    }
+    
+    // Add response to chat
+    addMessage('bot', botResponse);
+    
+    // If the user is about to leave (farewell) or we've given multiple default responses,
+    // suggest scheduling an appointment (but only if we're not already in booking mode)
+    if ((lowercaseInput.includes('bye') || lowercaseInput.includes('au revoir') || 
+        lowercaseInput.includes('goodbye') || consecutiveDefaultResponses >= 2) && 
+        !isBookingMode) {
+      setTimeout(() => {
+        const schedulingOffer = t('chat.schedulingOffer');
+        addMessage('bot', schedulingOffer);
+      }, 2000);
     }
   };
 
-  if (!isOpen) {
-    return <ChatBubble onClick={toggleChat} />;
-  }
-
   return (
-    <Card className="fixed bottom-20 right-4 md:bottom-24 md:right-6 w-80 md:w-96 z-50 shadow-lg border-none rounded-2xl overflow-hidden flex flex-col">
-      <CardHeader className="p-4 bg-emerald-600 text-white flex-row justify-between items-center">
-        <CardTitle className="text-lg font-bold flex items-center">
-          <MessageCircle className="h-5 w-5 mr-2" />
-          {t('chat.title')}
-        </CardTitle>
-        <div className="flex gap-2">
-          <MinusCircle className="h-5 w-5 cursor-pointer hover:opacity-80" onClick={toggleChat} />
-          <X className="h-5 w-5 cursor-pointer hover:opacity-80" onClick={() => setIsOpen(false)} />
+    <div className="fixed bottom-4 right-4 z-50">
+      {/* Open/Close Button */}
+      <button
+        className="bg-primary text-primary-foreground p-3 rounded-full shadow-md hover:bg-primary/80 transition-colors duration-300"
+        onClick={toggleChat}
+        aria-label={isOpen ? t('chat.closeChat') : t('chat.openChat')}
+        title={isOpen ? t('chat.closeChat') : t('chat.openChat')}
+      >
+        {isOpen ? <XCircle className="h-6 w-6" /> : <Avatar><AvatarImage src="/logo.png" alt="BoostExportsAI Chat" /><AvatarFallback>AI</AvatarFallback></Avatar>}
+      </button>
+
+      {/* Chat Window */}
+      {isOpen && (
+        <div className="w-96 bg-background border rounded-lg shadow-lg flex flex-col overflow-hidden">
+          {/* Chat Header */}
+          <div className="border-b p-4 flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <Avatar>
+                <AvatarImage src="/logo.png" alt="BoostExportsAI" />
+                <AvatarFallback>AI</AvatarFallback>
+              </Avatar>
+              <h3 className="text-lg font-semibold">{t('chat.title')}</h3>
+            </div>
+          </div>
+
+          {/* Chat Body */}
+          <div ref={chatBodyRef} className="p-4 overflow-y-auto flex-grow">
+            {messages.map((message, index) => (
+              <div key={index} className={`mb-2 flex flex-col ${message.sender === 'user' ? 'items-end' : 'items-start'}`}>
+                <div className={`max-w-[75%] rounded-xl p-3 ${message.sender === 'user' ? 'bg-muted' : 'bg-primary/10'}`}>
+                  {message.text}
+                </div>
+                <span className="text-xs text-muted-foreground mt-1">{message.timestamp}</span>
+              </div>
+            ))}
+          </div>
+
+          {/* Chat Footer */}
+          <div className="m-2 p-4 border-t">
+            <div className="flex gap-2">
+              <Input
+                type="text"
+                placeholder={t('chat.messagePlaceholder')}
+                value={newMessage}
+                onChange={(e) => setNewMessage(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter') {
+                    handleSendMessage();
+                  }
+                }}
+              />
+              <Button onClick={handleSendMessage} aria-label={t('chat.sendMessage')} title={t('chat.sendMessage')}>
+                <Send className="h-4 w-4" />
+              </Button>
+            </div>
+            <div className="flex items-center justify-between mt-2">
+              <Button variant="ghost" size="sm" onClick={sendTranscript} aria-label={t('chat.sendTranscript')} title={t('chat.sendTranscript')}>
+                <Mail className="h-4 w-4 mr-2" />
+                {t('chat.sendTranscript')}
+              </Button>
+              <span className="text-xs text-muted-foreground">{t('chat.poweredBy')}</span>
+            </div>
+          </div>
         </div>
-      </CardHeader>
-      
-      <CardContent className="p-0 overflow-auto max-h-80 min-h-[320px] bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-800">
-        <div className="p-4 space-y-4">
-          {messages.map((message) => (
-            <ChatMessage
-              key={message.id}
-              content={message.content}
-              sender={message.sender}
-            />
-          ))}
-          {isLoading && <ChatMessage content="" sender="bot" isLoading={true} />}
-          <div ref={messagesEndRef} />
-        </div>
-      </CardContent>
-      
-      <CardFooter className="p-2">
-        <form onSubmit={handleSendMessage} className="flex w-full gap-2">
-          <Input
-            ref={inputRef}
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-            placeholder={waitingForEmail ? t('chat.emailInputPlaceholder') : t('chat.inputPlaceholder')}
-            className="flex-grow"
-            disabled={isLoading}
-          />
-          <Button 
-            type="submit" 
-            size="icon" 
-            disabled={isLoading || !input.trim()}
-          >
-            {isLoading ? (
-              <Loader2 className="h-4 w-4 animate-spin" />
-            ) : (
-              <Send className="h-4 w-4" />
-            )}
-          </Button>
-        </form>
-      </CardFooter>
-    </Card>
+      )}
+    </div>
   );
 };
 
