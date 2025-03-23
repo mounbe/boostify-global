@@ -3,9 +3,12 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Send, XCircle, Bot, User } from "lucide-react";
+import { Send, XCircle, Bot, User, Calendar } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { useLanguage } from '@/context/LanguageContext';
+import { sendEmailNotification } from '@/utils/emailService';
+import { useCalendarBooking } from '@/hooks/useCalendarBooking';
+import BookDemoDialog from "@/components/BookDemoDialog";
 
 interface ChatMessage {
   id: string;
@@ -19,9 +22,13 @@ const IntelligentChat: React.FC = () => {
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [inputValue, setInputValue] = useState('');
   const [isTyping, setIsTyping] = useState(false);
+  const [isBookDemoOpen, setIsBookDemoOpen] = useState(false);
+  const [hasTriedToLeave, setHasTriedToLeave] = useState(false);
+  const [exitIntentShown, setExitIntentShown] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const { toast } = useToast();
   const { language, t } = useLanguage();
+  const { startBookingProcess, processBookingInput, isBookingMode } = useCalendarBooking();
   
   useEffect(() => {
     // Scroll to the bottom when messages change
@@ -43,12 +50,63 @@ const IntelligentChat: React.FC = () => {
     }
   }, [isOpen, messages.length, language]);
 
+  useEffect(() => {
+    // Set up exit intent detection
+    const handleMouseLeave = (e: MouseEvent) => {
+      // Only trigger when mouse moves to the top of the page
+      if (e.clientY <= 5 && !exitIntentShown && messages.length >= 2 && !hasTriedToLeave) {
+        promptForDemo();
+        setExitIntentShown(true);
+        setHasTriedToLeave(true);
+      }
+    };
+
+    document.addEventListener('mouseleave', handleMouseLeave);
+    
+    return () => {
+      document.removeEventListener('mouseleave', handleMouseLeave);
+    };
+  }, [messages, exitIntentShown, hasTriedToLeave]);
+
   const generateId = (): string => {
     return Math.random().toString(36).substring(2, 11);
   };
 
   const toggleChat = () => {
     setIsOpen(!isOpen);
+  };
+
+  const promptForDemo = () => {
+    if (isOpen) {
+      // If chat is already open, add a message
+      const demoMessage = {
+        id: generateId(),
+        sender: 'bot' as const,
+        text: language === 'fr' 
+          ? "Avant de partir, souhaiteriez-vous réserver une démo personnalisée de nos solutions ? Cela vous permettrait de voir comment BoostExportsAI peut aider spécifiquement votre entreprise."
+          : "Before you go, would you like to book a personalized demo of our solutions? This would allow you to see how BoostExportsAI can specifically help your business.",
+        timestamp: new Date()
+      };
+      setMessages(prev => [...prev, demoMessage]);
+    } else {
+      // If chat is closed, open it with the demo message
+      setIsOpen(true);
+      setTimeout(() => {
+        const demoMessage = {
+          id: generateId(),
+          sender: 'bot' as const,
+          text: language === 'fr' 
+            ? "Avant de partir, souhaiteriez-vous réserver une démo personnalisée de nos solutions ? Cela vous permettrait de voir comment BoostExportsAI peut aider spécifiquement votre entreprise."
+            : "Before you go, would you like to book a personalized demo of our solutions? This would allow you to see how BoostExportsAI can specifically help your business.",
+          timestamp: new Date()
+        };
+        setMessages(prev => [...prev, demoMessage]);
+      }, 500);
+    }
+  };
+
+  const handleBookDemo = () => {
+    setIsBookDemoOpen(true);
   };
 
   const handleSendMessage = () => {
@@ -78,11 +136,103 @@ const IntelligentChat: React.FC = () => {
       };
       setMessages(prev => [...prev, botMessage]);
       setIsTyping(false);
+      
+      // Check if the conversation has at least 4 messages (2 user, 2 bot)
+      // and suggest booking a demo if they've written about services or specific needs
+      const lowerInput = inputValue.toLowerCase();
+      if (
+        messages.length >= 3 && 
+        !isBookDemoOpen && 
+        !hasTriedToLeave &&
+        (lowerInput.includes('service') || 
+         lowerInput.includes('prix') || 
+         lowerInput.includes('price') || 
+         lowerInput.includes('demo') || 
+         lowerInput.includes('démo') ||
+         lowerInput.includes('help') ||
+         lowerInput.includes('aide'))
+      ) {
+        setTimeout(() => {
+          const demoPromptMessage = {
+            id: generateId(),
+            sender: 'bot' as const,
+            text: language === 'fr' 
+              ? "Souhaitez-vous réserver une démo personnalisée pour voir comment nous pouvons répondre à vos besoins spécifiques ? Cela vous donnerait une meilleure idée de nos solutions."
+              : "Would you like to book a personalized demo to see how we can address your specific needs? This would give you a better understanding of our solutions.",
+            timestamp: new Date()
+          };
+          setMessages(prev => [...prev, demoPromptMessage]);
+        }, 1000);
+      }
     }, 1000);
   };
 
+  const handleSaveConversation = async () => {
+    try {
+      // Format the conversation for email
+      const conversationDate = new Date().toLocaleString();
+      let conversationText = `Chat Conversation - ${conversationDate}\n\n`;
+      
+      messages.forEach(msg => {
+        const sender = msg.sender === 'user' 
+          ? (language === 'fr' ? 'Visiteur' : 'Visitor') 
+          : 'BoostExportsAI';
+        const time = msg.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+        conversationText += `[${time}] ${sender}: ${msg.text}\n\n`;
+      });
+      
+      // Send the conversation via email
+      const success = await sendEmailNotification({
+        type: 'chat',
+        email: 'contact@boostexportsai.com',
+        name: 'Chat Bot',
+        message: conversationText,
+        section: 'Chat Conversation',
+        buttonName: 'Save Chat'
+      });
+      
+      if (success) {
+        toast({
+          title: language === 'fr' ? 'Conversation enregistrée' : 'Conversation saved',
+          description: language === 'fr' 
+            ? 'La conversation a été envoyée par email.' 
+            : 'The conversation has been sent via email.',
+        });
+      }
+    } catch (error) {
+      console.error('Error saving conversation:', error);
+      toast({
+        title: language === 'fr' ? 'Erreur' : 'Error',
+        description: language === 'fr'
+          ? 'Impossible d\'enregistrer la conversation.'
+          : 'Unable to save the conversation.',
+        variant: 'destructive',
+      });
+    }
+  };
+
   const generateResponse = (userInput: string): string => {
+    // Checking for demo booking related keywords
     const input = userInput.toLowerCase();
+    
+    if (
+      input.includes('démo') || 
+      input.includes('demo') || 
+      input.includes('réserver') || 
+      input.includes('book') || 
+      input.includes('rendez-vous') || 
+      input.includes('appointment') ||
+      ((input.includes('oui') || input.includes('yes')) && messages[messages.length - 2]?.text.includes('démo'))
+    ) {
+      // If user wants a demo, open the booking dialog
+      setTimeout(() => {
+        handleBookDemo();
+      }, 500);
+      
+      return language === 'fr'
+        ? "Je serais ravi de vous aider à réserver une démo. Je vais ouvrir le formulaire de réservation pour vous."
+        : "I'd be happy to help you book a demo. I'll open the booking form for you.";
+    }
     
     // Enhanced response logic based on website content
     if (input.includes('bonjour') || input.includes('salut') || input.includes('hello') || input.includes('hi')) {
@@ -146,9 +296,24 @@ const IntelligentChat: React.FC = () => {
     }
     
     if (input.includes('au revoir') || input.includes('bye')) {
+      // Offer demo booking before they leave
+      setTimeout(() => {
+        if (!hasTriedToLeave) {
+          promptForDemo();
+          setHasTriedToLeave(true);
+        }
+      }, 500);
+      
       return language === 'fr' ? 
         'Au revoir ! N\'hésitez pas à revenir si vous avez d\'autres questions sur BoostExportsAI ou nos solutions pour développer vos exportations. Bonne journée !' : 
         'Goodbye! Feel free to come back if you have any more questions about BoostExportsAI or our solutions to grow your exports. Have a great day!';
+    }
+    
+    // Save chat when conversation has significant content
+    if (messages.length >= 4 && !hasTriedToLeave) {
+      setTimeout(() => {
+        handleSaveConversation();
+      }, 1000);
     }
     
     // Default response
@@ -186,13 +351,22 @@ const IntelligentChat: React.FC = () => {
                 {language === 'fr' ? 'Assistant BoostExportsAI' : 'BoostExportsAI Assistant'}
               </h3>
             </div>
-            <button 
-              onClick={toggleChat}
-              className="text-muted-foreground hover:text-foreground"
-              aria-label="Fermer"
-            >
-              <XCircle className="h-5 w-5" />
-            </button>
+            <div className="flex items-center gap-2">
+              <button 
+                onClick={handleBookDemo}
+                className="text-primary hover:text-primary/80"
+                aria-label={language === 'fr' ? 'Réserver une démo' : 'Book a demo'}
+              >
+                <Calendar className="h-5 w-5" />
+              </button>
+              <button 
+                onClick={toggleChat}
+                className="text-muted-foreground hover:text-foreground"
+                aria-label="Fermer"
+              >
+                <XCircle className="h-5 w-5" />
+              </button>
+            </div>
           </div>
           
           {/* Chat messages */}
@@ -293,6 +467,13 @@ const IntelligentChat: React.FC = () => {
           </div>
         </div>
       )}
+      
+      {/* Book Demo Dialog */}
+      <BookDemoDialog 
+        open={isBookDemoOpen} 
+        onOpenChange={setIsBookDemoOpen} 
+        selectedPlan={language === 'fr' ? 'Démo' : 'Demo'} 
+      />
     </div>
   );
 };
