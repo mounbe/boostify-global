@@ -35,8 +35,8 @@ const IntelligentChat: React.FC = () => {
         id: generateId(),
         sender: 'bot' as const,
         text: language === 'fr' ? 
-          'Bonjour ! Comment puis-je vous aider aujourd\'hui ?' : 
-          'Hello! How can I assist you today?',
+          'Bonjour ! Je suis l\'assistant BoostExportsAI, comment puis-je vous aider avec vos besoins d\'exportation aujourd\'hui ?' : 
+          'Hello! I\'m the BoostExportsAI assistant, how can I help with your export needs today?',
         timestamp: new Date()
       };
       setMessages([welcomeMessage]);
@@ -84,47 +84,77 @@ const IntelligentChat: React.FC = () => {
   const generateResponse = (userInput: string): string => {
     const input = userInput.toLowerCase();
     
-    // Basic response logic - this will be enhanced based on your further instructions
+    // Enhanced response logic based on website content
     if (input.includes('bonjour') || input.includes('salut') || input.includes('hello') || input.includes('hi')) {
       return language === 'fr' ? 
-        'Bonjour ! Comment puis-je vous aider aujourd\'hui ?' : 
-        'Hello! How can I help you today?';
+        'Bonjour ! Je suis l\'assistant BoostExportsAI. Comment puis-je vous aider à développer vos exportations aujourd\'hui ?' : 
+        'Hello! I\'m the BoostExportsAI assistant. How can I help you grow your exports today?';
+    }
+    
+    if (input.includes('services') || input.includes('offre') || input.includes('solution') || input.includes('produit') || input.includes('product')) {
+      return language === 'fr' ? 
+        'BoostExportsAI propose trois principales solutions basées sur l\'IA pour les exportateurs: 1) IA pour votre site web - amélioration multilingue, 2) IA pour le marketing - automatisation des campagnes internationales, et 3) IA pour les ventes - qualification des leads et suivi clients. Quelle solution vous intéresse le plus ?' : 
+        'BoostExportsAI offers three main AI-based solutions for exporters: 1) AI for your website - multilingual enhancement, 2) AI for marketing - international campaign automation, and 3) AI for sales - lead qualification and customer follow-up. Which solution interests you the most?';
+    }
+    
+    if (input.includes('prix') || input.includes('tarif') || input.includes('cost') || input.includes('price') || input.includes('pricing')) {
+      return language === 'fr' ? 
+        'Nous proposons plusieurs formules tarifaires adaptées aux besoins des exportateurs. Notre forfait Essentiel commence à 199€/mois, notre forfait Pro à 499€/mois, et notre forfait Enterprise est personnalisé. Chaque forfait inclut différents niveaux d\'automatisation et d\'assistance. Vous pouvez consulter la page Tarification pour plus de détails ou réserver une démo pour une offre personnalisée.' : 
+        'We offer several pricing plans tailored to exporters\' needs. Our Essential plan starts at €199/month, our Pro plan at €499/month, and our Enterprise plan is customized. Each plan includes different levels of automation and support. You can check the Pricing page for more details or book a demo for a custom quote.';
+    }
+    
+    if (input.includes('demo') || input.includes('démo') || input.includes('démonstration') || input.includes('presentation')) {
+      return language === 'fr' ? 
+        'Vous pouvez réserver une démonstration personnalisée de nos solutions en cliquant sur le bouton "Réserver une démo" dans l\'en-tête ou sur notre page de tarification. Notre équipe vous contactera rapidement pour organiser une session qui répond à vos besoins spécifiques d\'exportation.' : 
+        'You can book a personalized demonstration of our solutions by clicking the "Book a demo" button in the header or on our pricing page. Our team will contact you shortly to arrange a session that addresses your specific export needs.';
+    }
+    
+    if (input.includes('marché') || input.includes('market') || input.includes('pays') || input.includes('country') || input.includes('region')) {
+      return language === 'fr' ? 
+        'BoostExportsAI aide les exportateurs africains à pénétrer quatre marchés principaux: l\'Afrique, l\'Asie, l\'Amérique et l\'Europe. Notre technologie a été éprouvée dans plus de 50 pays et prend en charge plus de 7 langues pour faciliter votre expansion internationale.' : 
+        'BoostExportsAI helps African exporters penetrate four main markets: Africa, Asia, America, and Europe. Our technology has been proven in over 50 countries and supports more than 7 languages to facilitate your international expansion.';
+    }
+    
+    if (input.includes('comment ça marche') || input.includes('fonctionnement') || input.includes('how it works') || input.includes('process')) {
+      return language === 'fr' ? 
+        'Notre processus se déroule en trois étapes principales: 1) Nous accélérons vos exportations en augmentant votre visibilité sur de nouveaux marchés, 2) Nous automatisons vos processus marketing et ventes pour optimiser vos ressources, et 3) Nous renforçons votre image de marque à l\'international. Vous pouvez consulter la section "Comment ça marche" sur notre site pour plus de détails.' : 
+        'Our process unfolds in three main steps: 1) We accelerate your exports by increasing your visibility in new markets, 2) We automate your marketing and sales processes to optimize your resources, and 3) We strengthen your brand image internationally. You can check the "How It Works" section on our site for more details.';
+    }
+    
+    if (input.includes('avantage') || input.includes('pourquoi') || input.includes('bénéfice') || input.includes('benefit') || input.includes('why')) {
+      return language === 'fr' ? 
+        'Les avantages de BoostExportsAI incluent: une augmentation moyenne des exportations de 30%, une réduction des coûts d\'acquisition client de 40%, une présence multilingue optimisée, et un accompagnement personnalisé par des experts en exportation. Notre technologie a déjà aidé des entreprises dans plus de 50 pays à développer leur présence internationale.' : 
+        'The benefits of BoostExportsAI include: an average 30% increase in exports, a 40% reduction in customer acquisition costs, optimized multilingual presence, and personalized support from export experts. Our technology has already helped businesses in over 50 countries develop their international presence.';
+    }
+    
+    if (input.includes('contact') || input.includes('joindre') || input.includes('reach') || input.includes('parler') || input.includes('speak')) {
+      return language === 'fr' ? 
+        'Vous pouvez nous contacter par email à contact@boostexportsai.com, utiliser le formulaire de contact sur notre site web, ou nous joindre par téléphone au +33 1 23 45 67 89. Notre équipe d\'experts en exportation se fera un plaisir de répondre à toutes vos questions.' : 
+        'You can contact us by email at contact@boostexportsai.com, use the contact form on our website, or reach us by phone at +33 1 23 45 67 89. Our team of export experts will be happy to answer all your questions.';
+    }
+    
+    if (input.includes('language') || input.includes('langue') || input.includes('support') || input.includes('multilingual')) {
+      return language === 'fr' ? 
+        'BoostExportsAI prend en charge plus de 7 langues, facilitant votre communication avec des clients internationaux. Nos solutions incluent la traduction automatique de haute qualité, l\'adaptation culturelle du contenu, et l\'optimisation SEO multilingue pour maximiser votre visibilité sur les marchés étrangers.' : 
+        'BoostExportsAI supports more than 7 languages, facilitating your communication with international customers. Our solutions include high-quality automatic translation, cultural content adaptation, and multilingual SEO optimization to maximize your visibility in foreign markets.';
     }
     
     if (input.includes('merci') || input.includes('thank')) {
       return language === 'fr' ? 
-        'De rien ! Y a-t-il autre chose que je puisse faire pour vous ?' : 
-        'You\'re welcome! Is there anything else I can do for you?';
+        'De rien ! C\'est un plaisir de vous aider dans votre parcours d\'exportation. Y a-t-il autre chose que je puisse faire pour vous concernant nos solutions d\'IA pour l\'exportation ?' : 
+        'You\'re welcome! It\'s a pleasure to assist you in your export journey. Is there anything else I can help you with regarding our AI solutions for exporting?';
     }
     
     if (input.includes('au revoir') || input.includes('bye')) {
       return language === 'fr' ? 
-        'Au revoir ! N\'hésitez pas à revenir si vous avez d\'autres questions.' : 
-        'Goodbye! Feel free to come back if you have any more questions.';
-    }
-    
-    if (input.includes('service') || input.includes('offre') || input.includes('produit') || input.includes('product')) {
-      return language === 'fr' ? 
-        'BoostExportsAI propose des solutions avancées d\'IA pour aider les entreprises à optimiser leurs stratégies d\'exportation et à s\'étendre sur les marchés internationaux.' : 
-        'BoostExportsAI offers advanced AI solutions to help businesses optimize their export strategies and expand into international markets.';
-    }
-    
-    if (input.includes('prix') || input.includes('cost') || input.includes('price')) {
-      return language === 'fr' ? 
-        'Nous proposons plusieurs formules tarifaires adaptées à différentes tailles d\'entreprises. Vous pouvez consulter notre page de tarification pour plus de détails ou nous contacter pour une offre personnalisée.' : 
-        'We offer several pricing plans suited to different business sizes. You can check our pricing page for more details or contact us for a custom quote.';
-    }
-    
-    if (input.includes('contact') || input.includes('joindre') || input.includes('reach')) {
-      return language === 'fr' ? 
-        'Vous pouvez nous contacter par email à contact@boostexportsai.com ou utiliser le formulaire de contact sur notre site web.' : 
-        'You can contact us by email at contact@boostexportsai.com or use the contact form on our website.';
+        'Au revoir ! N\'hésitez pas à revenir si vous avez d\'autres questions sur BoostExportsAI ou nos solutions pour développer vos exportations. Bonne journée !' : 
+        'Goodbye! Feel free to come back if you have any more questions about BoostExportsAI or our solutions to grow your exports. Have a great day!';
     }
     
     // Default response
     return language === 'fr' ? 
-      'Merci pour votre message. Comment puis-je vous aider davantage à propos de BoostExportsAI et nos solutions d\'exportation basées sur l\'IA ?' : 
-      'Thank you for your message. How can I further assist you regarding BoostExportsAI and our AI-based export solutions?';
+      'Merci pour votre message. En tant qu\'assistant BoostExportsAI, je peux vous renseigner sur nos solutions d\'IA pour augmenter vos exportations, automatiser votre marketing international et renforcer votre présence globale. Que souhaitez-vous savoir spécifiquement sur nos services pour les exportateurs ?' : 
+      'Thank you for your message. As the BoostExportsAI assistant, I can inform you about our AI solutions to increase your exports, automate your international marketing, and strengthen your global presence. What would you like to know specifically about our services for exporters?';
   };
 
   const formatTimestamp = (date: Date): string => {
