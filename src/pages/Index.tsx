@@ -10,7 +10,7 @@ import Footer from '@/components/Footer';
 import ScrollAnimation from '@/components/ScrollAnimation';
 import ExporterCTA from '@/components/ExporterCTA';
 import HowItWorks from '@/components/HowItWorks';
-import ChatWidget from '@/components/ChatWidget';
+import IntelligentChat from '@/components/IntelligentChat';
 
 const Index = () => {
   return (
@@ -25,7 +25,7 @@ const Index = () => {
       <Pricing />
       <Contact />
       <Footer />
-      <ChatWidget />
+      <IntelligentChat />
     </div>
   );
 };
