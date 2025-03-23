@@ -99,7 +99,7 @@ export const useCalendarBooking = () => {
     
     // Send calendar booking request via email
     sendEmailNotification({
-      type: 'calendar',
+      type: 'calendar' as any, // Type assertion to satisfy TypeScript
       email: 'contact@boostexportsai.com',
       subject: t('calendar.bookingRequestSubject'),
       message: `
@@ -122,7 +122,11 @@ ${t('calendar.addToCalendarMessage')} mounir@benproductions.ma
     setBookingStep(0);
     
     // Return confirmation message
-    return t('calendar.bookingConfirmation').replace('{date}', formattedDate).replace('{time}', time);
+    const confirmationMsg = t('calendar.bookingConfirmation')
+      .replace('{date}', formattedDate)
+      .replace('{time}', time);
+    
+    return confirmationMsg;
   };
 
   return {
