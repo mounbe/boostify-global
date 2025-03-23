@@ -1,7 +1,8 @@
+
 import nodemailer from 'nodemailer';
 
 interface EmailNotificationProps {
-  type: 'contact' | 'demo' | 'calendar' | 'transcript';
+  type: 'contact' | 'demo' | 'calendar' | 'transcript' | 'newsletter' | 'chat';
   email: string;
   name: string;
   message?: string;
@@ -75,6 +76,20 @@ export const sendEmailNotification = async (props: EmailNotificationProps): Prom
   } else if (type === 'transcript') {
     mailOptions.subject = `[Chat Transcript] ${name}`;
     mailOptions.html = transcriptHtml || '';
+  } else if (type === 'newsletter') {
+    mailOptions.subject = `[Newsletter Subscription] ${name}`;
+    mailOptions.html = `
+      <p><strong>Name:</strong> ${name}</p>
+      <p><strong>Email:</strong> ${email}</p>
+      <p><strong>Section:</strong> ${section || 'Footer'}</p>
+    `;
+  } else if (type === 'chat') {
+    mailOptions.subject = `[Chat Inquiry] ${name}`;
+    mailOptions.html = `
+      <p><strong>Name:</strong> ${name}</p>
+      <p><strong>Email:</strong> ${email}</p>
+      <p><strong>Message:</strong> ${message}</p>
+    `;
   }
 
   try {
@@ -117,6 +132,20 @@ export const sendEmailNotification = async (props: EmailNotificationProps): Prom
     } else if (type === 'transcript') {
       emailData.subject = `[Chat Transcript] ${name}`;
       emailData.html = transcriptHtml || '';
+    } else if (type === 'newsletter') {
+      emailData.subject = `[Newsletter Subscription] ${name}`;
+      emailData.html = `
+        <p><strong>Name:</strong> ${name}</p>
+        <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Section:</strong> ${section || 'Footer'}</p>
+      `;
+    } else if (type === 'chat') {
+      emailData.subject = `[Chat Inquiry] ${name}`;
+      emailData.html = `
+        <p><strong>Name:</strong> ${name}</p>
+        <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Message:</strong> ${message}</p>
+      `;
     }
     
     if (props.calendarEvent) {
