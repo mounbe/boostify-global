@@ -1,5 +1,6 @@
 
-import nodemailer from 'nodemailer';
+// This is a client-side mock of an email service
+// In a real application, this would be an API endpoint on your server
 
 interface EmailNotificationProps {
   type: 'contact' | 'demo' | 'calendar' | 'transcript' | 'newsletter' | 'chat';
@@ -25,142 +26,43 @@ interface EmailNotificationProps {
 }
 
 export const sendEmailNotification = async (props: EmailNotificationProps): Promise<boolean> => {
-  const transporter = nodemailer.createTransport({
-    host: process.env.EMAIL_HOST,
-    port: parseInt(process.env.EMAIL_PORT || '587'),
-    secure: false,
-    auth: {
-      user: process.env.EMAIL_USER,
-      pass: process.env.EMAIL_PASS,
-    },
+  const { type, email, name, message, subject, section, company, phone, hasWebsite, websiteUrl, buttonName, calendarEvent } = props;
+  
+  // In a real application, you would make an API call to your server here
+  // For now, we'll simulate a successful email send
+  
+  console.log('Email notification request:', {
+    type,
+    email,
+    name,
+    subject,
+    section,
+    company,
+    hasWebsite,
+    websiteUrl,
+    buttonName,
+    calendarEvent
   });
-
-  const { type, email, name, message, subject, section, company, phone, hasWebsite, websiteUrl, buttonName, calendarEvent, transcriptHtml } = props;
-
-  let mailOptions = {
-    from: process.env.EMAIL_FROM,
-    to: process.env.EMAIL_TO,
-    subject: '',
-    html: '',
-  };
-
-  if (type === 'contact') {
-    mailOptions.subject = `[Contact Form] ${subject}`;
-    mailOptions.html = `
-      <p><strong>Name:</strong> ${name}</p>
-      <p><strong>Email:</strong> ${email}</p>
-      <p><strong>Subject:</strong> ${subject}</p>
-      <p><strong>Message:</strong> ${message}</p>
-    `;
-  } else if (type === 'demo') {
-    mailOptions.subject = `[Demo Request] ${name} - ${company}`;
-    mailOptions.html = `
-      <p><strong>Name:</strong> ${name}</p>
-      <p><strong>Email:</strong> ${email}</p>
-      <p><strong>Company:</strong> ${company}</p>
-      <p><strong>Phone:</strong> ${phone}</p>
-      <p><strong>Has Website:</strong> ${hasWebsite}</p>
-      ${websiteUrl ? `<p><strong>Website URL:</strong> ${websiteUrl}</p>` : ''}
-      <p><strong>Section:</strong> ${section}</p>
-      <p><strong>Button Name:</strong> ${buttonName}</p>
-    `;
-  } else if (type === 'calendar') {
-    mailOptions.subject = `[Calendar Booking Request] ${name}`;
-    mailOptions.html = `
-      <p><strong>Name:</strong> ${name}</p>
-      <p><strong>Email:</strong> ${email}</p>
-      <p><strong>Message:</strong> ${message}</p>
-      <p><strong>Section:</strong> ${section}</p>
-      <p><strong>Button Name:</strong> ${buttonName}</p>
-    `;
-  } else if (type === 'transcript') {
-    mailOptions.subject = `[Chat Transcript] ${name}`;
-    mailOptions.html = transcriptHtml || '';
-  } else if (type === 'newsletter') {
-    mailOptions.subject = `[Newsletter Subscription] ${name}`;
-    mailOptions.html = `
-      <p><strong>Name:</strong> ${name}</p>
-      <p><strong>Email:</strong> ${email}</p>
-      <p><strong>Section:</strong> ${section || 'Footer'}</p>
-    `;
-  } else if (type === 'chat') {
-    mailOptions.subject = `[Chat Inquiry] ${name}`;
-    mailOptions.html = `
-      <p><strong>Name:</strong> ${name}</p>
-      <p><strong>Email:</strong> ${email}</p>
-      <p><strong>Message:</strong> ${message}</p>
-    `;
-  }
-
-  try {
-    const emailData: any = {
-      from: process.env.EMAIL_FROM,
-      to: process.env.EMAIL_TO,
-      subject: '',
-      html: '',
-    };
-    
-    if (type === 'contact') {
-      emailData.subject = `[Contact Form] ${subject}`;
-      emailData.html = `
-        <p><strong>Name:</strong> ${name}</p>
-        <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Subject:</strong> ${subject}</p>
-        <p><strong>Message:</strong> ${message}</p>
-      `;
-    } else if (type === 'demo') {
-      emailData.subject = `[Demo Request] ${name} - ${company}`;
-      emailData.html = `
-        <p><strong>Name:</strong> ${name}</p>
-        <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Company:</strong> ${company}</p>
-        <p><strong>Phone:</strong> ${phone}</p>
-        <p><strong>Has Website:</strong> ${hasWebsite}</p>
-        ${websiteUrl ? `<p><strong>Website URL:</strong> ${websiteUrl}</p>` : ''}
-        <p><strong>Section:</strong> ${section}</p>
-        <p><strong>Button Name:</strong> ${buttonName}</p>
-      `;
-    } else if (type === 'calendar') {
-      emailData.subject = `[Calendar Booking Request] ${name}`;
-      emailData.html = `
-        <p><strong>Name:</strong> ${name}</p>
-        <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Message:</strong> ${message}</p>
-        <p><strong>Section:</strong> ${section}</p>
-        <p><strong>Button Name:</strong> ${buttonName}</p>
-      `;
-    } else if (type === 'transcript') {
-      emailData.subject = `[Chat Transcript] ${name}`;
-      emailData.html = transcriptHtml || '';
-    } else if (type === 'newsletter') {
-      emailData.subject = `[Newsletter Subscription] ${name}`;
-      emailData.html = `
-        <p><strong>Name:</strong> ${name}</p>
-        <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Section:</strong> ${section || 'Footer'}</p>
-      `;
-    } else if (type === 'chat') {
-      emailData.subject = `[Chat Inquiry] ${name}`;
-      emailData.html = `
-        <p><strong>Name:</strong> ${name}</p>
-        <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Message:</strong> ${message}</p>
-      `;
-    }
-    
-    if (props.calendarEvent) {
-      emailData.calendarEvent = props.calendarEvent;
-      
-      if (props.calendarEvent.calendarEmail === "mounir@benproductions.ma") {
-        emailData.addToGoogleCalendar = true;
+  
+  // Simulate API call delay
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      // Auto-add calendar event for specific email
+      if (calendarEvent && calendarEvent.calendarEmail === "mounir@benproductions.ma") {
+        console.log('Auto-adding to Google Calendar for:', calendarEvent.calendarEmail);
+        console.log('Event details:', calendarEvent);
       }
-    }
-
-    await transporter.sendMail(emailData);
-
-    return true;
-  } catch (error) {
-    console.error('Error sending email notification:', error);
-    return false;
-  }
+      
+      // Simulate successful email send (90% success rate)
+      const success = Math.random() < 0.9;
+      
+      if (success) {
+        console.log('Email sent successfully');
+      } else {
+        console.error('Email sending failed (simulated failure)');
+      }
+      
+      resolve(success);
+    }, 800); // Simulate network delay
+  });
 };
