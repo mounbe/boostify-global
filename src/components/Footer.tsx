@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { useLanguage } from '@/context/LanguageContext';
 import { Mail, Phone, Globe, ChevronRight } from 'lucide-react';
@@ -12,6 +13,7 @@ const Footer = () => {
   const { language, t } = useLanguage();
   const { toast } = useToast();
   const [email, setEmail] = useState('');
+  const [name, setName] = useState(''); // Add name state
   const [isSubmitting, setIsSubmitting] = useState(false);
   
   const handleSubscribe = async (e: React.FormEvent) => {
@@ -34,6 +36,8 @@ const Footer = () => {
       const success = await sendEmailNotification({
         type: 'newsletter',
         email: email,
+        name: name || email.split('@')[0], // Use part of email as name if not provided
+        section: 'Footer'
       });
       
       if (success) {
@@ -45,6 +49,7 @@ const Footer = () => {
         });
         
         setEmail('');
+        setName('');
       } else {
         throw new Error('Failed to subscribe');
       }
