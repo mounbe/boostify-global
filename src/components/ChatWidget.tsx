@@ -1,4 +1,3 @@
-
 import React, { useState, useRef, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -6,8 +5,10 @@ import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/componen
 import { MessageCircle, Send, X, Loader2, MinusCircle } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
 import ChatBubble from './ChatBubble';
+import ChatMessage from './ChatMessage';
 import { sendEmailNotification } from '@/utils/emailService';
 import { useToast } from '@/hooks/use-toast';
+import { useCalendarBooking } from '@/hooks/useCalendarBooking';
 
 type Message = {
   id: string;
@@ -29,6 +30,11 @@ const ChatWidget = () => {
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const { toast } = useToast();
+  const { 
+    isBookingMode, 
+    startBookingProcess, 
+    processBookingInput 
+  } = useCalendarBooking();
 
   // Add welcome message when chat is first opened
   useEffect(() => {
@@ -145,12 +151,29 @@ const ChatWidget = () => {
     };
     
     setMessages(prev => [...prev, userMessage]);
+    const userInput = input;
     setInput('');
     setIsLoading(true);
 
-    // Simulated bot response - in a real implementation, this would call an API
+    // If in booking mode, process the input differently
+    if (isBookingMode) {
+      setTimeout(() => {
+        const botResponse = processBookingInput(userInput);
+        const botMessage: Message = {
+          id: Date.now().toString(),
+          content: botResponse,
+          sender: 'bot',
+          timestamp: new Date(),
+        };
+        setMessages(prev => [...prev, botMessage]);
+        setIsLoading(false);
+      }, 1000);
+      return;
+    }
+
+    // Regular chat mode
     setTimeout(() => {
-      handleBotResponse(input);
+      handleBotResponse(userInput);
       setIsLoading(false);
       
       // After a few messages, ask if they want to send the conversation by email
@@ -224,13 +247,17 @@ const ChatWidget = () => {
   };
 
   const handleBotResponse = (userInput: string) => {
-    // Simple predefined responses based on user input - in a real implementation, 
-    // this would use an AI service like OpenAI, Perplexity, or similar
+    // Enhanced bot responses with booking capability
     let botResponse = '';
     const lowercaseInput = userInput.toLowerCase();
 
-    if (lowercaseInput.includes('hello') || lowercaseInput.includes('hi') || 
-        lowercaseInput.includes('bonjour') || lowercaseInput.includes('salut')) {
+    if (lowercaseInput.includes('appointment') || lowercaseInput.includes('rendez-vous') || 
+        lowercaseInput.includes('booking') || lowercaseInput.includes('schedule') ||
+        lowercaseInput.includes('call') || lowercaseInput.includes('rdv')) {
+      // Start the booking process
+      botResponse = startBookingProcess();
+    } else if (lowercaseInput.includes('hello') || lowercaseInput.includes('hi') || 
+               lowercaseInput.includes('bonjour') || lowercaseInput.includes('salut')) {
       botResponse = t('chat.greeting');
     } else if (lowercaseInput.includes('price') || lowercaseInput.includes('pricing') || 
                lowercaseInput.includes('prix') || lowercaseInput.includes('tarif')) {
@@ -289,34 +316,21 @@ const ChatWidget = () => {
           <X className="h-5 w-5 cursor-pointer hover:opacity-80" onClick={() => setIsOpen(false)} />
         </div>
       </CardHeader>
+      
       <CardContent className="p-0 overflow-auto max-h-80 min-h-[320px] bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-800">
         <div className="p-4 space-y-4">
           {messages.map((message) => (
-            <div
+            <ChatMessage
               key={message.id}
-              className={`flex ${message.sender === 'user' ? 'justify-end' : 'justify-start'}`}
-            >
-              <div
-                className={`max-w-[80%] p-3 rounded-xl ${
-                  message.sender === 'user'
-                    ? 'bg-emerald-600 text-white rounded-tr-none'
-                    : 'bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-gray-100 rounded-tl-none'
-                }`}
-              >
-                {message.content}
-              </div>
-            </div>
+              content={message.content}
+              sender={message.sender}
+            />
           ))}
-          {isLoading && (
-            <div className="flex justify-start">
-              <div className="max-w-[80%] p-3 rounded-xl bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-gray-100 rounded-tl-none">
-                <Loader2 className="h-5 w-5 animate-spin" />
-              </div>
-            </div>
-          )}
+          {isLoading && <ChatMessage content="" sender="bot" isLoading={true} />}
           <div ref={messagesEndRef} />
         </div>
       </CardContent>
+      
       <CardFooter className="p-2">
         <form onSubmit={handleSendMessage} className="flex w-full gap-2">
           <Input
