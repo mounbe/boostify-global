@@ -1,91 +1,137 @@
+import nodemailer from 'nodemailer';
 
-/**
- * Email service utility to handle form submissions
- */
-
-type EmailData = {
-  type: 'contact' | 'newsletter' | 'demo' | 'chat' | 'calendar';
+interface EmailNotificationProps {
+  type: 'contact' | 'demo' | 'calendar' | 'transcript';
   email: string;
-  name?: string;
-  subject?: string;
+  name: string;
   message?: string;
+  subject?: string;
+  section?: string;
   company?: string;
   phone?: string;
+  hasWebsite?: string;
   websiteUrl?: string;
-  hasWebsite?: 'yes' | 'no';
-  section?: string;
   buttonName?: string;
-};
+  calendarEvent?: {
+    calendarEmail: string;
+    eventTitle: string;
+    eventDescription: string;
+    eventDate: string; // ISO string
+    eventDuration: number; // in minutes
+    attendees: string[];
+  };
+  transcriptHtml?: string;
+}
 
-/**
- * Sends email data to the specified endpoint
- */
-export const sendEmailNotification = async (data: EmailData): Promise<boolean> => {
+export const sendEmailNotification = async (props: EmailNotificationProps): Promise<boolean> => {
+  const transporter = nodemailer.createTransport({
+    host: process.env.EMAIL_HOST,
+    port: parseInt(process.env.EMAIL_PORT || '587'),
+    secure: false,
+    auth: {
+      user: process.env.EMAIL_USER,
+      pass: process.env.EMAIL_PASS,
+    },
+  });
+
+  const { type, email, name, message, subject, section, company, phone, hasWebsite, websiteUrl, buttonName, calendarEvent, transcriptHtml } = props;
+
+  let mailOptions = {
+    from: process.env.EMAIL_FROM,
+    to: process.env.EMAIL_TO,
+    subject: '',
+    html: '',
+  };
+
+  if (type === 'contact') {
+    mailOptions.subject = `[Contact Form] ${subject}`;
+    mailOptions.html = `
+      <p><strong>Name:</strong> ${name}</p>
+      <p><strong>Email:</strong> ${email}</p>
+      <p><strong>Subject:</strong> ${subject}</p>
+      <p><strong>Message:</strong> ${message}</p>
+    `;
+  } else if (type === 'demo') {
+    mailOptions.subject = `[Demo Request] ${name} - ${company}`;
+    mailOptions.html = `
+      <p><strong>Name:</strong> ${name}</p>
+      <p><strong>Email:</strong> ${email}</p>
+      <p><strong>Company:</strong> ${company}</p>
+      <p><strong>Phone:</strong> ${phone}</p>
+      <p><strong>Has Website:</strong> ${hasWebsite}</p>
+      ${websiteUrl ? `<p><strong>Website URL:</strong> ${websiteUrl}</p>` : ''}
+      <p><strong>Section:</strong> ${section}</p>
+      <p><strong>Button Name:</strong> ${buttonName}</p>
+    `;
+  } else if (type === 'calendar') {
+    mailOptions.subject = `[Calendar Booking Request] ${name}`;
+    mailOptions.html = `
+      <p><strong>Name:</strong> ${name}</p>
+      <p><strong>Email:</strong> ${email}</p>
+      <p><strong>Message:</strong> ${message}</p>
+      <p><strong>Section:</strong> ${section}</p>
+      <p><strong>Button Name:</strong> ${buttonName}</p>
+    `;
+  } else if (type === 'transcript') {
+    mailOptions.subject = `[Chat Transcript] ${name}`;
+    mailOptions.html = transcriptHtml || '';
+  }
+
   try {
-    console.log('Sending email notification:', data);
+    const emailData: any = {
+      from: process.env.EMAIL_FROM,
+      to: process.env.EMAIL_TO,
+      subject: '',
+      html: '',
+    };
     
-    // Create subject line with section and button information
-    const sectionInfo = data.section ? `[${data.section}]` : '';
-    const buttonInfo = data.buttonName ? `[${data.buttonName}]` : '';
-    const formType = `[${data.type}]`;
-    
-    // FormSubmit requires additional fields for proper submission
-    const formData = new FormData();
-    
-    // Add all data fields to FormData
-    Object.entries(data).forEach(([key, value]) => {
-      if (value !== undefined && value !== null) {
-        formData.append(key, value.toString());
-      }
-    });
-    
-    // Add required FormSubmit fields
-    formData.append('_subject', `${formType} ${buttonInfo} ${sectionInfo} - ${data.email}`);
-    formData.append('_captcha', 'false'); // Disable captcha for testing
-    formData.append('_template', 'table'); // Use table template for better readability
-    
-    // Use direct form submission (FormSubmit works better with FormData than JSON for cross-origin)
-    const response = await fetch('https://formsubmit.co/contact@boostexportsai.com', {
-      method: 'POST',
-      body: formData,
-    });
-    
-    if (!response.ok) {
-      throw new Error(`Failed to send email: ${response.status} ${response.statusText}`);
+    if (type === 'contact') {
+      emailData.subject = `[Contact Form] ${subject}`;
+      emailData.html = `
+        <p><strong>Name:</strong> ${name}</p>
+        <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Subject:</strong> ${subject}</p>
+        <p><strong>Message:</strong> ${message}</p>
+      `;
+    } else if (type === 'demo') {
+      emailData.subject = `[Demo Request] ${name} - ${company}`;
+      emailData.html = `
+        <p><strong>Name:</strong> ${name}</p>
+        <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Company:</strong> ${company}</p>
+        <p><strong>Phone:</strong> ${phone}</p>
+        <p><strong>Has Website:</strong> ${hasWebsite}</p>
+        ${websiteUrl ? `<p><strong>Website URL:</strong> ${websiteUrl}</p>` : ''}
+        <p><strong>Section:</strong> ${section}</p>
+        <p><strong>Button Name:</strong> ${buttonName}</p>
+      `;
+    } else if (type === 'calendar') {
+      emailData.subject = `[Calendar Booking Request] ${name}`;
+      emailData.html = `
+        <p><strong>Name:</strong> ${name}</p>
+        <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Message:</strong> ${message}</p>
+        <p><strong>Section:</strong> ${section}</p>
+        <p><strong>Button Name:</strong> ${buttonName}</p>
+      `;
+    } else if (type === 'transcript') {
+      emailData.subject = `[Chat Transcript] ${name}`;
+      emailData.html = transcriptHtml || '';
     }
     
+    if (props.calendarEvent) {
+      emailData.calendarEvent = props.calendarEvent;
+      
+      if (props.calendarEvent.calendarEmail === "mounir@benproductions.ma") {
+        emailData.addToGoogleCalendar = true;
+      }
+    }
+
+    await transporter.sendMail(emailData);
+
     return true;
   } catch (error) {
     console.error('Error sending email notification:', error);
-    
-    // Fallback method using mailto link for development/testing
-    try {
-      // Create a basic email body
-      const subject = `${data.type === 'chat' ? 'Chat Conversation' : `Contact from ${data.name || 'Website Visitor'}`} - ${data.type}`;
-      const body = `
-        Type: ${data.type}
-        ${data.name ? `Name: ${data.name}` : ''}
-        Email: ${data.email}
-        ${data.company ? `Company: ${data.company}` : ''}
-        ${data.phone ? `Phone: ${data.phone}` : ''}
-        ${data.hasWebsite ? `Has Website: ${data.hasWebsite}` : ''}
-        ${data.websiteUrl ? `Website URL: ${data.websiteUrl}` : ''}
-        ${data.message ? `Message: ${data.message}` : ''}
-        ${data.section ? `Section: ${data.section}` : ''}
-        ${data.buttonName ? `Button: ${data.buttonName}` : ''}
-      `;
-      
-      // Create mailTo link (for testing in development)
-      const mailtoLink = `mailto:contact@boostexportsai.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-      
-      // Open mailto link (this will work in development but might be blocked in production)
-      window.open(mailtoLink, '_blank');
-      
-      console.log('Email form data sent via mailto fallback');
-      return true;
-    } catch (fallbackError) {
-      console.error('Fallback email method also failed:', fallbackError);
-      return false;
-    }
+    return false;
   }
 };

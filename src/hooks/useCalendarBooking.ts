@@ -76,13 +76,43 @@ export const useCalendarBooking = () => {
         };
         
         try {
+          // Create a formatted date string for the booking (tomorrow at 10:00 AM)
+          const tomorrow = new Date();
+          tomorrow.setDate(tomorrow.getDate() + 1);
+          tomorrow.setHours(10, 0, 0, 0);
+          
+          // Format date for display
+          const dateOptions: Intl.DateTimeFormatOptions = { 
+            year: 'numeric', 
+            month: 'long', 
+            day: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit'
+          };
+          
+          const formattedDate = tomorrow.toLocaleDateString(
+            language === 'fr' ? 'fr-FR' : 'en-US', 
+            dateOptions
+          );
+          
+          // Create Google Calendar integration details
+          const calendarEventDetails = {
+            calendarEmail: "mounir@benproductions.ma",
+            eventTitle: `Demo BoostExportsAI - ${bookingInfo.name}`,
+            eventDescription: `Demo request for ${bookingInfo.name} (${bookingInfo.email})\nPurpose: ${bookingInfo.purpose}`,
+            eventDate: tomorrow.toISOString(),
+            eventDuration: 60, // 60 minutes
+            attendees: [bookingInfo.email]
+          };
+          
           sendEmailNotification({
             type: 'calendar',
             name: bookingInfo.name,
             email: bookingInfo.email,
             message: `Demo Request Purpose: ${bookingInfo.purpose}`,
             section: 'Calendar Booking',
-            buttonName: 'Chat Demo Request'
+            buttonName: 'Chat Demo Request',
+            calendarEvent: calendarEventDetails
           });
           
           toast({
@@ -98,8 +128,8 @@ export const useCalendarBooking = () => {
           setBookingData({});
           
           return language === 'fr'
-            ? `Merci ! Notre équipe vous contactera bientôt à ${bookingData.email} pour programmer une démo personnalisée concernant ${input}. Avez-vous d'autres questions entre-temps ?`
-            : `Thank you! Our team will contact you soon at ${bookingData.email} to schedule a personalized demo regarding ${input}. Do you have any other questions in the meantime?`;
+            ? `Merci ! Un rendez-vous a été programmé pour ${formattedDate}. Notre équipe vous contactera à ${bookingData.email} pour confirmer cette date ou proposer une alternative. Avez-vous d'autres questions entre-temps ?`
+            : `Thank you! An appointment has been scheduled for ${formattedDate}. Our team will contact you at ${bookingData.email} to confirm this date or suggest an alternative. Do you have any other questions in the meantime?`;
         } catch (error) {
           console.error('Error sending booking email:', error);
           
