@@ -4,7 +4,7 @@
  */
 
 type EmailData = {
-  type: 'contact' | 'newsletter' | 'demo' | 'chat';
+  type: 'contact' | 'newsletter' | 'demo' | 'chat' | 'calendar';
   email: string;
   name?: string;
   subject?: string;

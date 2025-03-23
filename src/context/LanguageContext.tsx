@@ -1,4 +1,3 @@
-
 import React, { createContext, useContext, useState, ReactNode } from 'react';
 
 export type Language = 'en' | 'fr';
@@ -145,6 +144,27 @@ const translations = {
     'chat.emailErrorDescription': 'There was an error sending the email. Please try again later.',
     'chat.user': 'You',
     'chat.bot': 'BoostExportsAI',
+    
+    // Calendar booking translations
+    'calendar.askName': 'Great! I\'ll help you book an appointment. First, what\'s your full name?',
+    'calendar.askEmail': 'Thank you. Now, please provide your email address so we can send you a confirmation.',
+    'calendar.askDate': 'What date would you like to schedule your appointment? (Please use format MM/DD/YYYY)',
+    'calendar.askTime': 'What time would work best for you? (Please use format HH:MM, for example 14:30)',
+    'calendar.askPurpose': 'What is the purpose of this appointment?',
+    'calendar.bookingCancelled': 'Booking process cancelled. Is there anything else I can help you with?',
+    'calendar.invalidEmail': 'That doesn\'t look like a valid email address. Please try again.',
+    'calendar.invalidDate': 'I couldn\'t understand that date format. Please use MM/DD/YYYY format.',
+    'calendar.invalidTime': 'I couldn\'t understand that time format. Please use HH:MM format (e.g., 14:30).',
+    'calendar.bookingError': 'There was an error with your booking. Please try again.',
+    'calendar.bookingConfirmation': 'Thank you! Your appointment has been scheduled for {date} at {time}. We\'ve sent the details to our team who will confirm shortly.',
+    'calendar.bookingRequestSubject': 'Calendar Booking Request',
+    'calendar.bookingRequestDetails': 'Booking Request Details',
+    'calendar.bookingName': 'Name',
+    'calendar.bookingEmail': 'Email',
+    'calendar.bookingDate': 'Date',
+    'calendar.bookingTime': 'Time',
+    'calendar.bookingPurpose': 'Purpose',
+    'calendar.addToCalendarMessage': 'Please add this appointment to the calendar:',
   },
   fr: {
     // Header
@@ -274,6 +294,27 @@ const translations = {
     'chat.emailErrorDescription': 'Une erreur s\'est produite lors de l\'envoi de l\'email. Veuillez réessayer plus tard.',
     'chat.user': 'Vous',
     'chat.bot': 'BoostExportsAI',
+    
+    // Calendar booking translations
+    'calendar.askName': 'Parfait ! Je vais vous aider à prendre rendez-vous. Tout d\'abord, quel est votre nom complet ?',
+    'calendar.askEmail': 'Merci. Maintenant, veuillez fournir votre adresse e-mail afin que nous puissions vous envoyer une confirmation.',
+    'calendar.askDate': 'Quelle date souhaitez-vous pour votre rendez-vous ? (Veuillez utiliser le format JJ/MM/AAAA)',
+    'calendar.askTime': 'Quelle heure vous conviendrait le mieux ? (Veuillez utiliser le format HH:MM, par exemple 14:30)',
+    'calendar.askPurpose': 'Quel est l\'objet de ce rendez-vous ?',
+    'calendar.bookingCancelled': 'Processus de réservation annulé. Y a-t-il autre chose que je puisse faire pour vous ?',
+    'calendar.invalidEmail': 'Cela ne ressemble pas à une adresse e-mail valide. Veuillez réessayer.',
+    'calendar.invalidDate': 'Je n\'ai pas pu comprendre ce format de date. Veuillez utiliser le format JJ/MM/AAAA.',
+    'calendar.invalidTime': 'Je n\'ai pas pu comprendre ce format d\'heure. Veuillez utiliser le format HH:MM (par exemple, 14:30).',
+    'calendar.bookingError': 'Une erreur s\'est produite lors de votre réservation. Veuillez réessayer.',
+    'calendar.bookingConfirmation': 'Merci ! Votre rendez-vous a été programmé pour le {date} à {time}. Nous avons envoyé les détails à notre équipe qui vous confirmera rapidement.',
+    'calendar.bookingRequestSubject': 'Demande de Rendez-vous Calendrier',
+    'calendar.bookingRequestDetails': 'Détails de la Demande de Rendez-vous',
+    'calendar.bookingName': 'Nom',
+    'calendar.bookingEmail': 'Email',
+    'calendar.bookingDate': 'Date',
+    'calendar.bookingTime': 'Heure',
+    'calendar.bookingPurpose': 'Objet',
+    'calendar.addToCalendarMessage': 'Veuillez ajouter ce rendez-vous au calendrier :',
   }
 };
 

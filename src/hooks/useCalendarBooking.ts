@@ -121,8 +121,8 @@ ${t('calendar.addToCalendarMessage')} mounir@benproductions.ma
     setIsBookingMode(false);
     setBookingStep(0);
     
-    // Return confirmation message
-    return t('calendar.bookingConfirmation', { date: formattedDate, time: time });
+    // Return confirmation message - Fix error by removing the second argument and using string interpolation
+    return t('calendar.bookingConfirmation').replace('{date}', formattedDate).replace('{time}', time);
   };
 
   return {
