@@ -3,7 +3,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Send, XCircle, Robot, User } from "lucide-react";
+import { Send, XCircle, Bot, User } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { useLanguage } from '@/context/LanguageContext';
 
@@ -177,7 +177,7 @@ const IntelligentChat: React.FC = () => {
                     <div className="flex-shrink-0 mt-1">
                       <Avatar className="h-6 w-6">
                         <AvatarImage src="/logo.png" alt="AI" />
-                        <AvatarFallback><Robot className="h-4 w-4" /></AvatarFallback>
+                        <AvatarFallback><Bot className="h-4 w-4" /></AvatarFallback>
                       </Avatar>
                     </div>
                   )}
@@ -213,7 +213,7 @@ const IntelligentChat: React.FC = () => {
                   <div className="flex-shrink-0 mt-1">
                     <Avatar className="h-6 w-6">
                       <AvatarImage src="/logo.png" alt="AI" />
-                      <AvatarFallback><Robot className="h-4 w-4" /></AvatarFallback>
+                      <AvatarFallback><Bot className="h-4 w-4" /></AvatarFallback>
                     </Avatar>
                   </div>
                   <div className="flex flex-col">
