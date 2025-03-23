@@ -101,7 +101,7 @@ export const useCalendarBooking = () => {
     sendEmailNotification({
       type: 'calendar',
       email: 'contact@boostexportsai.com',
-      subject: `${t('calendar.bookingRequestSubject')} - ${name}`,
+      subject: t('calendar.bookingRequestSubject'),
       message: `
 ${t('calendar.bookingRequestDetails')}:
 
@@ -115,7 +115,7 @@ ${t('calendar.addToCalendarMessage')} mounir@benproductions.ma
       `,
       section: 'Chat Widget',
       buttonName: 'Calendar Booking Request',
-    } as any);
+    });
 
     // Reset booking state
     setIsBookingMode(false);
