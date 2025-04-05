@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { toast } from "sonner";
 import { useNavigate } from "react-router-dom";
+import { Input } from "@/components/ui/input";
 
 const PublishPage = () => {
   const [isPublishing, setIsPublishing] = useState(false);
@@ -44,12 +45,12 @@ const PublishPage = () => {
           <div className="mb-4">
             <label htmlFor="domain" className="block text-sm font-medium mb-1">Nom de domaine</label>
             <div className="flex items-center gap-2">
-              <input 
+              <Input 
                 type="text"
                 id="domain"
                 value={customDomain}
                 onChange={(e) => setCustomDomain(e.target.value)}
-                className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                className="flex-1"
               />
             </div>
             <p className="text-xs text-muted-foreground mt-1">
@@ -107,7 +108,7 @@ const PublishPage = () => {
                 Pour connecter votre domaine personnalisé {customDomain}:
               </p>
               <ol className="list-decimal pl-5 space-y-1 text-blue-700">
-                <li>Allez dans Projet > Paramètres > Domaines dans Lovable</li>
+                <li>Allez dans Projet &gt; Paramètres &gt; Domaines dans Lovable</li>
                 <li>Ajoutez votre domaine personnalisé</li>
                 <li>Suivez les instructions pour configurer vos enregistrements DNS</li>
               </ol>
